@@ -19,7 +19,11 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
 
     private bool _isTripleShotActive = false;
-    private bool _isSpeedBoostActive = false;
+    //private bool _isSpeedBoostActive = false;
+    private bool _isShieldsActive = false;
+
+    [SerializeField]
+    private GameObject _shieldsVisualizer;
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
@@ -78,6 +82,13 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if (_isShieldsActive == true)
+        {
+            _isShieldsActive = false;
+            _shieldsVisualizer.SetActive(false);
+            return;
+        }
+
         _lives--;
 
         if (_lives <= 0)
@@ -100,7 +111,7 @@ public class Player : MonoBehaviour
 
     public void SpeedBoostActive()
     {
-        _isSpeedBoostActive = true;
+        //_isSpeedBoostActive = true;
         _speed *= _speedMultiplier;
         StartCoroutine(SpeedBoostPowerDownRoutine());
     }
@@ -108,7 +119,13 @@ public class Player : MonoBehaviour
     IEnumerator SpeedBoostPowerDownRoutine()
     {
         yield return new WaitForSeconds(5f);
-        _isSpeedBoostActive = false;
+        //_isSpeedBoostActive = false;
         _speed /= _speedMultiplier;
+    }
+
+    public void ShieldsActive()
+    {
+        _isShieldsActive = true;
+        _shieldsVisualizer.SetActive(true);
     }
 }
