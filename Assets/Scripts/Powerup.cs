@@ -16,17 +16,22 @@ public class Powerup : MonoBehaviour
     {
         transform.Translate(_speed * Time.deltaTime * Vector3.down);
 
-        if (transform.position.y < -5f)
+        if (transform.position.y < -4.5f)
         {
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            //collected
+            Player player = other.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TripleShotActive();
+            }
+            Destroy(gameObject);
         }
     }
 }
