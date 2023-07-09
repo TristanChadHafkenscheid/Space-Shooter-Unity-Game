@@ -6,6 +6,8 @@ public class Powerup : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3;
+    [SerializeField] //0 equals triple shot, 1 = speed, 2 = shields
+    private int powerupID;
 
     void Update()
     {
@@ -24,7 +26,21 @@ public class Powerup : MonoBehaviour
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
-                player.TripleShotActive();
+                switch (powerupID)
+                {
+                    case 0:
+                        player.TripleShotActive();
+                        break;
+                    case 1:
+                        Debug.Log("speed powerup collected");
+                        break;
+                    case 2:
+                        Debug.Log("shield powerup collected");
+                        break;
+                    default:
+                        Debug.Log("Default value");
+                        break;
+                }
             }
             Destroy(gameObject);
         }
