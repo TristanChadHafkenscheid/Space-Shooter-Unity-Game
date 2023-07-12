@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     private GameObject _shieldsVisualizer;
 
     [SerializeField]
+    private GameObject _rightEngine, _leftEngine;
+
+    [SerializeField]
     private int _score;
     private UIManager _uiManager;
 
@@ -102,6 +105,17 @@ public class Player : MonoBehaviour
         }
 
         _lives--;
+
+        //if lives 2, enable rigt engine
+        //else if lives is 1 enable left engine
+        if (_lives == 2)
+        {
+            _rightEngine.SetActive(true);
+        }
+        else if (_lives == 1)
+        {
+            _leftEngine.SetActive(true);
+        }
 
         _uiManager.UpdateLives(_lives);
 
