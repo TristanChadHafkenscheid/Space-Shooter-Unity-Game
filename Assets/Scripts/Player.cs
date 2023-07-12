@@ -32,12 +32,17 @@ public class Player : MonoBehaviour
     private int _score;
     private UIManager _uiManager;
 
+    [SerializeField]
+    private AudioClip _laserAudioClip;
+
+    private AudioSource _audioSource;
+
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
-
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _audioSource = GetComponent<AudioSource>();
 
         if (_spawnManager == null)
         {
@@ -47,6 +52,14 @@ public class Player : MonoBehaviour
         if (_uiManager == null)
         {
             Debug.LogError("UI Manager is NULL");
+        }
+        if (_audioSource == null)
+        {
+            Debug.LogError("Audio Source on the player is NULL");
+        }
+        else
+        {
+            _audioSource.clip = _laserAudioClip;
         }
     }
 
@@ -81,6 +94,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //shoots laser
     private void FireLaser()
     {
         _canFire = Time.time + _fireRate;
@@ -93,6 +107,7 @@ public class Player : MonoBehaviour
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.05f, 0), Quaternion.identity);
         }
+        _audioSource.Play();
     }
 
     public void Damage()
@@ -106,8 +121,6 @@ public class Player : MonoBehaviour
 
         _lives--;
 
-        //if lives 2, enable rigt engine
-        //else if lives is 1 enable left engine
         if (_lives == 2)
         {
             _rightEngine.SetActive(true);
