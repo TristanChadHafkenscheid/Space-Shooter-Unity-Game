@@ -37,6 +37,9 @@ public class Player : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    [SerializeField]
+    private bool _movingToStart = false;
+
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
@@ -61,10 +64,16 @@ public class Player : MonoBehaviour
         {
             _audioSource.clip = _laserAudioClip;
         }
+
+        StartCoroutine(MoveToStartPosition(4f));
     }
 
     void Update()
     {
+        if (_movingToStart == true)
+        {
+            return;
+        }
         CalculateMovement();
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
@@ -174,5 +183,21 @@ public class Player : MonoBehaviour
     {
         _score += points;
         _uiManager.UpdateScore(_score);
+    }
+
+    IEnumerator MoveToStartPosition(float lerpDuration)
+    {
+        _movingToStart = true;
+        Vector3 offScreenPos = new Vector3(0, -6f, 0);
+        Vector3 onScreenPos = new Vector3(0, -2f, 0);
+        float timeElapsed = 0;
+        while (timeElapsed < lerpDuration)
+        {
+            transform.position = Vector3.Lerp(offScreenPos, onScreenPos, timeElapsed / lerpDuration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = onScreenPos;
+        _movingToStart = false;
     }
 }

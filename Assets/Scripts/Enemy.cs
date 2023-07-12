@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     private float _speed = 4;
     private Player _player;
     private Animator _animator;
+    private Collider2D _colldier;
 
     [SerializeField]
     private AudioSource _audioSource;
@@ -29,6 +30,12 @@ public class Enemy : MonoBehaviour
         if (_audioSource == null)
         {
             Debug.LogError("AudioSource on player is NULL");
+        }
+
+        _colldier = GetComponent<Collider2D>();
+        if (_colldier == null)
+        {
+            Debug.LogError("Colldier2D on enemy is NULL");
         }
     }
 
@@ -57,6 +64,7 @@ public class Enemy : MonoBehaviour
             _speed = 0;
             _audioSource.Play();
 
+            _colldier.enabled = false;
             Destroy(gameObject, 2.8f);
         }
 
@@ -71,6 +79,7 @@ public class Enemy : MonoBehaviour
             _speed = 0;
             _audioSource.Play();
 
+            _colldier.enabled = false;
             Destroy(gameObject, 2.8f);
         }
     }

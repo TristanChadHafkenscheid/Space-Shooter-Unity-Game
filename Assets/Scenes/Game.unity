@@ -901,6 +901,7 @@ MonoBehaviour:
   _leftEngine: {fileID: 1317659452}
   _score: 0
   _laserAudioClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
+  _movingToStart: 0
 --- !u!212 &1069982221
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -959,7 +960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069982219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -6, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 129489935}
