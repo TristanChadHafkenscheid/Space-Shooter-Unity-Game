@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
     private UIManager _uiManager;
 
     [SerializeField]
-    private AudioClip _laserAudioClip;
+    private AudioClip _laserAudioClip, _laserTripleShotAudioClip;
 
     private AudioSource _audioSource;
 
@@ -76,16 +77,28 @@ public class Player : MonoBehaviour
         }
         CalculateMovement();
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > _canFire)
         {
             FireLaser();
         }
+#elif UNITY_IOS
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
+        {
+            FireLaser();
+        }
+#else
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
+        {
+            FireLaser();
+        }
+#endif
     }
 
     private void CalculateMovement()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = CrossPlatformInputManager.GetAxis("Horizontal"); //Input.GetAxis("Horizontal");
+        float verticalInput = CrossPlatformInputManager.GetAxis("Vertical");  //Input.GetAxis("Vertical");
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
         
@@ -111,12 +124,13 @@ public class Player : MonoBehaviour
         if (_isTripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            _audioSource.Play();
         }
         else
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.05f, 0), Quaternion.identity);
+            _audioSource.Play();
         }
-        _audioSource.Play();
     }
 
     public void Damage()
@@ -151,12 +165,15 @@ public class Player : MonoBehaviour
     public void TripleShotActive()
     {
         _isTripleShotActive = true;
+        _audioSource.clip = _laserTripleShotAudioClip;
         StartCoroutine(TripleShotPowerDownRoutine());
     }
+
     IEnumerator TripleShotPowerDownRoutine()
     {
         yield return new WaitForSeconds(5f);
         _isTripleShotActive = false;
+        _audioSource.clip = _laserAudioClip;
     }
 
     public void SpeedBoostActive()
