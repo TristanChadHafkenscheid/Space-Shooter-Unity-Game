@@ -9,6 +9,12 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     private GameObject _explosionPrefab;
     private SpawnManager _spawnManager;
+    [SerializeField]
+    private float startLerpDuration;
+    [SerializeField]
+    private Vector3 startOffScreenPos;
+    [SerializeField]
+    private Vector3 startOnScreenPos;
 
     void Start()
     {
@@ -17,6 +23,7 @@ public class Asteroid : MonoBehaviour
         {
             Debug.LogError("Spawn Manager is null");
         }
+        StartCoroutine(MoveToStartPosition(startLerpDuration, startOffScreenPos, startOnScreenPos));
     }
 
     void Update()
@@ -33,5 +40,19 @@ public class Asteroid : MonoBehaviour
             _spawnManager.StartSpawning();
             Destroy(gameObject, 0.25f);
         }
+    }
+
+    IEnumerator MoveToStartPosition(float lerpDuration, Vector3 offScreenPos, Vector3 onScreenPos)
+    {
+        //_movingToStart = true;
+        float timeElapsed = 0;
+        while (timeElapsed < lerpDuration)
+        {
+            transform.localPosition = Vector3.Lerp(offScreenPos, onScreenPos, timeElapsed / lerpDuration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.localPosition = onScreenPos;
+        //_movingToStart = false;
     }
 }
