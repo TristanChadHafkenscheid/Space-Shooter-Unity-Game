@@ -512,6 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backgroundMusic: {fileID: 1221964150}
+  _startButtonText: {fileID: 1541978495}
 --- !u!82 &677112122
 AudioSource:
   m_ObjectHideFlags: 0

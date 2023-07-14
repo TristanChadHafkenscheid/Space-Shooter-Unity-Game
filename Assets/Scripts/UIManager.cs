@@ -52,10 +52,10 @@ public class UIManager : MonoBehaviour
         _gameManager.GameOver();
         _gameOverText.gameObject.SetActive(true);
         _restartText.gameObject.SetActive(true);
-        StartCoroutine(GameOVerFlickerRoutine());
+        StartCoroutine(GameOverFlickerRoutine());
     }
 
-    IEnumerator GameOVerFlickerRoutine()
+    IEnumerator GameOverFlickerRoutine()
     {
         while (true)
         {
