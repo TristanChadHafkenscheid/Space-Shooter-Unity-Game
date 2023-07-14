@@ -35,7 +35,7 @@ public class Asteroid : MonoBehaviour
     {
         if (other.CompareTag("Laser"))
         {
-            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+            Instantiate(_explosionPrefab, transform.localPosition, Quaternion.identity);
             Destroy(other.gameObject);
             _spawnManager.StartSpawning();
             Destroy(gameObject, 0.25f);

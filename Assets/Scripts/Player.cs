@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3.5f;
-    private float _speedMultiplier = 2;
+    [SerializeField]
+    private float _speedMultiplier = 1.5f;
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
     //private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
 
-    private bool _isBigLaserActive = false;
+    //private bool _isBigLaserActive = false;
 
     [SerializeField]
     private GameObject _bigLaser;
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour
     {
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
-        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _uiManager = GameObject.Find("==Canvas==").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
 
         if (_spawnManager == null)
@@ -86,18 +87,17 @@ public class Player : MonoBehaviour
         Movement();
 
 #if UNITY_ANDROID
-        if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && !_isBigLaserActive && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > _canFire)
         {
-            Debug.Log("big laser is: " + _isBigLaserActive);
             FireLaser();
         }
 #elif UNITY_IOS
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && !_isBigLaserActive && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
         {
             FireLaser();
         }
 #else
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && !_isBigLaserActive && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
         {
             FireLaser();
         }
@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
 
     public void BigLaserActive()
     {
-        _isBigLaserActive = true;
+        //_isBigLaserActive = true;
         _bigLaser.SetActive(true);
         StartCoroutine(BigLaserPowerDownRoutine());
     }
@@ -221,7 +221,7 @@ public class Player : MonoBehaviour
     IEnumerator BigLaserPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.5f);
-        _isBigLaserActive = false;
+        //_isBigLaserActive = false;
         _bigLaser.SetActive(false);
     }
 
