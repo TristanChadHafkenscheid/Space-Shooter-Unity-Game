@@ -45,6 +45,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: laser (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586646, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.52799034
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586646, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.55513954
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586646, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
     - target: {fileID: 4596685650578586647, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
         type: 3}
       propertyPath: m_RootOrder
@@ -120,6 +135,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: laser (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586646, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.52799034
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586646, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.55513954
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586646, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
     - target: {fileID: 4596685650578586647, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
         type: 3}
       propertyPath: m_RootOrder
@@ -133,7 +163,7 @@ PrefabInstance:
     - target: {fileID: 4596685650578586647, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.20000002
+      value: -0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4596685650578586647, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
         type: 3}
@@ -194,6 +224,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: laser
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586646, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.52799034
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586646, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.55513954
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586646, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
       objectReference: {fileID: 0}
     - target: {fileID: 4596685650578586647, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
         type: 3}

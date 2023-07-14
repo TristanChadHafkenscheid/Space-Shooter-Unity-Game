@@ -6,7 +6,7 @@ public class Powerup : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3;
-    [SerializeField] //0 equals triple shot, 1 = speed, 2 = shields
+    [SerializeField] //0 equals triple shot, 1 = speed, 2 = shields, 3 = big laser
     private int powerupID;
     [SerializeField]
     private AudioClip _audioClip;
@@ -14,6 +14,11 @@ public class Powerup : MonoBehaviour
     void Update()
     {
         transform.Translate(_speed * Time.deltaTime * Vector3.down);
+
+        if (powerupID == 3) //big laser
+        {
+            transform.Rotate(10 * Time.deltaTime * Vector3.forward);
+        }
 
         if (transform.position.y < -4.5f)
         {
@@ -39,6 +44,9 @@ public class Powerup : MonoBehaviour
                         break;
                     case 2:
                         player.ShieldsActive();
+                        break;
+                    case 3:
+                        player.BigLaserActive();
                         break;
                     default:
                         Debug.Log("Default value");

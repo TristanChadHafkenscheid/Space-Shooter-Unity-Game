@@ -54,11 +54,9 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Player player = other.GetComponent<Player>();
-
-            if (player != null)
+            if (_player != null)
             {
-                player.Damage();
+                _player.Damage();
             }
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0;
@@ -74,6 +72,20 @@ public class Enemy : MonoBehaviour
             if (_player != null)
             {
                 _player.AddScore(10);
+            }
+            _animator.SetTrigger("OnEnemyDeath");
+            _speed = 0;
+            _audioSource.Play();
+
+            _colldier.enabled = false;
+            Destroy(gameObject, 2.8f);
+        }
+
+        if (other.CompareTag("BigLaser"))
+        {
+            if (_player != null)
+            {
+                _player.AddScore(20);
             }
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0;

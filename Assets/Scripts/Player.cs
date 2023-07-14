@@ -23,11 +23,19 @@ public class Player : MonoBehaviour
     //private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
 
+    private bool _isBigLaserActive = false;
+
+    [SerializeField]
+    private GameObject _bigLaser;
+
     [SerializeField]
     private GameObject _shieldsVisualizer;
 
     [SerializeField]
     private GameObject _rightEngine, _leftEngine;
+
+    [SerializeField]
+    private SpriteRenderer _ThrusterImg;
 
     [SerializeField]
     private int _score;
@@ -75,27 +83,27 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        CalculateMovement();
+        Movement();
 
 #if UNITY_ANDROID
-        if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && !_isBigLaserActive && Time.time > _canFire)
         {
             FireLaser();
         }
 #elif UNITY_IOS
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && !_isBigLaserActive && Time.time > _canFire)
         {
             FireLaser();
         }
 #else
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && !_isBigLaserActive && Time.time > _canFire)
         {
             FireLaser();
         }
 #endif
     }
 
-    private void CalculateMovement()
+    private void Movement()
     {
         float horizontalInput = CrossPlatformInputManager.GetAxis("Horizontal"); //Input.GetAxis("Horizontal");
         float verticalInput = CrossPlatformInputManager.GetAxis("Vertical");  //Input.GetAxis("Vertical");
@@ -180,6 +188,9 @@ public class Player : MonoBehaviour
     {
         //_isSpeedBoostActive = true;
         _speed *= _speedMultiplier;
+        _ThrusterImg.color = new Color(0, 163, 255);
+        _ThrusterImg.gameObject.transform.localPosition = new Vector3(0, -4f, 0);
+        _ThrusterImg.gameObject.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
         StartCoroutine(SpeedBoostPowerDownRoutine());
     }
 
@@ -188,12 +199,29 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5f);
         //_isSpeedBoostActive = false;
         _speed /= _speedMultiplier;
+        _ThrusterImg.color = new Color(255, 255, 255);
+        _ThrusterImg.gameObject.transform.localPosition = new Vector3(0, -3.3f, 0);
+        _ThrusterImg.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     public void ShieldsActive()
     {
         _isShieldsActive = true;
         _shieldsVisualizer.SetActive(true);
+    }
+
+    public void BigLaserActive()
+    {
+        _isBigLaserActive = true;
+        _bigLaser.SetActive(true);
+        StartCoroutine(BigLaserPowerDownRoutine());
+    }
+
+    IEnumerator BigLaserPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(7f);
+        _isBigLaserActive = false;
+        _bigLaser.SetActive(false);
     }
 
     public void AddScore(int points)
@@ -205,7 +233,7 @@ public class Player : MonoBehaviour
     IEnumerator MoveToStartPosition(float lerpDuration)
     {
         _movingToStart = true;
-        Vector3 offScreenPos = new Vector3(0, -6f, 0);
+        Vector3 offScreenPos = new Vector3(0, -7f, 0);
         Vector3 onScreenPos = new Vector3(0, -2f, 0);
         float timeElapsed = 0;
         while (timeElapsed < lerpDuration)
