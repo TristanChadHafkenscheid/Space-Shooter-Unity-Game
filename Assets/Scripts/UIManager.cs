@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private Text _scoreText;
+    private TextMeshProUGUI _scoreText;
     [SerializeField]
     private Image _LivesImg;
     [SerializeField]
     private Sprite[] _liveSprites;
     [SerializeField]
-    private Text _gameOverText;
+    private TextMeshProUGUI _gameOverText;
     [SerializeField]
-    private Text _restartText;
+    private TextMeshProUGUI _restartText;
     private GameManager _gameManager;
 
     void Start()

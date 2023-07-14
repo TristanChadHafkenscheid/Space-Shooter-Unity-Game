@@ -88,6 +88,7 @@ public class Player : MonoBehaviour
 #if UNITY_ANDROID
         if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && !_isBigLaserActive && Time.time > _canFire)
         {
+            Debug.Log("big laser is: " + _isBigLaserActive);
             FireLaser();
         }
 #elif UNITY_IOS
@@ -219,7 +220,7 @@ public class Player : MonoBehaviour
 
     IEnumerator BigLaserPowerDownRoutine()
     {
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(5.5f);
         _isBigLaserActive = false;
         _bigLaser.SetActive(false);
     }
