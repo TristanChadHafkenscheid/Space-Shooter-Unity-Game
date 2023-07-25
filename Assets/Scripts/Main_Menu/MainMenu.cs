@@ -39,9 +39,11 @@ public class MainMenu : MonoBehaviour
     {
         while (true)
         {
-            _startButtonText.gameObject.SetActive(true);
+            //_startButtonText.gameObject.SetActive(true);
+            _startButtonText.text = "START GAME!!";
             yield return new WaitForSeconds(0.5f);
-            _startButtonText.gameObject.SetActive(false);
+            //_startButtonText.gameObject.SetActive(false);
+            _startButtonText.text = "";
             yield return new WaitForSeconds(0.5f);
         }
     }
