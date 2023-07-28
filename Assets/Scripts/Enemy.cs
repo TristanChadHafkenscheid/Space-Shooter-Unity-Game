@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,9 +7,11 @@ public class Enemy : MonoBehaviour
     private Player _player;
     private Animator _animator;
     private Collider2D _colldier;
-
-    [SerializeField]
     private AudioSource _audioSource;
+    [SerializeField]
+    private GameObject _laserPrefab;
+    private float _fireRate = 3f;
+    private float _canFire = -1f;
 
     void Start()
     {
@@ -41,12 +41,35 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        CalculateMovement();
+
+        CalculateShooting();
+    }
+
+    private void CalculateMovement()
+    {
         transform.Translate(_speed * Time.deltaTime * Vector3.down);
 
         float randX = Random.Range(-8f, 8f);
         if (transform.position.y < -5f)
         {
             transform.position = new Vector3(randX, 7f, 0);
+        }
+    }
+
+    private void CalculateShooting()
+    {
+        if (Time.time > _canFire)
+        {
+            _fireRate = Random.Range(3f, 7f);
+            _canFire = Time.time + _fireRate;
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+
+            for (int i = 0; i < lasers.Length; i++)
+            {
+                lasers[i].AssignEnemyLaser();
+            }
         }
     }
 

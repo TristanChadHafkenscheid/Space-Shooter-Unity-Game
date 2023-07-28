@@ -50,6 +50,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _movingToStart = false;
 
+    [SerializeField]
+    private float _damageRate = 0.5f;
+    private float _canTakeDamage = 0f;
+
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
@@ -151,7 +155,13 @@ public class Player : MonoBehaviour
             return;
         }
 
-        _lives--;
+        //_canTakeDamage = 0 and _damageRate = 0.5 at start
+
+        if (Time.time > _canTakeDamage)
+        {
+            _canTakeDamage = Time.time + _damageRate;
+            _lives--;
+        }
 
         if (_lives == 2)
         {
