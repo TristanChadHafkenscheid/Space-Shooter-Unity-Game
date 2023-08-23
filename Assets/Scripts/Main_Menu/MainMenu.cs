@@ -34,6 +34,18 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(1); //main game scene
     }
 
+    public void LoadCoopGame()
+    {
+        _audioSource.Play();
+        StartCoroutine(WaitForSoundBeforeSwitchingCoop());
+    }
+
+    IEnumerator WaitForSoundBeforeSwitchingCoop()
+    {
+        yield return new WaitForSeconds(_audioSource.clip.length);
+        SceneManager.LoadScene(2); //main game scene co-op
+    }
+
     IEnumerator StartFlickerRoutine()
     {
         while (true)
