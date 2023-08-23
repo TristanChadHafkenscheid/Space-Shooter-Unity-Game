@@ -2064,6 +2064,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.990566
       objectReference: {fileID: 0}
+    - target: {fileID: 3468102880293001023, guid: 89d3ad4f406814f5c9f9c7aac3cb7a1b,
+        type: 3}
+      propertyPath: isPlayerTwo
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89d3ad4f406814f5c9f9c7aac3cb7a1b, type: 3}
 --- !u!4 &1559765882 stripped
@@ -2116,6 +2121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isGameOver: 0
+  isCoopMode: 1
 --- !u!1 &1625630338
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,6 +2914,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0.3160377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468102880293001023, guid: 89d3ad4f406814f5c9f9c7aac3cb7a1b,
+        type: 3}
+      propertyPath: isPlayerOne
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89d3ad4f406814f5c9f9c7aac3cb7a1b, type: 3}

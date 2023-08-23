@@ -5,6 +5,8 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
+    public bool isPlayerOne = false;
+    public bool isPlayerTwo = false;
     [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
@@ -19,12 +21,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     private SpawnManager _spawnManager;
+    private GameManager _gameManager;
 
     private bool _isTripleShotActive = false;
-    //private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
-
-    //private bool _isBigLaserActive = false;
 
     [SerializeField]
     private GameObject _bigLaser;
@@ -56,8 +56,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
         _uiManager = GameObject.Find("==Canvas==").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
 
@@ -79,7 +79,15 @@ public class Player : MonoBehaviour
             _audioSource.clip = _laserAudioClip;
         }
 
-        StartCoroutine(MoveToStartPosition(4f));
+        if (_gameManager == null)
+        {
+            Debug.LogError("Game Manager is NULL");
+        }
+
+        if (_gameManager.isCoopMode == false)
+        {
+            StartCoroutine(MoveToStartPosition(4f));
+        }
     }
 
     void Update()
@@ -88,24 +96,48 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        Movement();
+
+        if (isPlayerOne == true)
+        {
+            Movement();
 
 #if UNITY_ANDROID
-        if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > _canFire && isPlayerOne == true)
         {
             FireLaser();
         }
 #elif UNITY_IOS
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire && isPlayerOne == true)
         {
             FireLaser();
         }
 #else
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire && isPlayerOne == true)
         {
             FireLaser();
         }
 #endif
+        }
+        if (isPlayerTwo == true)
+        {
+            PlayerTwoMovement();
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.B) || CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > _canFire && isPlayerOne == true)
+        {
+            FireLaser();
+        }
+#elif UNITY_IOS
+        if (Input.GetKeyDown(KeyCode.B) || Input.GetMouseButton(0) && Time.time > _canFire && isPlayerOne == true)
+        {
+            FireLaser();
+        }
+#else
+        if (Input.GetKeyDown(KeyCode.B) || Input.GetMouseButton(0) && Time.time > _canFire && isPlayerOne == true)
+        {
+            FireLaser();
+        }
+#endif
+        }
     }
 
     private void Movement()
@@ -129,7 +161,43 @@ public class Player : MonoBehaviour
         }
     }
 
-    //shoots laser
+    private void PlayerTwoMovement()
+    {
+        //float horizontalInput = CrossPlatformInputManager.GetAxis("Horizontal"); //Input.GetAxis("Horizontal");
+        //float verticalInput = CrossPlatformInputManager.GetAxis("Vertical");  //Input.GetAxis("Vertical");
+
+        if (Input.GetKey(KeyCode.O))
+        {
+            transform.Translate(Vector3.up * _speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.Semicolon))
+        {
+            transform.Translate(Vector3.right * _speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.L))
+        {
+            transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.K))
+        {
+            transform.Translate(Vector3.left * _speed * Time.deltaTime);
+        }
+
+        //Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
+        //transform.Translate(_speed * Time.deltaTime * direction);
+
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
+
+        if (transform.position.x >= 11.3f)
+        {
+            transform.position = new Vector3(-11.3f, transform.position.y, 0);
+        }
+        else if (transform.position.x <= -11.3f)
+        {
+            transform.position = new Vector3(11.3f, transform.position.y, 0);
+        }
+    }
+
     private void FireLaser()
     {
         _canFire = Time.time + _fireRate;

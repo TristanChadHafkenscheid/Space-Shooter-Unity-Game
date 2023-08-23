@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private GameObject _laserPrefab;
     private float _fireRate = 3f;
     private float _canFire = -1f;
+    private bool _isShooting = false;
 
     void Start()
     {
@@ -37,12 +38,12 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Colldier2D on enemy is NULL");
         }
+        _isShooting = true;
     }
 
     void Update()
     {
         CalculateMovement();
-
         CalculateShooting();
     }
 
@@ -59,7 +60,7 @@ public class Enemy : MonoBehaviour
 
     private void CalculateShooting()
     {
-        if (Time.time > _canFire)
+        if (Time.time > _canFire && _isShooting == true)
         {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
@@ -86,6 +87,7 @@ public class Enemy : MonoBehaviour
             _audioSource.Play();
 
             _colldier.enabled = false;
+            _isShooting = false;
             Destroy(gameObject, 2.8f);
         }
 
@@ -101,6 +103,7 @@ public class Enemy : MonoBehaviour
             _audioSource.Play();
 
             _colldier.enabled = false;
+            _isShooting = false;
             Destroy(gameObject, 2.8f);
         }
 
@@ -115,6 +118,7 @@ public class Enemy : MonoBehaviour
             _audioSource.Play();
 
             _colldier.enabled = false;
+            _isShooting = false;
             Destroy(gameObject, 2.8f);
         }
     }

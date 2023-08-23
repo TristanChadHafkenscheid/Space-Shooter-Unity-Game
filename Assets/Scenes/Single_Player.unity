@@ -1775,6 +1775,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5641cef558c82b54d93f2b646dadbd8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerOne: 1
+  isPlayerTwo: 0
   _speed: 7
   _speedMultiplier: 1.5
   _laserPrefab: {fileID: 4596685650578586645, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
@@ -1793,6 +1795,7 @@ MonoBehaviour:
   _laserTripleShotAudioClip: {fileID: 8300000, guid: bd05565efb4a84dac9de2e5d02c392f7,
     type: 3}
   _movingToStart: 0
+  _damageRate: 0.5
 --- !u!212 &1069982221
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2761,6 +2764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isGameOver: 0
+  isCoopMode: 0
 --- !u!1 &1625630338
 GameObject:
   m_ObjectHideFlags: 0
