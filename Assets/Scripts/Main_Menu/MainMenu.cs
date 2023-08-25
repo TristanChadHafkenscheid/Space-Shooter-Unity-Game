@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
         {
             Debug.LogError("Audio source is null");
         }
-        DontDestroyOnLoad(_backgroundMusic);
+
         StartCoroutine(StartFlickerRoutine());
     }
 
@@ -30,7 +30,10 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator WaitForSoundBeforeSwitching()
     {
-        yield return new WaitForSeconds(_audioSource.clip.length);
+        Debug.LogError("plz before");
+        //yield return new WaitForSeconds(_audioSource.clip.length);
+        yield return new WaitForSeconds(1);
+        Debug.LogError("plz after 1");
         SceneManager.LoadScene(1); //main game scene
     }
 

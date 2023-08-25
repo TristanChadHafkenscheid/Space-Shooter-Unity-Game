@@ -16,8 +16,20 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI _gameOverText;
     [SerializeField]
     private TextMeshProUGUI _restartText;
-    private GameManager _gameManager;
+    [SerializeField]
+    private GameObject _pauseMenuPanel;
+    public GameObject PauseMenuPanel { get { return _pauseMenuPanel; } }
 
+    private GameManager _gameManager;
+    public static UIManager instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
     void Start()
     {
         _scoreText.text = "Score: " + 0;

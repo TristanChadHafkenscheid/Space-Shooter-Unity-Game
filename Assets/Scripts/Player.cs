@@ -163,9 +163,6 @@ public class Player : MonoBehaviour
 
     private void PlayerTwoMovement()
     {
-        //float horizontalInput = CrossPlatformInputManager.GetAxis("Horizontal"); //Input.GetAxis("Horizontal");
-        //float verticalInput = CrossPlatformInputManager.GetAxis("Vertical");  //Input.GetAxis("Vertical");
-
         if (Input.GetKey(KeyCode.O))
         {
             transform.Translate(Vector3.up * _speed * Time.deltaTime);
@@ -182,9 +179,6 @@ public class Player : MonoBehaviour
         {
             transform.Translate(Vector3.left * _speed * Time.deltaTime);
         }
-
-        //Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
-        //transform.Translate(_speed * Time.deltaTime * direction);
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
 
