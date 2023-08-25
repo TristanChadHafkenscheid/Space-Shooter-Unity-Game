@@ -2632,7 +2632,6 @@ MonoBehaviour:
   _rightEngine: {fileID: 772919191}
   _leftEngine: {fileID: 1317659452}
   _ThrusterImg: {fileID: 224408274}
-  _score: 0
   _laserAudioClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _laserTripleShotAudioClip: {fileID: 8300000, guid: bd05565efb4a84dac9de2e5d02c392f7,
     type: 3}
@@ -3550,6 +3549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 154881332}
+  _bestScoreText: {fileID: 177236250}
   _LivesImg: {fileID: 1797132811}
   _liveSprites:
   - {fileID: 21300000, guid: ba53e111f0125654cabfd4eefaf3a657, type: 3}

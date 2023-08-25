@@ -38,8 +38,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _ThrusterImg;
 
-    [SerializeField]
-    private int _score;
     private UIManager _uiManager;
 
     [SerializeField]
@@ -240,6 +238,7 @@ public class Player : MonoBehaviour
         {
             _spawnManager.OnPlayerDeath();
             Destroy(gameObject);
+            _uiManager.CheckForBestScore();
         }
     }
 
@@ -299,8 +298,7 @@ public class Player : MonoBehaviour
 
     public void AddScore(int points)
     {
-        _score += points;
-        _uiManager.UpdateScore(_score);
+        _uiManager.UpdateScore(points);
     }
 
     IEnumerator MoveToStartPosition(float lerpDuration)
