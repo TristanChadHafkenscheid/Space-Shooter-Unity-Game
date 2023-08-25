@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Laser
   - BigLaser
+  - PlayerLaser
+  - EnemyLaser
   layers:
   - Default
   - TransparentFX

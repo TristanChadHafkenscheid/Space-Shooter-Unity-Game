@@ -146,6 +146,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586645, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemyLaser
+      objectReference: {fileID: 0}
     - target: {fileID: 4596685650578586647, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
         type: 3}
       propertyPath: m_RootOrder
@@ -204,12 +209,12 @@ PrefabInstance:
     - target: {fileID: 4596685650578586648, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
         type: 3}
       propertyPath: m_Size.x
-      value: 2.2276022
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 4596685650578586648, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
         type: 3}
       propertyPath: m_Offset.x
-      value: -0.89880145
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5591458823737994813, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
         type: 3}
@@ -240,6 +245,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596685650578586645, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemyLaser
       objectReference: {fileID: 0}
     - target: {fileID: 4596685650578586647, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
         type: 3}
