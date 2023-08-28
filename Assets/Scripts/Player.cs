@@ -5,49 +5,27 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed = 3.5f;
-    [SerializeField]
-    private float _speedMultiplier = 1.5f;
-    [SerializeField]
-    private GameObject _laserPrefab;
-    [SerializeField]
-    private GameObject _tripleShotPrefab;
-    [SerializeField]
-    private float _fireRate = 0.5f;
+    [SerializeField] private float _speed = 3.5f;
+    [SerializeField] private float _speedMultiplier = 1.5f;
+    [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private GameObject _tripleShotPrefab;
+    [SerializeField] private float _fireRate = 0.5f;
+    [SerializeField] private int _lives = 3;
+    [SerializeField] private GameObject _bigLaser;
+    [SerializeField] private GameObject _shieldsVisualizer;
+    [SerializeField] private GameObject _rightEngine, _leftEngine;
+    [SerializeField] private SpriteRenderer _ThrusterImg;
+    [SerializeField] private AudioClip _laserAudioClip, _laserTripleShotAudioClip;
+    [SerializeField] private bool _movingToStart = false;
+    [SerializeField] private float _damageRate = 0.5f;
+
     private float _canFire = 0.1f;
-    [SerializeField]
-    private int _lives = 3;
     private SpawnManager _spawnManager;
     private GameManager _gameManager;
-
     private bool _isTripleShotActive = false;
     private bool _isShieldsActive = false;
-
-    [SerializeField]
-    private GameObject _bigLaser;
-
-    [SerializeField]
-    private GameObject _shieldsVisualizer;
-
-    [SerializeField]
-    private GameObject _rightEngine, _leftEngine;
-
-    [SerializeField]
-    private SpriteRenderer _ThrusterImg;
-
     private UIManager _uiManager;
-
-    [SerializeField]
-    private AudioClip _laserAudioClip, _laserTripleShotAudioClip;
-
     private AudioSource _audioSource;
-
-    [SerializeField]
-    private bool _movingToStart = false;
-
-    [SerializeField]
-    private float _damageRate = 0.5f;
     private float _canTakeDamage = 0f;
 
     void Start()
@@ -97,25 +75,6 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
-
-        //Movement();
-
-//#if UNITY_ANDROID
-        //        if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > _canFire)
-        //        {
-        //            FireLaser();
-        //        }
-//#elif UNITY_IOS
-        //        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
-        //        {
-        //            FireLaser();
-        //        }
-//#else
-        //        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
-        //        {
-        //            FireLaser();
-        //        }
-//#endif
     }
 
     public void Movement(float horizontalInput, float verticalInput)
@@ -125,16 +84,15 @@ public class Player : MonoBehaviour
         transform.Translate(_speed * Time.deltaTime * direction);
 
         //clamps max height player can go on screen
-        //transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
-        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4.5f, 0), 0);
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4.5f, 5.2f), 0);
 
-        if (transform.position.x >= 11.3f)
+        if (transform.position.x >= 3f)
         {
-            transform.position = new Vector3(-11.3f, transform.position.y, 0);
+            transform.position = new Vector3(-3f, transform.position.y, 0);
         }
-        else if (transform.position.x <= -11.3f)
+        else if (transform.position.x <= -3f)
         {
-            transform.position = new Vector3(11.3f, transform.position.y, 0);
+            transform.position = new Vector3(3f, transform.position.y, 0);
         }
     }
 
@@ -206,7 +164,6 @@ public class Player : MonoBehaviour
 
     public void SpeedBoostActive()
     {
-        //_isSpeedBoostActive = true;
         _speed *= _speedMultiplier;
         _ThrusterImg.color = new Color(0, 163, 255);
         _ThrusterImg.gameObject.transform.localPosition = new Vector3(0, -4f, 0);
@@ -217,7 +174,6 @@ public class Player : MonoBehaviour
     IEnumerator SpeedBoostPowerDownRoutine()
     {
         yield return new WaitForSeconds(5f);
-        //_isSpeedBoostActive = false;
         _speed /= _speedMultiplier;
         _ThrusterImg.color = new Color(255, 255, 255);
         _ThrusterImg.gameObject.transform.localPosition = new Vector3(0, -3.3f, 0);
@@ -232,7 +188,6 @@ public class Player : MonoBehaviour
 
     public void BigLaserActive()
     {
-        //_isBigLaserActive = true;
         _bigLaser.SetActive(true);
         StartCoroutine(BigLaserPowerDownRoutine());
     }
@@ -240,7 +195,6 @@ public class Player : MonoBehaviour
     IEnumerator BigLaserPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.5f);
-        //_isBigLaserActive = false;
         _bigLaser.SetActive(false);
     }
 
@@ -252,7 +206,7 @@ public class Player : MonoBehaviour
     IEnumerator MoveToStartPosition(float lerpDuration)
     {
         _movingToStart = true;
-        Vector3 offScreenPos = new Vector3(0, -7f, 0);
+        Vector3 offScreenPos = new Vector3(0, -6.3f, 0);
         Vector3 onScreenPos = new Vector3(0, -2f, 0);
         float timeElapsed = 0;
         while (timeElapsed < lerpDuration)

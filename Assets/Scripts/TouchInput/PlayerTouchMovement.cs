@@ -93,15 +93,19 @@ public class PlayerTouchMovement : MonoBehaviour
         {
             StartPosition.x = JoystickSize.x / 2;
         }
+        else if (StartPosition.x > Screen.width - JoystickSize.x / 2)
+        {
+            StartPosition.y = Screen.width - JoystickSize.x / 2;
+        }
 
         if (StartPosition.y < JoystickSize.y / 2)
         {
             StartPosition.y = JoystickSize.y / 2;
         }
-        else if (StartPosition.y > Screen.height - JoystickSize.y / 2)
-        {
-            StartPosition.y = Screen.height - JoystickSize.y / 2;
-        }
+        //else if (StartPosition.y > Screen.height - JoystickSize.y / 2)
+        //{
+        //    StartPosition.y = Screen.height - JoystickSize.y / 2;
+        //}
 
         return StartPosition;
     }
@@ -111,7 +115,6 @@ public class PlayerTouchMovement : MonoBehaviour
         //Vector3 scaledMovement = Player.speed * Time.deltaTime * new Vector3(MovementAmount.x, 0, MovementAmount.y);
         Vector3 scaledMovement = 100f * Time.deltaTime * new Vector3(MovementAmount.x, MovementAmount.y, 0);
 
-        //Player.transform.LookAt(Player.transform.position + scaledMovement, Vector3.up);
         Player.Movement(scaledMovement.x, scaledMovement.y);
     }
 
