@@ -6,23 +6,18 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI _scoreText, _bestScoreText;
-    private int _score, _bestScore;
-    [SerializeField]
-    private Image _LivesImg;
-    [SerializeField]
-    private Sprite[] _liveSprites;
-    [SerializeField]
-    private TextMeshProUGUI _gameOverText;
-    [SerializeField]
-    private TextMeshProUGUI _restartText;
-    [SerializeField]
-    private GameObject _pauseMenuPanel;
-    public GameObject PauseMenuPanel { get { return _pauseMenuPanel; } }
+    [SerializeField] private TextMeshProUGUI _scoreText, _bestScoreText;
+    [SerializeField] private Image _LivesImg;
+    [SerializeField] private Sprite[] _liveSprites;
+    [SerializeField] private TextMeshProUGUI _gameOverText;
+    [SerializeField] private TextMeshProUGUI _restartText;
+    [SerializeField] private GameObject _pauseMenuPanel;
 
-    private GameManager _gameManager;
+    public GameObject PauseMenuPanel { get { return _pauseMenuPanel; } }
     public static UIManager instance = null;
+
+    private int _score, _bestScore;
+    private GameManager _gameManager;
 
     private void Awake()
     {
@@ -31,6 +26,7 @@ public class UIManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
     }
+
     void Start()
     {
         _scoreText.text = "Score: " + 0;
@@ -52,9 +48,6 @@ public class UIManager : MonoBehaviour
         _scoreText.text = "Score: " + _score.ToString();
     }
 
-    //check for best score
-    //if current score is greater than best score, then new best score = current score
-    //check when
     public void CheckForBestScore()
     {
         if (_score > _bestScore)

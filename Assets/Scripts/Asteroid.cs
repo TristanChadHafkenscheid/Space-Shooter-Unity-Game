@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    [SerializeField]
-    private float _rotateSpeed = 20.0f;
-    [SerializeField]
-    private GameObject _explosionPrefab;
+    [SerializeField] private float _rotateSpeed = 20.0f;
+    [SerializeField] private GameObject _explosionPrefab;
+    [SerializeField] private float startLerpDuration;
+    [SerializeField] private Vector3 startOffScreenPos;
+    [SerializeField] private Vector3 startOnScreenPos;
+
     private SpawnManager _spawnManager;
-    [SerializeField]
-    private float startLerpDuration;
-    [SerializeField]
-    private Vector3 startOffScreenPos;
-    [SerializeField]
-    private Vector3 startOnScreenPos;
 
     void Start()
     {
@@ -44,7 +40,6 @@ public class Asteroid : MonoBehaviour
 
     IEnumerator MoveToStartPosition(float lerpDuration, Vector3 offScreenPos, Vector3 onScreenPos)
     {
-        //_movingToStart = true;
         float timeElapsed = 0;
         while (timeElapsed < lerpDuration)
         {
@@ -53,6 +48,5 @@ public class Asteroid : MonoBehaviour
             yield return null;
         }
         transform.localPosition = onScreenPos;
-        //_movingToStart = false;
     }
 }

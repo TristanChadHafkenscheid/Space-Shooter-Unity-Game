@@ -5,11 +5,10 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject _backgroundMusic;
+    [SerializeField] private TextMeshProUGUI _startButtonText;
+
     private AudioSource _audioSource;
-    [SerializeField]
-    private GameObject _backgroundMusic;
-    [SerializeField]
-    private TextMeshProUGUI _startButtonText;
 
     private void Start()
     {
@@ -30,10 +29,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator WaitForSoundBeforeSwitching()
     {
-        Debug.LogError("plz before");
-        //yield return new WaitForSeconds(_audioSource.clip.length);
-        yield return new WaitForSeconds(1);
-        Debug.LogError("plz after 1");
+        yield return new WaitForSeconds(_audioSource.clip.length);
         SceneManager.LoadScene(1); //main game scene
     }
 

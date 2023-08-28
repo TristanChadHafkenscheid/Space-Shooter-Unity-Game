@@ -1,17 +1,12 @@
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class PlayerTouchMovement : MonoBehaviour
 {
-    [SerializeField]
-    private Vector2 JoystickSize = new Vector2(300, 300);
-    [SerializeField]
-    private FloatingJoystick Joystick;
-    [SerializeField]
-    //private NavMeshAgent Player;
-    private Player Player;
+    [SerializeField] private Vector2 JoystickSize = new Vector2(300, 300);
+    [SerializeField] private FloatingJoystick Joystick;
+    [SerializeField] private Player Player;
 
     private Finger MovementFinger;
     private Vector2 MovementAmount;
@@ -37,7 +32,6 @@ public class PlayerTouchMovement : MonoBehaviour
         if (MovedFinger == MovementFinger)
         {
             Vector2 knobPosition;
-            //float maxMovement = JoystickSize.x / 2f;
             float maxMovement = JoystickSize.x / 3f;
 
             ETouch.Touch currentTouch = MovedFinger.currentTouch;
@@ -76,8 +70,7 @@ public class PlayerTouchMovement : MonoBehaviour
     private void HandleFingerDown(Finger TouchedFinger)
     {
         //length of the screen
-        //if (MovementFinger == null && TouchedFinger.screenPosition.x <= Screen.width / 2f)
-        if (MovementFinger == null)
+        if (MovementFinger == null && TouchedFinger.screenPosition.x <= Screen.width)
         {
             MovementFinger = TouchedFinger;
             MovementAmount = Vector2.zero;
