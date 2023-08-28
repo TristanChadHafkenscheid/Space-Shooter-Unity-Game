@@ -5,8 +5,6 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
-    public bool isPlayerOne = false;
-    public bool isPlayerTwo = false;
     [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
@@ -95,90 +93,40 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (isPlayerOne == true)
+        if (Time.time > _canFire)
         {
-            Movement();
+            FireLaser();
+        }
 
-#if UNITY_ANDROID
-        if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > _canFire && isPlayerOne == true)
-        {
-            FireLaser();
-        }
-#elif UNITY_IOS
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire && isPlayerOne == true)
-        {
-            FireLaser();
-        }
-#else
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire && isPlayerOne == true)
-        {
-            FireLaser();
-        }
-#endif
-        }
-        if (isPlayerTwo == true)
-        {
-            PlayerTwoMovement();
-#if UNITY_ANDROID
-        if (Input.GetKeyDown(KeyCode.B) || CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > _canFire && isPlayerOne == true)
-        {
-            FireLaser();
-        }
-#elif UNITY_IOS
-        if (Input.GetKeyDown(KeyCode.B) || Input.GetMouseButton(0) && Time.time > _canFire && isPlayerOne == true)
-        {
-            FireLaser();
-        }
-#else
-        if (Input.GetKeyDown(KeyCode.B) || Input.GetMouseButton(0) && Time.time > _canFire && isPlayerOne == true)
-        {
-            FireLaser();
-        }
-#endif
-        }
+        //Movement();
+
+//#if UNITY_ANDROID
+        //        if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > _canFire)
+        //        {
+        //            FireLaser();
+        //        }
+//#elif UNITY_IOS
+        //        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
+        //        {
+        //            FireLaser();
+        //        }
+//#else
+        //        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && Time.time > _canFire)
+        //        {
+        //            FireLaser();
+        //        }
+//#endif
     }
 
-    private void Movement()
+    public void Movement(float horizontalInput, float verticalInput)
     {
-        float horizontalInput = CrossPlatformInputManager.GetAxis("Horizontal"); //Input.GetAxis("Horizontal");
-        float verticalInput = CrossPlatformInputManager.GetAxis("Vertical");  //Input.GetAxis("Vertical");
-
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
         
         transform.Translate(_speed * Time.deltaTime * direction);
 
-        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
-
-        if (transform.position.x >= 11.3f)
-        {
-            transform.position = new Vector3(-11.3f, transform.position.y, 0);
-        }
-        else if (transform.position.x <= -11.3f)
-        {
-            transform.position = new Vector3(11.3f, transform.position.y, 0);
-        }
-    }
-
-    private void PlayerTwoMovement()
-    {
-        if (Input.GetKey(KeyCode.O))
-        {
-            transform.Translate(Vector3.up * _speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.Semicolon))
-        {
-            transform.Translate(Vector3.right * _speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.L))
-        {
-            transform.Translate(Vector3.down * _speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.K))
-        {
-            transform.Translate(Vector3.left * _speed * Time.deltaTime);
-        }
-
-        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
+        //clamps max height player can go on screen
+        //transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4.5f, 0), 0);
 
         if (transform.position.x >= 11.3f)
         {
