@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
@@ -18,8 +18,11 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _laserAudioClip, _laserTripleShotAudioClip;
     [SerializeField] private bool _movingToStart = false;
     [SerializeField] private float _damageRate = 0.5f;
+    [SerializeField] private Color _damageColour;
 
-    private float _canFire = 0.1f;
+    [SerializeField] private SpriteRenderer _playerSprite;
+    private float _canFireRate = 0.1f;
+    private bool _canFire = false;
     private SpawnManager _spawnManager;
     private GameManager _gameManager;
     private bool _isTripleShotActive = false;
@@ -33,7 +36,9 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
         _uiManager = GameObject.Find("==Canvas==").GetComponent<UIManager>();
+
         _audioSource = GetComponent<AudioSource>();
+        //_playerSprite = GetComponent<SpriteRenderer>();
 
         if (_spawnManager == null)
         {
@@ -58,20 +63,17 @@ public class Player : MonoBehaviour
             Debug.LogError("Game Manager is NULL");
         }
 
-        if (_gameManager.isCoopMode == false)
-        {
-            StartCoroutine(MoveToStartPosition(4f));
-        }
+        //if (_playerSprite = null)
+        //{
+        //    Debug.LogError("Sprite Renderer on the player is NULL");
+        //}
+
+        StartCoroutine(MoveToStartPosition(4f));
     }
 
     void Update()
     {
-        if (_movingToStart == true)
-        {
-            return;
-        }
-
-        if (Time.time > _canFire)
+        if (Time.time > _canFireRate && _canFire == true)
         {
             FireLaser();
         }
@@ -98,7 +100,7 @@ public class Player : MonoBehaviour
 
     private void FireLaser()
     {
-        _canFire = Time.time + _fireRate;
+        _canFireRate = Time.time + _fireRate;
 
         if (_isTripleShotActive == true)
         {
@@ -127,6 +129,7 @@ public class Player : MonoBehaviour
         {
             _canTakeDamage = Time.time + _damageRate;
             _lives--;
+            DamageFlash();
         }
 
         if (_lives == 2)
@@ -146,6 +149,11 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
             _uiManager.CheckForBestScore();
         }
+    }
+
+    private void DamageFlash()
+    {
+        _playerSprite.DOColor(_damageColour, 0.5f).SetInverted().SetLoops(2, LoopType.Restart);
     }
 
     public void TripleShotActive()
@@ -189,12 +197,14 @@ public class Player : MonoBehaviour
     public void BigLaserActive()
     {
         _bigLaser.SetActive(true);
+        _canFire = false;
         StartCoroutine(BigLaserPowerDownRoutine());
     }
 
     IEnumerator BigLaserPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.5f);
+        _canFire = true;
         _bigLaser.SetActive(false);
     }
 
@@ -217,5 +227,6 @@ public class Player : MonoBehaviour
         }
         transform.position = onScreenPos;
         _movingToStart = false;
+        _canFire = true;
     }
 }
