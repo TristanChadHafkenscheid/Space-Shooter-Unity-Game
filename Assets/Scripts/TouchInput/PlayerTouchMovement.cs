@@ -103,10 +103,10 @@ public class PlayerTouchMovement : MonoBehaviour
         return StartPosition;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //Vector3 scaledMovement = Player.speed * Time.deltaTime * new Vector3(MovementAmount.x, 0, MovementAmount.y);
-        Vector3 scaledMovement = 100f * Time.deltaTime * new Vector3(MovementAmount.x, MovementAmount.y, 0);
+        Vector3 scaledMovement = 100f * Time.fixedDeltaTime * new Vector3(MovementAmount.x, MovementAmount.y, 0);
 
         Player.Movement(scaledMovement.x, scaledMovement.y);
     }

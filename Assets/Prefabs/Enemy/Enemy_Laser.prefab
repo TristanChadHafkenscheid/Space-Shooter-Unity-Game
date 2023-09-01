@@ -221,6 +221,11 @@ PrefabInstance:
       propertyPath: _isEnemyLaser
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5591458823737994813, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: _damageToPlayer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5683b77c2a90d4a1f8b3d9a4844c1347, type: 3}
 --- !u!4 &6338500416643100060 stripped
@@ -310,6 +315,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _isEnemyLaser
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591458823737994813, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
+        type: 3}
+      propertyPath: _damageToPlayer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5683b77c2a90d4a1f8b3d9a4844c1347, type: 3}

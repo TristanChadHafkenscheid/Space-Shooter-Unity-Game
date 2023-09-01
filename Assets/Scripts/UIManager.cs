@@ -7,10 +7,10 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText, _bestScoreText;
-    [SerializeField] private Image _LivesImg;
-    [SerializeField] private Sprite[] _liveSprites;
+    //[SerializeField] private Image _LivesImg;
+    //[SerializeField] private Sprite[] _liveSprites;
+    [SerializeField] private Slider _playerHealthSlider;
     [SerializeField] private TextMeshProUGUI _gameOverText;
-    [SerializeField] private TextMeshProUGUI _restartText;
     [SerializeField] private GameObject _pauseMenuPanel;
 
     public GameObject PauseMenuPanel { get { return _pauseMenuPanel; } }
@@ -33,7 +33,6 @@ public class UIManager : MonoBehaviour
         _bestScore = PlayerPrefs.GetInt("HighScore", 0);
         _bestScoreText.text = "Best : " + _bestScore;
         _gameOverText.gameObject.SetActive(false);
-        _restartText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
 
         if (_gameManager == null)
@@ -58,22 +57,37 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateLives(int currentLives)
-    {
-        Debug.Log("currentLives is:" + currentLives);
-        _LivesImg.sprite = _liveSprites[currentLives];
+    //public void UpdateLives(int currentLives)
+    //{
+    //    Debug.Log("currentLives is:" + currentLives);
 
-        if (currentLives == 0)
+    //    _LivesImg.sprite = _liveSprites[currentLives];
+
+    //    if (currentLives == 0)
+    //    {
+    //        GameOverSequence();
+    //    }
+    //}
+
+    public void SetHealth(int playerHealth)
+    {
+        _playerHealthSlider.value = playerHealth;
+        if (playerHealth <= 0)
         {
             GameOverSequence();
         }
+    }
+
+    public void SetMaxHealth(int health)
+    {
+        _playerHealthSlider.maxValue = health;
+        _playerHealthSlider.value = health;
     }
 
     private void GameOverSequence()
     {
         _gameManager.GameOver();
         _gameOverText.gameObject.SetActive(true);
-        _restartText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
     }
 

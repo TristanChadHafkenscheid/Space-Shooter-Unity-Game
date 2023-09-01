@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _speed = 4;
     [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private int _damageToPlayer = 15;
 
     private Player _player;
     private Animator _animator;
@@ -16,23 +17,27 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
+
         if (_player == null)
         {
             Debug.LogError("Player is NULL");
         }
         _animator = GetComponent<Animator>();
+
         if (_animator == null)
         {
             Debug.LogError("Animator is NULL");
         }
 
         _audioSource = GetComponent<AudioSource>();
+
         if (_audioSource == null)
         {
             Debug.LogError("AudioSource on player is NULL");
         }
 
         _colldier = GetComponent<Collider2D>();
+
         if (_colldier == null)
         {
             Debug.LogError("Colldier2D on enemy is NULL");
@@ -50,10 +55,11 @@ public class Enemy : MonoBehaviour
     {
         transform.Translate(_speed * Time.deltaTime * Vector3.down);
 
-        float randX = Random.Range(-8f, 8f);
-        if (transform.position.y < -5f)
+        //move enemy back to top of screen when at bottom
+        if (transform.position.y < -6.5f)
         {
-            transform.position = new Vector3(randX, 7f, 0);
+            Vector3 randRange = new Vector3(Random.Range(-2.1f, 2.1f), 6.5f, 0);
+            transform.position = randRange;
         }
     }
 
@@ -79,7 +85,7 @@ public class Enemy : MonoBehaviour
         {
             if (_player != null)
             {
-                _player.Damage();
+                _player.Damage(_damageToPlayer);
             }
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0;

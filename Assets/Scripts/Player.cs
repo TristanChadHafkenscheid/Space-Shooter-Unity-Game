@@ -10,19 +10,20 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private GameObject _tripleShotPrefab;
     [SerializeField] private float _fireRate = 0.5f;
-    [SerializeField] private int _lives = 3;
+    [SerializeField] private int _health = 100;
     [SerializeField] private GameObject _bigLaser;
     [SerializeField] private GameObject _shieldsVisualizer;
     [SerializeField] private GameObject _rightEngine, _leftEngine;
     [SerializeField] private SpriteRenderer _ThrusterImg;
     [SerializeField] private AudioClip _laserAudioClip, _laserTripleShotAudioClip;
-    [SerializeField] private bool _movingToStart = false;
     [SerializeField] private float _damageRate = 0.5f;
     [SerializeField] private Color _damageColour;
 
     [SerializeField] private SpriteRenderer _playerSprite;
+    [SerializeField] private bool _canFire = false;
+
     private float _canFireRate = 0.1f;
-    private bool _canFire = false;
+
     private SpawnManager _spawnManager;
     private GameManager _gameManager;
     private bool _isTripleShotActive = false;
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
         //    Debug.LogError("Sprite Renderer on the player is NULL");
         //}
 
-        StartCoroutine(MoveToStartPosition(4f));
+        StartCoroutine(MoveToStartPosition(3f));
     }
 
     void Update()
@@ -114,7 +115,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Damage()
+    public void Damage(int damageTaken)
     {
         if (_isShieldsActive == true)
         {
@@ -128,24 +129,28 @@ public class Player : MonoBehaviour
         if (Time.time > _canTakeDamage)
         {
             _canTakeDamage = Time.time + _damageRate;
-            _lives--;
+            _health = _health - damageTaken;
+            Debug.LogError("damage taken is " + damageTaken);
+            Debug.LogError("health is " + _health);
+
+            _uiManager.SetHealth(_health);
             DamageFlash();
+
         }
 
-        if (_lives == 2)
-        {
-            _rightEngine.SetActive(true);
-        }
-        else if (_lives == 1)
-        {
-            _leftEngine.SetActive(true);
-        }
+        //if (_lives == 2)
+        //{
+        //    _rightEngine.SetActive(true);
+        //}
+        //else if (_lives == 1)
+        //{
+        //    _leftEngine.SetActive(true);
+        //}
 
-        _uiManager.UpdateLives(_lives);
-
-        if (_lives <= 0)
+        if (_health <= 0)
         {
             _spawnManager.OnPlayerDeath();
+            _playerSprite.DOKill();
             Destroy(gameObject);
             _uiManager.CheckForBestScore();
         }
@@ -153,7 +158,7 @@ public class Player : MonoBehaviour
 
     private void DamageFlash()
     {
-        _playerSprite.DOColor(_damageColour, 0.5f).SetInverted().SetLoops(2, LoopType.Restart);
+        _playerSprite.DOColor(_damageColour, 0.25f).SetInverted().SetLoops(2, LoopType.Restart);
     }
 
     public void TripleShotActive()
@@ -215,18 +220,16 @@ public class Player : MonoBehaviour
 
     IEnumerator MoveToStartPosition(float lerpDuration)
     {
-        _movingToStart = true;
         Vector3 offScreenPos = new Vector3(0, -6.3f, 0);
         Vector3 onScreenPos = new Vector3(0, -2f, 0);
         float timeElapsed = 0;
         while (timeElapsed < lerpDuration)
         {
             transform.position = Vector3.Lerp(offScreenPos, onScreenPos, timeElapsed / lerpDuration);
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.fixedDeltaTime;
             yield return null;
         }
         transform.position = onScreenPos;
-        _movingToStart = false;
         _canFire = true;
     }
 }

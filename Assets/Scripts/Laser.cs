@@ -5,6 +5,7 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     [SerializeField] private float _speed = 8.0f;
+    [SerializeField] private int _damageToPlayer = 15;
 
     private bool _isEnemyLaser = false;
 
@@ -60,7 +61,7 @@ public class Laser : MonoBehaviour
             Player player = collision.GetComponent<Player>();
             if (player != null)
             {
-                player.Damage();
+                player.Damage(_damageToPlayer);
             }
         }
     }
