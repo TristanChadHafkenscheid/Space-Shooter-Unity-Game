@@ -6,28 +6,58 @@ public class BackgroundTileManager : MonoBehaviour
 {
     [SerializeField] private Transform[] _backgroundArray;
     [SerializeField] float _tileDistance = 20.48f;
-    private int _farthestTile = 0;
-    private int _closestTile = 0;
+    private int _farthestTileOnRight = 0;
+    private int _closestTileOnRight = 0;
+    private int _currentTile = 0;
     private Transform _playerTransform;
+    [SerializeField] float _safeDistance;
+    private bool _isFarRightTileSet = false;
 
     void Start()
     {
         _playerTransform = GameObject.FindWithTag("Player").transform;
 
-        FindClosestTile();
+        //FindFarthestTileFromRight();
+        FindCurrentTile();
     }
 
     void Update()
     {
-        Debug.Log("current pos " + (_backgroundArray[_closestTile].position.x - _playerTransform.position.x));
-        if (_backgroundArray[_closestTile].position.x - _playerTransform.position.x < 5)
+        Debug.Log("Current tile pos - player pos: " + (_backgroundArray[_currentTile].position.x - _playerTransform.position.x));
+        Debug.Log("Current tile pos - safe distance: " + (_safeDistance));
+
+
+        _currentTile = FindCurrentTile();
+        if (_backgroundArray[_currentTile].position.x - _playerTransform.position.x >=
+            _safeDistance && _isFarRightTileSet == false)
         {
-            FindClosestTile();
-            _farthestTile = FindFarthestTile();
-            _backgroundArray[_farthestTile].position = _backgroundArray[_closestTile].position
-                - Vector3.left * _tileDistance;
+            _currentTile = FindCurrentTile();
+            _farthestTileOnRight = FindFarthestTile();
+
+            SetFarRightTile();
+        }
+        else if (_backgroundArray[_currentTile].position.x - _playerTransform.position.x <
+            _safeDistance)
+        {
+            _isFarRightTileSet = false;
         }
     }
+
+    //private int FindFarthestTileFromRight()
+    //{
+    //    float farthestDistance = 0;
+
+    //    for (int i = 0; i < _backgroundArray.Length; i++)
+    //    {
+    //        if (_backgroundArray[i].position.x >= farthestDistance)
+    //        {
+    //            _farthestTileOnRight = i;
+    //            farthestDistance = _backgroundArray[i].position.x;
+    //        }
+    //    }
+    //    Debug.Log("Farthest tile is " + _farthestTileOnRight);
+    //    return _farthestTileOnRight;
+    //}
 
     private int FindFarthestTile()
     {
@@ -35,18 +65,18 @@ public class BackgroundTileManager : MonoBehaviour
 
         for (int i = 0; i < _backgroundArray.Length; i++)
         {
-            float dist = Vector3.Distance(_backgroundArray[i].position, _playerTransform.position);
+            float dist = Vector3.Distance(_backgroundArray[_currentTile].position, _backgroundArray[i].position);
             if (dist >= farthestDistance)
             {
-                _farthestTile = i;
-                farthestDistance = dist;
+                _farthestTileOnRight = i;
+                farthestDistance = _backgroundArray[i].position.x;
             }
         }
-        Debug.Log("Farthest tile is " + _farthestTile);
-        return _farthestTile;
+        Debug.Log("Farthest tile is " + _farthestTileOnRight);
+        return _farthestTileOnRight;
     }
 
-    private int FindClosestTile()
+    private int FindCurrentTile()
     {
         float closestDistance = Mathf.Infinity;
 
@@ -55,11 +85,18 @@ public class BackgroundTileManager : MonoBehaviour
             float dist = Vector3.Distance(_backgroundArray[i].position, _playerTransform.position);
             if (dist <= closestDistance)
             {
-                _closestTile = i;
+                _currentTile = i;
                 closestDistance = dist;
             }
         }
-        Debug.Log("Closest tile is " + _closestTile);
-        return _closestTile;
+        Debug.Log("Closest tile is " + _currentTile);
+        return _currentTile;
+    }
+
+    private void SetFarRightTile()
+    {
+        _backgroundArray[_farthestTileOnRight].position = _backgroundArray[_currentTile].position
+            + Vector3.left * _tileDistance;
+        _isFarRightTileSet = true;
     }
 }
