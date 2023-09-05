@@ -6,8 +6,7 @@ public class BackgroundTileManager : MonoBehaviour
 {
     [SerializeField] private Transform[] _backgroundArray;
     [SerializeField] float _tileDistance = 20.48f;
-    private int _farthestTileOnRight = 0;
-    private int _closestTileOnRight = 0;
+    private int _farthestTile = 0;
     private int _currentTile = 0;
     private Transform _playerTransform;
     [SerializeField] float _safeDistance;
@@ -16,8 +15,6 @@ public class BackgroundTileManager : MonoBehaviour
     void Start()
     {
         _playerTransform = GameObject.FindWithTag("Player").transform;
-
-        //FindFarthestTileFromRight();
         FindCurrentTile();
     }
 
@@ -26,13 +23,13 @@ public class BackgroundTileManager : MonoBehaviour
         Debug.Log("Current tile pos - player pos: " + (_backgroundArray[_currentTile].position.x - _playerTransform.position.x));
         Debug.Log("Current tile pos - safe distance: " + (_safeDistance));
 
-
         _currentTile = FindCurrentTile();
+
         if (_backgroundArray[_currentTile].position.x - _playerTransform.position.x >=
             _safeDistance && _isFarRightTileSet == false)
         {
             _currentTile = FindCurrentTile();
-            _farthestTileOnRight = FindFarthestTile();
+            _farthestTile = FindFarthestTile();
 
             SetFarRightTile();
         }
@@ -43,22 +40,6 @@ public class BackgroundTileManager : MonoBehaviour
         }
     }
 
-    //private int FindFarthestTileFromRight()
-    //{
-    //    float farthestDistance = 0;
-
-    //    for (int i = 0; i < _backgroundArray.Length; i++)
-    //    {
-    //        if (_backgroundArray[i].position.x >= farthestDistance)
-    //        {
-    //            _farthestTileOnRight = i;
-    //            farthestDistance = _backgroundArray[i].position.x;
-    //        }
-    //    }
-    //    Debug.Log("Farthest tile is " + _farthestTileOnRight);
-    //    return _farthestTileOnRight;
-    //}
-
     private int FindFarthestTile()
     {
         float farthestDistance = 0;
@@ -68,12 +49,12 @@ public class BackgroundTileManager : MonoBehaviour
             float dist = Vector3.Distance(_backgroundArray[_currentTile].position, _backgroundArray[i].position);
             if (dist >= farthestDistance)
             {
-                _farthestTileOnRight = i;
-                farthestDistance = _backgroundArray[i].position.x;
+                _farthestTile = i;
+                farthestDistance = dist;
             }
         }
-        Debug.Log("Farthest tile is " + _farthestTileOnRight);
-        return _farthestTileOnRight;
+        Debug.Log("Farthest tile is " + _farthestTile);
+        return _farthestTile;
     }
 
     private int FindCurrentTile()
@@ -89,13 +70,13 @@ public class BackgroundTileManager : MonoBehaviour
                 closestDistance = dist;
             }
         }
-        Debug.Log("Closest tile is " + _currentTile);
+        Debug.Log("Current tile is " + _currentTile);
         return _currentTile;
     }
 
     private void SetFarRightTile()
     {
-        _backgroundArray[_farthestTileOnRight].position = _backgroundArray[_currentTile].position
+        _backgroundArray[_farthestTile].position = _backgroundArray[_currentTile].position
             + Vector3.left * _tileDistance;
         _isFarRightTileSet = true;
     }
