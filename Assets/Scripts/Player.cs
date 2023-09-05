@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         //    Debug.LogError("Sprite Renderer on the player is NULL");
         //}
 
-        StartCoroutine(MoveToStartPosition(3f));
+        //StartCoroutine(MoveToStartPosition(3f));
     }
 
     void Update()
@@ -87,16 +87,16 @@ public class Player : MonoBehaviour
         transform.Translate(_speed * Time.deltaTime * direction);
 
         //clamps max height player can go on screen
-        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4.5f, 5.2f), 0);
+        //transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4.5f, 5.2f), 0);
 
-        if (transform.position.x >= 3f)
-        {
-            transform.position = new Vector3(-3f, transform.position.y, 0);
-        }
-        else if (transform.position.x <= -3f)
-        {
-            transform.position = new Vector3(3f, transform.position.y, 0);
-        }
+        //if (transform.position.x >= 3f)
+        //{
+        //    transform.position = new Vector3(-3f, transform.position.y, 0);
+        //}
+        //else if (transform.position.x <= -3f)
+        //{
+        //    transform.position = new Vector3(3f, transform.position.y, 0);
+        //}
     }
 
     private void FireLaser()
