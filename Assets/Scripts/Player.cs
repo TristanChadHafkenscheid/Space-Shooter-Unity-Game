@@ -83,20 +83,9 @@ public class Player : MonoBehaviour
     public void Movement(float horizontalInput, float verticalInput)
     {
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
-        
-        transform.Translate(_speed * Time.deltaTime * direction);
 
-        //clamps max height player can go on screen
-        //transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4.5f, 5.2f), 0);
-
-        //if (transform.position.x >= 3f)
-        //{
-        //    transform.position = new Vector3(-3f, transform.position.y, 0);
-        //}
-        //else if (transform.position.x <= -3f)
-        //{
-        //    transform.position = new Vector3(3f, transform.position.y, 0);
-        //}
+        //need space.world for rotating player
+        transform.Translate(_speed * Time.deltaTime * direction, Space.World);
     }
 
     private void FireLaser()

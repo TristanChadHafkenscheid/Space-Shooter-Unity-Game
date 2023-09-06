@@ -108,7 +108,13 @@ public class PlayerTouchMovement : MonoBehaviour
         //Vector3 scaledMovement = Player.speed * Time.deltaTime * new Vector3(MovementAmount.x, 0, MovementAmount.y);
         Vector3 scaledMovement = 100f * Time.fixedDeltaTime * new Vector3(MovementAmount.x, MovementAmount.y, 0);
 
+
+        float angle = Mathf.Atan2(scaledMovement.x, scaledMovement.y) * Mathf.Rad2Deg;
+        Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(new Vector3(0, 0, -angle)), Time.deltaTime * 100f);
+
+        //Player.transform.LookAt(Player.transform.position + scaledMovement);
         Player.Movement(scaledMovement.x, scaledMovement.y);
+
     }
 
     private void OnGUI()

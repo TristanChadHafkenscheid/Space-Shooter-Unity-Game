@@ -25,8 +25,6 @@ public class BackgroundTileManager : MonoBehaviour
     {
         Debug.Log("Current tile - player: " + (_backgroundArray[_currentTile].position - _playerTransform.position));
 
-        //_currentTile = FindCurrentTile();
-
         //moving left
         if (_backgroundArray[_currentTile].position.x - _playerTransform.position.x >=
             _safeDistanceX && _isFarTileSet == false)
