@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed = 3.5f;
     [SerializeField] private float _speedMultiplier = 1.5f;
-    [SerializeField] private GameObject _laserPrefab;
+    //[SerializeField] private GameObject _laserPrefab;
+    [SerializeField] Transform _laserBarrel;
     [SerializeField] private GameObject _tripleShotPrefab;
     [SerializeField] private float _fireRate = 0.5f;
     [SerializeField] private int _health = 100;
@@ -99,8 +100,15 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.05f, 0), Quaternion.identity);
-            _audioSource.Play();
+            GameObject laser = ObjectPool.SharedInstance.GetPooledObject();
+
+            if (laser != null)
+            {
+                laser.SetActive(true);
+                laser.transform.position = _laserBarrel.transform.position;
+                laser.transform.rotation = transform.rotation;
+                _audioSource.Play();
+            }
         }
     }
 
@@ -126,15 +134,6 @@ public class Player : MonoBehaviour
             DamageFlash();
 
         }
-
-        //if (_lives == 2)
-        //{
-        //    _rightEngine.SetActive(true);
-        //}
-        //else if (_lives == 1)
-        //{
-        //    _leftEngine.SetActive(true);
-        //}
 
         if (_health <= 0)
         {

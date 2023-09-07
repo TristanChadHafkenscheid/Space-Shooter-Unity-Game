@@ -1,129 +1,145 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BackgroundTileManager : MonoBehaviour
 {
-    [SerializeField] private Transform[] _backgroundArray;
-    [SerializeField] float _tileDistance = 20.48f;
-    [SerializeField] float _safeDistanceX  = 6;
-    [SerializeField] float _safeDistanceY = 2.5f;
+    [SerializeField] private Transform[] backgroundArray;
+    [SerializeField] private float tileDistance = 20.48f;
+    [SerializeField] private float moveDistance = 5;
 
-    private int _farthestTile = 0;
-    private int _currentTile = 0;
     private Transform _playerTransform;
 
-    private bool _isFarTileSet = false;
+    private float _lastPositionX;
+    private float _lastPositionY;
 
-    void Start()
+    private void Start()
     {
         _playerTransform = GameObject.FindWithTag("Player").transform;
-        _currentTile = FindCurrentTile();
     }
 
-    void Update()
+    private void Update()
     {
-        Debug.Log("Current tile - player: " + (_backgroundArray[_currentTile].position - _playerTransform.position));
-
-        //moving left
-        if (_backgroundArray[_currentTile].position.x - _playerTransform.position.x >=
-            _safeDistanceX && _isFarTileSet == false)
-        {
-            _currentTile = FindCurrentTile();
-            _farthestTile = FindFarthestTile();
-
-            SetFarTile(Vector3.left);
-        }
-        else if (_backgroundArray[_currentTile].position.x - _playerTransform.position.x <
-            _safeDistanceX)
-        {
-            _isFarTileSet = false;
-        }
-
-        //moving right
-        if (_backgroundArray[_currentTile].position.x - _playerTransform.position.x <=
-            -_safeDistanceX && _isFarTileSet == false)
-        {
-            _currentTile = FindCurrentTile();
-            _farthestTile = FindFarthestTile();
-
-            SetFarTile(Vector3.right);
-        }
-        else if (_backgroundArray[_currentTile].position.x - _playerTransform.position.x >
-            -_safeDistanceX)
-        {
-            _isFarTileSet = false;
-        }
-
-        //moving up
-        if (_backgroundArray[_currentTile].position.y - _playerTransform.position.y <=
-            -_safeDistanceY && _isFarTileSet == false)
-        {
-            _currentTile = FindCurrentTile();
-            _farthestTile = FindFarthestTile();
-
-            SetFarTile(Vector3.up);
-        }
-        else if (_backgroundArray[_currentTile].position.y - _playerTransform.position.y >
-            -_safeDistanceY)
-        {
-            _isFarTileSet = false;
-        }
-
-        //moving down
-        if (_backgroundArray[_currentTile].position.y - _playerTransform.position.y >=
-            _safeDistanceY && _isFarTileSet == false)
-        {
-            _currentTile = FindCurrentTile();
-            _farthestTile = FindFarthestTile();
-
-            SetFarTile(Vector3.down);
-        }
-        else if (_backgroundArray[_currentTile].position.y - _playerTransform.position.y <
-            _safeDistanceY)
-        {
-            _isFarTileSet = false;
-        }
+        CheckBoundary();
     }
 
-    private int FindFarthestTile()
+    private IEnumerable<Transform> GetRightColumn()
     {
-        float farthestDistance = 0;
+        var column = new Transform[3];
 
-        for (int i = 0; i < _backgroundArray.Length; i++)
+        var minimumX = backgroundArray.Select(background => background.position.x).Prepend(Mathf.Infinity).Min();
+
+        var c = 0;
+        foreach (var background in backgroundArray)
         {
-            float dist = Vector3.Distance(_backgroundArray[_currentTile].position, _backgroundArray[i].position);
-            if (dist >= farthestDistance)
+            if (Math.Abs(background.position.x - minimumX) < 0.2f)
             {
-                _farthestTile = i;
-                farthestDistance = dist;
+                column[c++] = background;
             }
         }
-        Debug.Log("Farthest tile is " + _farthestTile);
-        return _farthestTile;
+
+        return column;
     }
-
-    private int FindCurrentTile()
+    
+    private IEnumerable<Transform> GetLeftColumn()
     {
-        float closestDistance = Mathf.Infinity;
+        var column = new Transform[3];
 
-        for (int i = 0; i < _backgroundArray.Length; i++)
+        var maximumX = backgroundArray.Select(background => background.position.x).Prepend(-Mathf.Infinity).Max();
+
+        var c = 0;
+        foreach (var background in backgroundArray)
         {
-            float dist = Vector3.Distance(_backgroundArray[i].position, _playerTransform.position);
-            if (dist <= closestDistance)
+            if (Math.Abs(background.position.x - maximumX) < 0.2f)
             {
-                _currentTile = i;
-                closestDistance = dist;
+                column[c++] = background;
             }
         }
-        Debug.Log("Current tile is " + _currentTile);
-        return _currentTile;
+
+        return column;
+    }
+    
+    private IEnumerable<Transform> GetTopLine()
+    {
+        var line = new Transform[3];
+
+        var maximumY = backgroundArray.Select(background => background.position.y).Prepend(-Mathf.Infinity).Max();
+
+        var c = 0;
+        foreach (var background in backgroundArray)
+        {
+            if (Math.Abs(background.position.y - maximumY) < 0.2f)
+            {
+                line[c++] = background;
+            }
+        }
+
+        return line;
+    }
+    
+    private IEnumerable<Transform> GetBottomLine()
+    {
+        var line = new Transform[3];
+
+        var minimumY = backgroundArray.Select(background => background.position.y).Prepend(Mathf.Infinity).Min();
+
+        var c = 0;
+        foreach (var background in backgroundArray)
+        {
+            if (Math.Abs(background.position.y - minimumY) < 0.2f)
+            {
+                line[c++] = background;
+            }
+        }
+
+        return line;
     }
 
-    private void SetFarTile(Vector3 tileDirection)
+    private void CheckBoundary()
     {
-        _backgroundArray[_farthestTile].position = _backgroundArray[_currentTile].position
-            + tileDirection * _tileDistance;
-        _isFarTileSet = true;
+        // Move Left
+        if (_lastPositionX - _playerTransform.position.x < -moveDistance)
+        {
+            foreach (var background in GetRightColumn())
+            {
+                background.position += Vector3.right * (tileDistance * 3);
+            }
+            
+            _lastPositionX = _playerTransform.position.x;
+        }
+        
+        // Move Right
+        if (_lastPositionX - _playerTransform.position.x > moveDistance)
+        {
+            foreach (var background in GetLeftColumn())
+            {
+                background.position += Vector3.left * (tileDistance * 3);
+            }
+            
+            _lastPositionX = _playerTransform.position.x;
+        }
+        
+        // Move Up
+        if (_lastPositionY - _playerTransform.position.y > moveDistance)
+        {
+            foreach (var background in GetTopLine())
+            {
+                background.position += Vector3.down * (tileDistance * 3);
+            }
+            
+            _lastPositionY = _playerTransform.position.y;
+        }
+        
+        // Move Down
+        if (!(_lastPositionY - _playerTransform.position.y < -moveDistance)) return;
+        {
+            foreach (var background in GetBottomLine())
+            {
+                background.position += Vector3.up * (tileDistance * 3);
+            }
+            
+            _lastPositionY = _playerTransform.position.y;
+        }
     }
 }

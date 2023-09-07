@@ -9,16 +9,29 @@ public class Laser : MonoBehaviour
 
     private bool _isEnemyLaser = false;
 
+    private Player _playerController;
+
+    private void Start()
+    {
+        _playerController = GameObject.FindWithTag("Player").GetComponent<Player>();
+    }
+
     void Update()
     {
+        MoveForward();
         if (_isEnemyLaser == false)
         {
-            MoveUp();
+            //MoveUp();
+            MoveForward();
         }
         else
         {
-            MoveDown();
+            //MoveDown();
         }
+    }
+    private void OnEnable()
+    {
+        Invoke(nameof(DeactivateLaser), 1f);
     }
 
     private void MoveUp()
@@ -33,6 +46,16 @@ public class Laser : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
+    }
+
+    private void MoveForward()
+    {
+        transform.Translate(_speed * Time.deltaTime * Vector3.up);
+    }
+
+    private void DeactivateLaser()
+    {
+        gameObject.SetActive(false);
     }
 
     private void MoveDown()
