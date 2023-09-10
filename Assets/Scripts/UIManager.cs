@@ -12,8 +12,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider _playerHealthSlider;
     [SerializeField] private TextMeshProUGUI _gameOverText;
     [SerializeField] private GameObject _pauseMenuPanel;
+    [SerializeField] private GameObject _touchJoystickCanvas;
 
     public GameObject PauseMenuPanel { get { return _pauseMenuPanel; } }
+    public GameObject TouchJoystickCanvas { get { return _touchJoystickCanvas; } }
     public static UIManager instance = null;
 
     private int _score, _bestScore;

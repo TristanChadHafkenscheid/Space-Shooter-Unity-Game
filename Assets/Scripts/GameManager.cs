@@ -6,22 +6,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool _isGameOver;
     public bool isCoopMode = false;
 
-    private GameObject pauseMenuGameObject;
-    private Animator _pauseAnimator;
-    private Vector3 _pauseMenuStartPos;
+    private GameObject _pauseMenuGameObject;
+    private GameObject _touchJoystickCanvas;
 
     private void Start()
     {
-        pauseMenuGameObject = UIManager.instance.PauseMenuPanel;
-        _pauseMenuStartPos = pauseMenuGameObject.transform.position;
+        _pauseMenuGameObject = UIManager.instance.PauseMenuPanel;
+        _touchJoystickCanvas = UIManager.instance.TouchJoystickCanvas;
     }
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    PauseGame(true);
-        //}
     }
 
     public void GameOver()
@@ -34,16 +29,14 @@ public class GameManager : MonoBehaviour
         if (isPaused == true)
         {
             Time.timeScale = 0;
-            pauseMenuGameObject.SetActive(true);
-            _pauseAnimator = UIManager.instance.PauseMenuPanel.GetComponent<Animator>();
-            _pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-            _pauseAnimator.SetBool("isPaused", true);
+            _pauseMenuGameObject.SetActive(true);
+            _touchJoystickCanvas.SetActive(false);
         }
         else
         {
             Time.timeScale = 1;
-            pauseMenuGameObject.transform.position = _pauseMenuStartPos;
-            pauseMenuGameObject.SetActive(false);
+            _pauseMenuGameObject.SetActive(false);
+            _touchJoystickCanvas.SetActive(true);
         }
     }
 
