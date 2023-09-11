@@ -4046,7 +4046,7 @@ GameObject:
   - component: {fileID: 1303739012}
   - component: {fileID: 1303739013}
   m_Layer: 0
-  m_Name: Object_Pool
+  m_Name: Laser_Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

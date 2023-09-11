@@ -33,6 +33,16 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
     private float _canTakeDamage = 0f;
 
+    public static Player instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+
     void Start()
     {
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
