@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     //[SerializeField] private Image _LivesImg;
     //[SerializeField] private Sprite[] _liveSprites;
     [SerializeField] private Slider _playerHealthSlider;
+    [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private TextMeshProUGUI _gameOverText;
     [SerializeField] private GameObject _pauseMenuPanel;
     [SerializeField] private GameObject _touchJoystickCanvas;
@@ -89,6 +90,8 @@ public class UIManager : MonoBehaviour
     private void GameOverSequence()
     {
         _gameManager.GameOver();
+
+        _gameOverPanel.SetActive(true);
         _gameOverText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
     }

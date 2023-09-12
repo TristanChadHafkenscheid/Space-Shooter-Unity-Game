@@ -7,20 +7,23 @@ public class BackgroundTileManager : MonoBehaviour
 {
     [SerializeField] private Transform[] backgroundArray;
     [SerializeField] private float tileDistance = 20.48f;
-    [SerializeField] private float moveDistance = 5;
 
     private Transform _playerTransform;
+    private GameManager _gameManager;
 
     private float _lastPositionX;
     private float _lastPositionY;
 
     private void Start()
     {
-        _playerTransform = GameObject.FindWithTag("Player").transform;
+        _playerTransform = Player.instance.GetComponent<Transform>();
+        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
     }
 
     private void Update()
     {
+        //if gameover is true then return
+        //if (_gameManager.game)
         CheckBoundary();
     }
 
@@ -99,7 +102,7 @@ public class BackgroundTileManager : MonoBehaviour
     private void CheckBoundary()
     {
         // Move Left
-        if (_lastPositionX - _playerTransform.position.x < -moveDistance)
+        if (_lastPositionX - _playerTransform.position.x < -tileDistance)
         {
             foreach (var background in GetRightColumn())
             {
@@ -110,7 +113,7 @@ public class BackgroundTileManager : MonoBehaviour
         }
         
         // Move Right
-        if (_lastPositionX - _playerTransform.position.x > moveDistance)
+        if (_lastPositionX - _playerTransform.position.x > tileDistance)
         {
             foreach (var background in GetLeftColumn())
             {
@@ -121,7 +124,7 @@ public class BackgroundTileManager : MonoBehaviour
         }
         
         // Move Up
-        if (_lastPositionY - _playerTransform.position.y > moveDistance)
+        if (_lastPositionY - _playerTransform.position.y > tileDistance)
         {
             foreach (var background in GetTopLine())
             {
@@ -132,7 +135,7 @@ public class BackgroundTileManager : MonoBehaviour
         }
         
         // Move Down
-        if (!(_lastPositionY - _playerTransform.position.y < -moveDistance)) return;
+        if (!(_lastPositionY - _playerTransform.position.y < -tileDistance)) return;
         {
             foreach (var background in GetBottomLine())
             {

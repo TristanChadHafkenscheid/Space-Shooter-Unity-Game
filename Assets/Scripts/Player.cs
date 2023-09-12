@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     {
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
-        _uiManager = GameObject.Find("==Canvas==").GetComponent<UIManager>();
+        _uiManager = UIManager.instance;
 
         _audioSource = GetComponent<AudioSource>();
         //_playerSprite = GetComponent<SpriteRenderer>();
@@ -137,8 +137,6 @@ public class Player : MonoBehaviour
         {
             _canTakeDamage = Time.time + _damageRate;
             _health = _health - damageTaken;
-            Debug.LogError("damage taken is " + damageTaken);
-            Debug.LogError("health is " + _health);
 
             _uiManager.SetHealth(_health);
             DamageFlash();
@@ -149,7 +147,8 @@ public class Player : MonoBehaviour
         {
             _spawnManager.OnPlayerDeath();
             _playerSprite.DOKill();
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
             _uiManager.CheckForBestScore();
         }
     }

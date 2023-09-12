@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -7,32 +6,24 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private GameObject _enemyContainer;
     [SerializeField] private GameObject[] powerups;
+    [SerializeField] private int _enemySpawnTime;
+    public int direction;
 
     private bool _stopSpawning = false;
 
+    private void Start()
+    {
+        StartCoroutine(SpawnEnemy());
+    }
+
     public void StartSpawning()
     {
-        StartCoroutine(SpawnEnemyRoutine());
         //StartCoroutine(SpawnPowerupRoutine());
     }
 
-    IEnumerator SpawnEnemyRoutine()
+    private IEnumerator SpawnPowerupRoutine()
     {
-        yield return new WaitForSeconds(3.0f);
-
-        while (_stopSpawning == false)
-        {
-            Vector3 posToSpawn = new Vector3(Random.Range(-2.1f, 2.1f), 6.5f, 0);
-            GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-            Debug.LogError("position of enemy is " + newEnemy.transform.position);
-            newEnemy.transform.parent = _enemyContainer.transform;
-            yield return new WaitForSeconds(5f);
-        }
-    }
-
-    IEnumerator SpawnPowerupRoutine()
-    {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(_enemySpawnTime);
 
         while (_stopSpawning == false)
         {
@@ -46,5 +37,34 @@ public class SpawnManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         _stopSpawning = true;
+    }
+
+    private IEnumerator SpawnEnemy()
+    {
+        yield return new WaitForSeconds(_enemySpawnTime);
+
+        while (_stopSpawning == false)
+        {
+            GameObject newEnemy = Instantiate(_enemyPrefab, CalculateSpawnPosition(), Quaternion.identity);
+            Debug.Log("position of enemy is " + newEnemy.transform.position);
+            newEnemy.transform.parent = _enemyContainer.transform;
+            yield return new WaitForSeconds(_enemySpawnTime);
+        }
+    }
+
+    private Vector3 CalculateSpawnPosition()
+    {
+        //get positions for top and bottom of screen
+        Vector3 topRightOfScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, -Camera.main.transform.position.z));
+        Vector3 botLeftOfScreen = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 25));
+
+        Vector3 posToSpawnTop = new Vector3(Random.Range(botLeftOfScreen.x, topRightOfScreen.x), topRightOfScreen.y, 0);
+        Vector3 posToSpawnBottom = new Vector3(Random.Range(botLeftOfScreen.x, topRightOfScreen.x), botLeftOfScreen.y, 0);
+        Vector3 posToSpawnLeft = new Vector3(botLeftOfScreen.x, Random.Range(botLeftOfScreen.y, topRightOfScreen.y), 0);
+        Vector3 posToSpawnRight = new Vector3(topRightOfScreen.x, Random.Range(botLeftOfScreen.y, topRightOfScreen.y), 0);
+
+        Vector3[] directions = { posToSpawnTop, posToSpawnBottom, posToSpawnLeft, posToSpawnRight };
+
+        return directions[Random.Range(0, directions.Length)];
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Enemy : MonoBehaviour
     private float _fireRate = 3f;
     private float _canFire = -1f;
     private bool _isShooting = false;
+    private Rigidbody2D _rigidBody;
+    private Vector2 _movement; 
 
     void Start()
     {
@@ -42,25 +45,42 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Colldier2D on enemy is NULL");
         }
+
+        _rigidBody = GetComponent<Rigidbody2D>();
+
+        if (_rigidBody == null)
+        {
+            Debug.LogError("Rigidbody on player is NULL");
+        }
+
         _isShooting = true;
     }
 
     void Update()
     {
-        CalculateMovement();
-        CalculateShooting();
+        CalculateDirection();
+
+        //not using shooting for now
+        //CalculateShooting();
     }
 
-    private void CalculateMovement()
+    private void FixedUpdate()
     {
-        transform.Translate(_speed * Time.deltaTime * Vector3.down);
+        MoveEnemy(_movement);
+    }
 
-        //move enemy back to top of screen when at bottom
-        if (transform.position.y < -6.5f)
-        {
-            Vector3 randRange = new Vector3(Random.Range(-2.1f, 2.1f), 6.5f, 0);
-            transform.position = randRange;
-        }
+    private void MoveEnemy(Vector2 direction)
+    {
+        _rigidBody.MovePosition((Vector2)transform.position + (direction * _speed * Time.deltaTime));
+    }
+
+    private void CalculateDirection()
+    {
+        Vector3 direction = _player.transform.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+        _rigidBody.rotation = angle;
+        direction.Normalize();
+        _movement = direction;
     }
 
     private void CalculateShooting()
@@ -98,11 +118,13 @@ public class Enemy : MonoBehaviour
 
         if (other.CompareTag("PlayerLaser"))
         {
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+
             if (_player != null)
             {
                 _player.AddScore(10);
             }
+
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
