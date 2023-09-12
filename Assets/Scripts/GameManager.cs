@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         _isGameOver = true;
+        PauseGame(true);
     }
 
     public void PauseGame(bool isPaused)
@@ -49,5 +50,6 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(1); //current game scene
+        PauseGame(false);
     }
 }

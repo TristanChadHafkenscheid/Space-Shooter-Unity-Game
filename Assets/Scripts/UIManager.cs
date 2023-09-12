@@ -6,9 +6,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _scoreText, _bestScoreText;
-    //[SerializeField] private Image _LivesImg;
-    //[SerializeField] private Sprite[] _liveSprites;
+    [SerializeField] private TextMeshProUGUI _scoreText, _highScoreText, _gameOverScoreText;
     [SerializeField] private Slider _playerHealthSlider;
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private TextMeshProUGUI _gameOverText;
@@ -19,7 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject TouchJoystickCanvas { get { return _touchJoystickCanvas; } }
     public static UIManager instance = null;
 
-    private int _score, _bestScore;
+    private int _score, _highScore;
     private GameManager _gameManager;
 
     private void Awake()
@@ -33,8 +31,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         _scoreText.text = "Score: " + 0;
-        _bestScore = PlayerPrefs.GetInt("HighScore", 0);
-        _bestScoreText.text = "Best : " + _bestScore;
+        _highScore = PlayerPrefs.GetInt("HighScore", 0);
         _gameOverText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
 
@@ -52,25 +49,12 @@ public class UIManager : MonoBehaviour
 
     public void CheckForBestScore()
     {
-        if (_score > _bestScore)
+        if (_score > _highScore)
         {
-            _bestScore = _score;
-            PlayerPrefs.SetInt("HighScore", _bestScore);
-            _bestScoreText.text = "Best : " + _bestScore;
+            _highScore = _score;
+            PlayerPrefs.SetInt("HighScore", _highScore);
         }
     }
-
-    //public void UpdateLives(int currentLives)
-    //{
-    //    Debug.Log("currentLives is:" + currentLives);
-
-    //    _LivesImg.sprite = _liveSprites[currentLives];
-
-    //    if (currentLives == 0)
-    //    {
-    //        GameOverSequence();
-    //    }
-    //}
 
     public void SetHealth(int playerHealth)
     {
@@ -90,7 +74,8 @@ public class UIManager : MonoBehaviour
     private void GameOverSequence()
     {
         _gameManager.GameOver();
-
+        _gameOverScoreText.text = "Score: " + _score;
+        _highScoreText.text = "High Score: " + _highScore;
         _gameOverPanel.SetActive(true);
         _gameOverText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
