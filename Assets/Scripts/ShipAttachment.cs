@@ -1,22 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShipAttachment : MonoBehaviour
 {
     public int powerupID; //0 equals triple shot, 1 = speed, 2 = shields, 3 = big laser
-    public GameObject attachmentObject; //might not need this
     public Transform botOfAttachment;
 
-    // Start is called before the first frame update
-    void Start()
+    private ShipAttachmentController _shipAttachmentController;
+
+    private void Start()
     {
-        
+        _shipAttachmentController = ShipAttachmentController.instance;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _shipAttachmentController.RemoveAttachment();
     }
 }

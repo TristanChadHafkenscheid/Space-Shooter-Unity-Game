@@ -2,17 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShipAttachmentController : MonoBehaviour
 {
     [SerializeField] private Transform _botOfPlayer;
     [SerializeField] private List<ShipAttachment> _attachmentsList = new List<ShipAttachment>();
+    [SerializeField] private int _attachmentSizeCap = 5;
 
     public GameObject attachTest;
 
+    //public static UnityEvent onAttachmentHit;
+
+    public static ShipAttachmentController instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+
     void Start()
     {
+        //if (onAttachmentHit == null)
+        //    onAttachmentHit = new UnityEvent();
 
+        //onAttachmentHit.AddListener(RemoveAttachment);
     }
 
     void Update()
@@ -32,6 +49,11 @@ public class ShipAttachmentController : MonoBehaviour
     //add ship attachment and instantiate it and parent to player
     public void AddAttachment(GameObject attachment)
     {
+        if (_attachmentsList.Count == _attachmentSizeCap)
+        {
+            return;
+        }
+
         ShipAttachment newShipAttachment;
         if (_attachmentsList.Count == 0)
         {
@@ -44,7 +66,7 @@ public class ShipAttachmentController : MonoBehaviour
         else
         {
             GameObject newShipAttachmentObj = Instantiate(attachment.gameObject,
-                _attachmentsList[_attachmentsList.Count].botOfAttachment.position, Quaternion.identity);
+                _attachmentsList[_attachmentsList.Count - 1].botOfAttachment.position, Quaternion.identity);
             newShipAttachmentObj.transform.parent = this.transform;
 
             newShipAttachment = newShipAttachmentObj.GetComponent<ShipAttachment>();
@@ -53,6 +75,9 @@ public class ShipAttachmentController : MonoBehaviour
     }
 
     //remove ship attachment and move the rest up 1
+    public void RemoveAttachment()
+    {
+    }
 
     //rearrange ship attachment to players liking
 }
