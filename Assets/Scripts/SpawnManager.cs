@@ -46,7 +46,6 @@ public class SpawnManager : MonoBehaviour
         while (_stopSpawning == false)
         {
             GameObject newEnemy = Instantiate(_enemyPrefab, CalculateSpawnPosition(), Quaternion.identity);
-            Debug.Log("position of enemy is " + newEnemy.transform.position);
             newEnemy.transform.parent = _enemyContainer.transform;
             yield return new WaitForSeconds(_enemySpawnTime);
         }

@@ -2999,12 +2999,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5641cef558c82b54d93f2b646dadbd8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 2.1
   _speedMultiplier: 1.5
   _laserBarrel: {fileID: 523117395}
   _tripleShotPrefab: {fileID: 4568996342584408255, guid: 04e92a011f6656f499e3a546b184029c,
     type: 3}
-  _fireRate: 0.5
+  _fireRate: 0.7
   _health: 100
   _bigLaser: {fileID: 372893551793976625}
   _shieldsVisualizer: {fileID: 129489934}
@@ -3144,8 +3144,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _botOfPlayer: {fileID: 854668104}
   _attachmentsList: []
+  _attachmentSizeCap: 5
   attachTest: {fileID: 928384006559175624, guid: d303478ddd08a4849aa09d410e7b135c,
     type: 3}
+  _damageRate: 0.5
 --- !u!82 &1069982226
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3744,7 +3746,7 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 4596685650578586645, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
     type: 3}
-  amountToPool: 10
+  amountToPool: 20
 --- !u!1 &1317659452
 GameObject:
   m_ObjectHideFlags: 0

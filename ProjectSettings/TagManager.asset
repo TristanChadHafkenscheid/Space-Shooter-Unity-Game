@@ -8,6 +8,7 @@ TagManager:
   - BigLaser
   - PlayerLaser
   - EnemyLaser
+  - Attachment
   layers:
   - Default
   - TransparentFX

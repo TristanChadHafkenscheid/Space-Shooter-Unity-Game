@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 1924306981225405997}
   m_Layer: 0
   m_Name: Attachment1
-  m_TagString: Untagged
+  m_TagString: Attachment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupID: 0
   botOfAttachment: {fileID: 890311286}
+  _health: 1
 --- !u!61 &1924306981225405997
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ShipAttachment : MonoBehaviour
 {
     public int powerupID; //0 equals triple shot, 1 = speed, 2 = shields, 3 = big laser
     public Transform botOfAttachment;
+    [SerializeField] private int _health = 1;
+
 
     private ShipAttachmentController _shipAttachmentController;
 
@@ -23,6 +24,11 @@ public class ShipAttachment : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _shipAttachmentController.RemoveAttachment();
+        _health--;
+
+        if (_health <= 0)
+        {
+            _shipAttachmentController.RemoveAttachment(this);
+        }
     }
 }

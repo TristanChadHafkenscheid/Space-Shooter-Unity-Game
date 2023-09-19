@@ -140,7 +140,6 @@ public class Player : MonoBehaviour
 
             _uiManager.SetHealth(_health);
             DamageFlash();
-
         }
 
         if (_health <= 0)

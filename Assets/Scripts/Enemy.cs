@@ -134,6 +134,24 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject, 2.8f);
         }
 
+        if (other.CompareTag("Attachment"))
+        {
+            other.gameObject.SetActive(false);
+
+            if (_player != null)
+            {
+                _player.AddScore(10);
+            }
+
+            _animator.SetTrigger("OnEnemyDeath");
+            _speed = 0;
+            _audioSource.Play();
+
+            _colldier.enabled = false;
+            _isShooting = false;
+            Destroy(gameObject, 2.8f);
+        }
+
         if (other.CompareTag("BigLaser"))
         {
             if (_player != null)

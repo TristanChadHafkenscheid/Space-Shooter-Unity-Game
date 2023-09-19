@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ShipAttachmentController : MonoBehaviour
 {
@@ -12,9 +11,10 @@ public class ShipAttachmentController : MonoBehaviour
 
     public GameObject attachTest;
 
-    //public static UnityEvent onAttachmentHit;
-
     public static ShipAttachmentController instance = null;
+
+    [SerializeField] private float _damageRate = 0.5f;
+    private float _canTakeDamage = 0f;
 
     private void Awake()
     {
@@ -22,14 +22,6 @@ public class ShipAttachmentController : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-    }
-
-    void Start()
-    {
-        //if (onAttachmentHit == null)
-        //    onAttachmentHit = new UnityEvent();
-
-        //onAttachmentHit.AddListener(RemoveAttachment);
     }
 
     void Update()
@@ -54,10 +46,11 @@ public class ShipAttachmentController : MonoBehaviour
             return;
         }
 
+        GameObject newShipAttachmentObj;
         ShipAttachment newShipAttachment;
         if (_attachmentsList.Count == 0)
         {
-            GameObject newShipAttachmentObj = Instantiate(attachment.gameObject, _botOfPlayer.position, Quaternion.identity);
+            newShipAttachmentObj = Instantiate(attachment.gameObject, _botOfPlayer.position, Quaternion.identity);
             newShipAttachmentObj.transform.parent = this.transform;
 
             newShipAttachment = newShipAttachmentObj.GetComponent<ShipAttachment>();
@@ -65,7 +58,7 @@ public class ShipAttachmentController : MonoBehaviour
         //last postion
         else
         {
-            GameObject newShipAttachmentObj = Instantiate(attachment.gameObject,
+            newShipAttachmentObj = Instantiate(attachment.gameObject,
                 _attachmentsList[_attachmentsList.Count - 1].botOfAttachment.position, Quaternion.identity);
             newShipAttachmentObj.transform.parent = this.transform;
 
@@ -75,8 +68,46 @@ public class ShipAttachmentController : MonoBehaviour
     }
 
     //remove ship attachment and move the rest up 1
-    public void RemoveAttachment()
+    public void RemoveAttachment(ShipAttachment attachment)
     {
+        _attachmentsList.Remove(attachment);
+
+        Destroy(attachment.gameObject);
+
+        for (int i = 0; i < _attachmentsList.Count; i++)
+        {
+            if (i == 0)
+            {
+                _attachmentsList[i].gameObject.transform.position = _botOfPlayer.position;
+            }
+            else
+            {
+                _attachmentsList[i].gameObject.transform.position =
+                    _attachmentsList[i - 1].botOfAttachment.position;
+            }
+        }
+
+        if (Time.time > _canTakeDamage)
+        {
+            _canTakeDamage = Time.time + _damageRate;
+
+            //_attachmentsList.Remove(attachment);
+
+            //Destroy(attachment.gameObject);
+
+            //for (int i = 0; i < _attachmentsList.Count; i++)
+            //{
+            //    if (i == 0)
+            //    {
+            //        _attachmentsList[i].gameObject.transform.position = _botOfPlayer.position;
+            //    }
+            //    else
+            //    {
+            //        _attachmentsList[i].gameObject.transform.position =
+            //            _attachmentsList[i - 1].botOfAttachment.position;
+            //    }
+            //}
+        }
     }
 
     //rearrange ship attachment to players liking
