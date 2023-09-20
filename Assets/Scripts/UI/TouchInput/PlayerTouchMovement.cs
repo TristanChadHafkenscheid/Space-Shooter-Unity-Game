@@ -9,7 +9,15 @@ public class PlayerTouchMovement : MonoBehaviour
     [SerializeField] private Player Player;
 
     private Finger MovementFinger;
-    private Vector2 MovementAmount;
+    private Vector2 movementAmount;
+
+    public Vector2 MovementAmount
+    {
+        get
+        {
+            return movementAmount;
+        }
+    }
 
     private void OnEnable()
     {
@@ -52,7 +60,8 @@ public class PlayerTouchMovement : MonoBehaviour
             }
 
             Joystick.Knob.anchoredPosition = knobPosition;
-            MovementAmount = knobPosition / maxMovement;
+            //movementAmount = knobPosition / maxMovement;
+            movementAmount = knobPosition / maxMovement;
         }
     }
 
@@ -63,7 +72,7 @@ public class PlayerTouchMovement : MonoBehaviour
             MovementFinger = null;
             Joystick.Knob.anchoredPosition = Vector2.zero;
             Joystick.gameObject.SetActive(false);
-            MovementAmount = Vector2.zero;
+            //movementAmount = Vector2.zero;
         }
     }
 
@@ -73,7 +82,7 @@ public class PlayerTouchMovement : MonoBehaviour
         if (MovementFinger == null && TouchedFinger.screenPosition.x <= Screen.width)
         {
             MovementFinger = TouchedFinger;
-            MovementAmount = Vector2.zero;
+            //movementAmount = Vector2.zero;
             Joystick.gameObject.SetActive(true);
             Joystick.RectTransform.sizeDelta = JoystickSize;
             Joystick.RectTransform.anchoredPosition = ClampStartPosition(TouchedFinger.screenPosition);
@@ -106,7 +115,7 @@ public class PlayerTouchMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //Vector3 scaledMovement = Player.speed * Time.deltaTime * new Vector3(MovementAmount.x, 0, MovementAmount.y);
-        Vector3 scaledMovement = 100f * Time.fixedDeltaTime * new Vector3(MovementAmount.x, MovementAmount.y, 0);
+        Vector3 scaledMovement = 100f * Time.fixedDeltaTime * new Vector3(movementAmount.x, movementAmount.y, 0);
 
         float angle = Rotate(scaledMovement);
 
@@ -115,7 +124,8 @@ public class PlayerTouchMovement : MonoBehaviour
             Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(new Vector3(0, 0, -angle)), Time.deltaTime * 100f);
         }
 
-        Player.Movement(scaledMovement.x, scaledMovement.y);
+        //Player.Movement(scaledMovement.x, scaledMovement.y);
+        //snakeM.SnakeMovement(scaledMovement.x, scaledMovement.y);
     }
 
     private float Rotate(Vector3 scaledMovement)

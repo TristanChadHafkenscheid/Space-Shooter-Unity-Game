@@ -9,7 +9,6 @@ public class BackgroundTileManager : MonoBehaviour
     [SerializeField] private float tileDistance = 20.48f;
 
     private Transform _playerTransform;
-    private GameManager _gameManager;
 
     private float _lastPositionX;
     private float _lastPositionY;
@@ -17,13 +16,11 @@ public class BackgroundTileManager : MonoBehaviour
     private void Start()
     {
         _playerTransform = Player.instance.GetComponent<Transform>();
-        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
     }
 
     private void Update()
     {
         //if gameover is true then return
-        //if (_gameManager.game)
         CheckBoundary();
     }
 

@@ -15,6 +15,7 @@ public class ShipAttachmentController : MonoBehaviour
 
     [SerializeField] private float _damageRate = 0.5f;
     private float _canTakeDamage = 0f;
+    [SerializeField] private Rigidbody2D _playerRigidbody;
 
     private void Awake()
     {
@@ -54,6 +55,7 @@ public class ShipAttachmentController : MonoBehaviour
             newShipAttachmentObj.transform.parent = this.transform;
 
             newShipAttachment = newShipAttachmentObj.GetComponent<ShipAttachment>();
+            newShipAttachment._spring.connectedBody = _playerRigidbody;
         }
         //last postion
         else
@@ -63,6 +65,7 @@ public class ShipAttachmentController : MonoBehaviour
             newShipAttachmentObj.transform.parent = this.transform;
 
             newShipAttachment = newShipAttachmentObj.GetComponent<ShipAttachment>();
+            newShipAttachment._spring.connectedBody = _attachmentsList[_attachmentsList.Count - 1].GetComponent<Rigidbody2D>();
         }
         _attachmentsList.Add(newShipAttachment);
     }
