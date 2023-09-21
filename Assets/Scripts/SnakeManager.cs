@@ -9,6 +9,9 @@ public class SnakeManager : MonoBehaviour
     [SerializeField] float turnSpeed = 18;
     [SerializeField] List<GameObject> bodyParts = new List<GameObject>();
 
+    public float _speedToBody = 1;
+    public float _distMax = 1;
+
 
     [SerializeField] private List<GameObject> snakeBody = new List<GameObject>();
     [SerializeField] private PlayerTouchMovement touchScreenMovement;
@@ -57,6 +60,8 @@ public class SnakeManager : MonoBehaviour
         //moves the head with inputs
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
         snakeHeadRigidbody.velocity = speed * direction;
+        
+        snakeHeadRigidbody.MoveRotation(Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg);
 
         //snakeHeadRigidbody.velocity = speed * snakeBody[0].transform.right;
         //if (Input.GetAxis("Horizontal") != 0)
@@ -69,8 +74,22 @@ public class SnakeManager : MonoBehaviour
             for (int i = 1; i < snakeBody.Count; i++)
             {
                 MarkerManager markM = snakeBody[i - 1].GetComponent<MarkerManager>();
+                //float currentSpeed = snakeHeadRigidbody.velocity.magnitude * _speedToBody;
                 snakeBody[i].transform.position = markM.markerList[0].position;
                 snakeBody[i].transform.rotation = markM.markerList[0].rotation;
+
+                /*float dist = Vector3.Distance(snakeBody[i].transform.position, snakeBody[i - 1].transform.position);
+
+                if (dist > _distMax)
+                {
+                    //snakeBody[i].transform.position = markM.markerList[0].position;
+                    snakeBody[i].transform.position = Vector3.MoveTowards(snakeBody[i].transform.position,
+                        markM.markerList[0].position, _speedToBody);
+
+                    snakeBody[i].transform.rotation = markM.markerList[0].rotation;
+                    Debug.Log("velocity is " + snakeHeadRigidbody.velocity.magnitude * _speedToBody);
+
+                }*/
                 markM.markerList.RemoveAt(0);
             }
         }

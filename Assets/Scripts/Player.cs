@@ -91,14 +91,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    //public void Movement(float horizontalInput, float verticalInput)
-    //{
-    //    Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
+    public void Movement(float horizontalInput, float verticalInput)
+    {
+        Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
 
-    //    //need space.world for rotating player
-    //    GetComponent<Rigidbody2D>().velocity = _speed * Time.deltaTime * direction;
-    //    //transform.Translate(_speed * Time.deltaTime * direction, Space.World);
-    //}
+        //need space.world for rotating player
+        GetComponent<Rigidbody2D>().velocity = _speed * Time.deltaTime * direction;
+        //transform.Translate(_speed * Time.deltaTime * direction, Space.World);
+    }
 
     private void FireLaser()
     {

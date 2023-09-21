@@ -72,7 +72,7 @@ public class PlayerTouchMovement : MonoBehaviour
             MovementFinger = null;
             Joystick.Knob.anchoredPosition = Vector2.zero;
             Joystick.gameObject.SetActive(false);
-            //movementAmount = Vector2.zero;
+            movementAmount = Vector2.zero;
         }
     }
 
@@ -82,7 +82,7 @@ public class PlayerTouchMovement : MonoBehaviour
         if (MovementFinger == null && TouchedFinger.screenPosition.x <= Screen.width)
         {
             MovementFinger = TouchedFinger;
-            //movementAmount = Vector2.zero;
+            movementAmount = Vector2.zero;
             Joystick.gameObject.SetActive(true);
             Joystick.RectTransform.sizeDelta = JoystickSize;
             Joystick.RectTransform.anchoredPosition = ClampStartPosition(TouchedFinger.screenPosition);
@@ -104,27 +104,23 @@ public class PlayerTouchMovement : MonoBehaviour
         {
             StartPosition.y = JoystickSize.y / 2;
         }
-        //else if (StartPosition.y > Screen.height - JoystickSize.y / 2)
-        //{
-        //    StartPosition.y = Screen.height - JoystickSize.y / 2;
-        //}
 
         return StartPosition;
     }
 
     private void FixedUpdate()
     {
-        //Vector3 scaledMovement = Player.speed * Time.deltaTime * new Vector3(MovementAmount.x, 0, MovementAmount.y);
         Vector3 scaledMovement = 100f * Time.fixedDeltaTime * new Vector3(movementAmount.x, movementAmount.y, 0);
 
         float angle = Rotate(scaledMovement);
 
         if (!float.IsPositiveInfinity(angle))
         {
-            Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(new Vector3(0, 0, -angle)), Time.deltaTime * 100f);
+            //Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(new Vector3(0, 0, -angle)), Time.deltaTime * 100f);
+            GetComponent<Rigidbody2D>().MoveRotation(-angle);
         }
 
-        //Player.Movement(scaledMovement.x, scaledMovement.y);
+        Player.Movement(scaledMovement.x, scaledMovement.y);
         //snakeM.SnakeMovement(scaledMovement.x, scaledMovement.y);
     }
 
