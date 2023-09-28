@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _speed = 4;
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private int _damageToPlayer = 15;
+    [SerializeField] private GameObject _expPref;
 
     private Player _player;
     private Animator _animator;
@@ -131,6 +132,9 @@ public class Enemy : MonoBehaviour
 
             _colldier.enabled = false;
             _isShooting = false;
+
+            Invoke(nameof(SpawnExp), 0.5f);
+
             Destroy(gameObject, 2.8f);
         }
 
@@ -161,5 +165,10 @@ public class Enemy : MonoBehaviour
             _isShooting = false;
             Destroy(gameObject, 2.8f);
         }
+    }
+
+    private void SpawnExp()
+    {
+        Instantiate(_expPref, transform.position, Quaternion.identity);
     }
 }

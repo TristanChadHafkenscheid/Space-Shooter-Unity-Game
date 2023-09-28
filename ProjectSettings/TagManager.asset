@@ -9,6 +9,7 @@ TagManager:
   - PlayerLaser
   - EnemyLaser
   - Attachment
+  - Exp
   layers:
   - Default
   - TransparentFX

@@ -60,7 +60,6 @@ public class PlayerTouchMovement : MonoBehaviour
             }
 
             Joystick.Knob.anchoredPosition = knobPosition;
-            //movementAmount = knobPosition / maxMovement;
             movementAmount = knobPosition / maxMovement;
         }
     }
@@ -97,7 +96,7 @@ public class PlayerTouchMovement : MonoBehaviour
         }
         else if (StartPosition.x > Screen.width - JoystickSize.x / 2)
         {
-            StartPosition.y = Screen.width - JoystickSize.x / 2;
+            StartPosition.x = Screen.width - JoystickSize.x / 2;
         }
 
         if (StartPosition.y < JoystickSize.y / 2)
@@ -121,7 +120,6 @@ public class PlayerTouchMovement : MonoBehaviour
         }
 
         Player.Movement(scaledMovement.x, scaledMovement.y);
-        //snakeM.SnakeMovement(scaledMovement.x, scaledMovement.y);
     }
 
     private float Rotate(Vector3 scaledMovement)

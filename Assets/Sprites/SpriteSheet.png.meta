@@ -4,40 +4,49 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 1234284071641561191
-    second: Bunny Ship copy_0
+    second: PlayerSprite
   - first:
       213: -1134422737162685038
-    second: Bunny Ship copy_1
+    second: Enemy1Sprite
   - first:
       213: 7859423916816016066
-    second: Bunny Ship copy_2
+    second: Enemy2Sprite
   - first:
       213: -6072658622951829477
-    second: Bunny Ship copy_3
+    second: Enemy3Sprite
   - first:
       213: 1363500662810241915
-    second: Bunny Ship copy_4
+    second: PauseButtonSprite
   - first:
       213: 7008846806024951563
     second: Bunny Ship copy_5
   - first:
       213: -5110723405426805416
-    second: Bunny Ship copy_6
+    second: HeartSprite
   - first:
       213: -5308954254844984303
-    second: Bunny Ship copy_7
+    second: AmoungUsSprite
   - first:
       213: -1363144565666374382
-    second: Bunny Ship copy_8
+    second: BobSprite
   - first:
       213: -3018373719272794405
-    second: Bunny Ship copy_9
+    second: DogSprite
   - first:
       213: 1768650093140228677
-    second: Bunny Ship copy_10
+    second: FishSprite
   - first:
       213: 2105604887180491051
-    second: Bunny Ship copy_11
+    second: AsteroidSprite
+  - first:
+      213: 4210503003860296552
+    second: ExpSprite
+  - first:
+      213: 5546671543968653177
+    second: RedLaserSprite
+  - first:
+      213: 8755591262435691780
+    second: GreenLaserSprite
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -159,7 +168,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bunny Ship copy_0
+      name: PlayerSprite
       rect:
         serializedVersion: 2
         x: 0
@@ -167,7 +176,7 @@ TextureImporter:
         width: 20
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -180,7 +189,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny Ship copy_1
+      name: Enemy1Sprite
       rect:
         serializedVersion: 2
         x: 24
@@ -188,7 +197,7 @@ TextureImporter:
         width: 19
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,7 +210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny Ship copy_2
+      name: Enemy2Sprite
       rect:
         serializedVersion: 2
         x: 44
@@ -209,7 +218,7 @@ TextureImporter:
         width: 20
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -222,7 +231,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny Ship copy_3
+      name: Enemy3Sprite
       rect:
         serializedVersion: 2
         x: 0
@@ -230,7 +239,7 @@ TextureImporter:
         width: 18
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -243,7 +252,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny Ship copy_4
+      name: PauseButtonSprite
       rect:
         serializedVersion: 2
         x: 20
@@ -251,7 +260,7 @@ TextureImporter:
         width: 14
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -264,28 +273,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny Ship copy_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 8
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b079f3e190d644160800000000000000
-      internalID: 7008846806024951563
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bunny Ship copy_6
+      name: HeartSprite
       rect:
         serializedVersion: 2
         x: 0
@@ -293,7 +281,7 @@ TextureImporter:
         width: 5
         height: 4
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -306,15 +294,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny Ship copy_7
+      name: AmoungUsSprite
       rect:
         serializedVersion: 2
-        x: 9
+        x: 12
         y: 0
-        width: 10
-        height: 12
+        width: 7
+        height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -327,7 +315,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny Ship copy_8
+      name: BobSprite
       rect:
         serializedVersion: 2
         x: 20
@@ -335,7 +323,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -348,7 +336,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny Ship copy_9
+      name: DogSprite
       rect:
         serializedVersion: 2
         x: 29
@@ -356,7 +344,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -369,7 +357,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny Ship copy_10
+      name: FishSprite
       rect:
         serializedVersion: 2
         x: 20
@@ -377,7 +365,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -390,7 +378,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny Ship copy_11
+      name: AsteroidSprite
       rect:
         serializedVersion: 2
         x: 29
@@ -398,7 +386,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -406,6 +394,69 @@ TextureImporter:
       bones: []
       spriteID: b2938b92d7c983d10800000000000000
       internalID: 2105604887180491051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpSprite
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 863eece7c26be6a30800000000000000
+      internalID: 4210503003860296552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedLaserSprite
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 2
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97fd408b16cb9fc40800000000000000
+      internalID: 5546671543968653177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenLaserSprite
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1
+        width: 2
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40d4ef33ddb128970800000000000000
+      internalID: 8755591262435691780
       vertices: []
       indices: 
       edges: []
