@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class ShipAttachment : MonoBehaviour
 {
-    public int powerupID; //0 equals triple shot, 1 = speed, 2 = shields, 3 = big laser
-    public Transform botOfAttachment;
+    //public int powerupID; //0 equals triple shot, 1 = speed, 2 = shields, 3 = big laser
+    [SerializeField] private Transform _botOfAttachment;
     [SerializeField] private int _health = 1;
-    public Joint2D _spring;
+
+    private HingeJoint2D _joint;
+
+    public HingeJoint2D Joint { get => _joint; }
+    public Transform BotOfAttachment { get => _botOfAttachment; }
 
 
     private ShipAttachmentController _shipAttachmentController;
 
     private void Awake()
     {
-        _spring = GetComponent<Joint2D>();
+        _joint = GetComponent<HingeJoint2D>();
     }
+
     private void Start()
     {
         _shipAttachmentController = ShipAttachmentController.instance;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             _health--;
 

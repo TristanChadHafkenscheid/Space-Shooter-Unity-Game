@@ -6,6 +6,7 @@ public class Laser : MonoBehaviour
 {
     [SerializeField] private float _speed = 8.0f;
     [SerializeField] private int _damageToPlayer = 15;
+    [SerializeField] private float _lifeCycle = 2f;
 
     private bool _isEnemyLaser = false;
 
@@ -31,22 +32,22 @@ public class Laser : MonoBehaviour
     }
     private void OnEnable()
     {
-        Invoke(nameof(DeactivateLaser), 1f);
+        Invoke(nameof(DeactivateLaser), _lifeCycle);
     }
 
-    private void MoveUp()
-    {
-        transform.Translate(_speed * Time.deltaTime * Vector3.up);
+    //private void MoveUp()
+    //{
+    //    transform.Translate(_speed * Time.deltaTime * Vector3.up);
 
-        if (transform.position.y > 8.0f)
-        {
-            if (transform.parent != null)
-            {
-                Destroy(transform.parent.gameObject);
-            }
-            Destroy(this.gameObject);
-        }
-    }
+    //    if (transform.position.y > 8.0f)
+    //    {
+    //        if (transform.parent != null)
+    //        {
+    //            Destroy(transform.parent.gameObject);
+    //        }
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 
     private void MoveForward()
     {
@@ -58,30 +59,30 @@ public class Laser : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void MoveDown()
-    {
-        transform.Translate(_speed * Time.deltaTime * Vector3.down);
+    //private void MoveDown()
+    //{
+    //    transform.Translate(_speed * Time.deltaTime * Vector3.down);
 
-        if (transform.position.y < -8.0f)
-        {
-            if (transform.parent != null)
-            {
-                Destroy(transform.parent.gameObject);
-            }
-            Destroy(this.gameObject);
-        }
-    }
+    //    if (transform.position.y < -8.0f)
+    //    {
+    //        if (transform.parent != null)
+    //        {
+    //            Destroy(transform.parent.gameObject);
+    //        }
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 
     public void AssignEnemyLaser()
     {
         _isEnemyLaser = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(UnityEngine.Collision2D collision)
     {
-        if (collision.CompareTag("Player") && _isEnemyLaser == true)
+        if (collision.gameObject.CompareTag("Player") && _isEnemyLaser == true)
         {
-            Player player = collision.GetComponent<Player>();
+            Player player = collision.gameObject.GetComponent<Player>();
             if (player != null)
             {
                 player.Damage(_damageToPlayer);

@@ -8,14 +8,14 @@ public class ShipAttachmentController : MonoBehaviour
     [SerializeField] private Transform _botOfPlayer;
     [SerializeField] private List<ShipAttachment> _attachmentsList = new List<ShipAttachment>();
     [SerializeField] private int _attachmentSizeCap = 5;
-
-    public GameObject attachTest;
+    [SerializeField] private float _timeBeforeDamage = 0.5f;
+    [SerializeField] private Rigidbody2D _playerRigidbody;
+    private float _timer = 0f;
 
     public static ShipAttachmentController instance = null;
 
-    [SerializeField] private float _damageRate = 0.5f;
-    private float _canTakeDamage = 0f;
-    [SerializeField] private Rigidbody2D _playerRigidbody;
+    //change this after testing
+    public GameObject attachTest;
 
     private void Awake()
     {
@@ -31,12 +31,8 @@ public class ShipAttachmentController : MonoBehaviour
         {
             AddAttachment(attachTest);
         }
-    }
 
-    //rotate ship atachment around player
-    private void RotateAttachment()
-    {
-        //_attachmentsList[0].attachmentObject.transform.ro
+        _timer += Time.deltaTime;
     }
 
     //add ship attachment and instantiate it and parent to player
@@ -49,23 +45,27 @@ public class ShipAttachmentController : MonoBehaviour
 
         GameObject newShipAttachmentObj;
         ShipAttachment newShipAttachment;
+
         if (_attachmentsList.Count == 0)
         {
             newShipAttachmentObj = Instantiate(attachment.gameObject, _botOfPlayer.position, Quaternion.identity);
-            newShipAttachmentObj.transform.parent = this.transform;
 
             newShipAttachment = newShipAttachmentObj.GetComponent<ShipAttachment>();
-            newShipAttachment._spring.connectedBody = _playerRigidbody;
+
+            newShipAttachment.Joint.connectedBody = _playerRigidbody;
+            newShipAttachment.Joint.anchor = new Vector2(0f, 0.05f);
+            newShipAttachment.Joint.connectedAnchor = new Vector2(0, -0.12f);
         }
         //last postion
         else
         {
             newShipAttachmentObj = Instantiate(attachment.gameObject,
-                _attachmentsList[_attachmentsList.Count - 1].botOfAttachment.position, Quaternion.identity);
-            newShipAttachmentObj.transform.parent = this.transform;
+                _attachmentsList[_attachmentsList.Count - 1].BotOfAttachment.position, Quaternion.identity);
 
             newShipAttachment = newShipAttachmentObj.GetComponent<ShipAttachment>();
-            newShipAttachment._spring.connectedBody = _attachmentsList[_attachmentsList.Count - 1].GetComponent<Rigidbody2D>();
+            newShipAttachment.Joint.connectedBody = _attachmentsList[_attachmentsList.Count - 1].GetComponent<Rigidbody2D>();
+            newShipAttachment.Joint.anchor = new Vector2(0, 0.05f);
+            newShipAttachment.Joint.connectedAnchor = new Vector2(0, -0.05f);
         }
         _attachmentsList.Add(newShipAttachment);
     }
@@ -73,6 +73,13 @@ public class ShipAttachmentController : MonoBehaviour
     //remove ship attachment and move the rest up 1
     public void RemoveAttachment(ShipAttachment attachment)
     {
+        //damage buffer of _timeBeforeDamage before taking damage again
+        if (_timer <= _timeBeforeDamage)
+        {
+            _timer = 0;
+            return;
+        }
+
         _attachmentsList.Remove(attachment);
 
         Destroy(attachment.gameObject);
@@ -81,37 +88,16 @@ public class ShipAttachmentController : MonoBehaviour
         {
             if (i == 0)
             {
-                _attachmentsList[i].gameObject.transform.position = _botOfPlayer.position;
+                _attachmentsList[i].Joint.connectedBody = _playerRigidbody;
+                _attachmentsList[i].Joint.anchor = new Vector2(0f, 0.05f);
+                _attachmentsList[i].Joint.connectedAnchor = new Vector2(0, -0.12f);
             }
             else
             {
-                _attachmentsList[i].gameObject.transform.position =
-                    _attachmentsList[i - 1].botOfAttachment.position;
+                _attachmentsList[i].Joint.connectedBody = _attachmentsList[i - 1].GetComponent<Rigidbody2D>();
+                _attachmentsList[i].Joint.anchor = new Vector2(0, 0.05f);
+                _attachmentsList[i].Joint.connectedAnchor = new Vector2(0, -0.05f);
             }
         }
-
-        if (Time.time > _canTakeDamage)
-        {
-            _canTakeDamage = Time.time + _damageRate;
-
-            //_attachmentsList.Remove(attachment);
-
-            //Destroy(attachment.gameObject);
-
-            //for (int i = 0; i < _attachmentsList.Count; i++)
-            //{
-            //    if (i == 0)
-            //    {
-            //        _attachmentsList[i].gameObject.transform.position = _botOfPlayer.position;
-            //    }
-            //    else
-            //    {
-            //        _attachmentsList[i].gameObject.transform.position =
-            //            _attachmentsList[i - 1].botOfAttachment.position;
-            //    }
-            //}
-        }
     }
-
-    //rearrange ship attachment to players liking
 }

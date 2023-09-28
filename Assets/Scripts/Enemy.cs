@@ -99,9 +99,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (_player != null)
             {
@@ -116,9 +116,9 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject, 2.8f);
         }
 
-        if (other.CompareTag("PlayerLaser"))
+        if (collision.gameObject.CompareTag("PlayerLaser"))
         {
-            other.gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);
 
             if (_player != null)
             {
@@ -134,14 +134,9 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject, 2.8f);
         }
 
-        if (other.CompareTag("Attachment"))
+        if (collision.gameObject.CompareTag("Attachment"))
         {
-            other.gameObject.SetActive(false);
-
-            if (_player != null)
-            {
-                _player.AddScore(10);
-            }
+            //collision.gameObject.SetActive(false);
 
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0;
@@ -152,7 +147,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject, 2.8f);
         }
 
-        if (other.CompareTag("BigLaser"))
+        if (collision.gameObject.CompareTag("BigLaser"))
         {
             if (_player != null)
             {
