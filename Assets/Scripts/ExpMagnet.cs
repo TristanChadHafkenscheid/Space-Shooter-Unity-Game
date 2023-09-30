@@ -16,21 +16,22 @@ public class ExpMagnet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("collided");
         if (collision.CompareTag("Exp"))
         {
-            Debug.Log("collided");
-            StartCoroutine(MoveExp(collision.transform));
+            StartCoroutine(MoveExp(collision.gameObject));
         }
     }
 
-    IEnumerator MoveExp(Transform expTransform)
+    IEnumerator MoveExp(GameObject expGameObject)
     {
-        while (Vector3.Distance(expTransform.position, transform.position) >= _closeToPlayer)
+        while (Vector3.Distance(expGameObject.transform.position, transform.position) >= _closeToPlayer)
         {
-            expTransform.position = Vector3.MoveTowards(expTransform.position,
+            expGameObject.transform.position = Vector3.MoveTowards(expGameObject.transform.position,
                 _playerController.transform.position, _magnetSpeed * Time.deltaTime);
             yield return null;
         }
+        expGameObject.SetActive(false);
         //collected exp
     }
 }

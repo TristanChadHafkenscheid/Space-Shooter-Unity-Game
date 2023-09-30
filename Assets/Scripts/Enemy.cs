@@ -16,11 +16,11 @@ public class Enemy : MonoBehaviour
     private float _canFire = -1f;
     private bool _isShooting = false;
     private Rigidbody2D _rigidBody;
-    private Vector2 _movement; 
+    private Vector2 _movement;
 
     void Start()
     {
-        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        _player = Player.instance;
 
         if (_player == null)
         {
@@ -84,21 +84,21 @@ public class Enemy : MonoBehaviour
         _movement = direction;
     }
 
-    private void CalculateShooting()
-    {
-        if (Time.time > _canFire && _isShooting == true)
-        {
-            _fireRate = Random.Range(3f, 7f);
-            _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
-            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+    //private void CalculateShooting()
+    //{
+    //    if (Time.time > _canFire && _isShooting == true)
+    //    {
+    //        _fireRate = Random.Range(3f, 7f);
+    //        _canFire = Time.time + _fireRate;
+    //        GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+    //        Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
 
-            for (int i = 0; i < lasers.Length; i++)
-            {
-                lasers[i].AssignEnemyLaser();
-            }
-        }
-    }
+    //        for (int i = 0; i < lasers.Length; i++)
+    //        {
+    //            lasers[i].AssignEnemyLaser();
+    //        }
+    //    }
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -169,6 +169,7 @@ public class Enemy : MonoBehaviour
 
     private void SpawnExp()
     {
+        //please pool this instead
         Instantiate(_expPref, transform.position, Quaternion.identity);
     }
 }
