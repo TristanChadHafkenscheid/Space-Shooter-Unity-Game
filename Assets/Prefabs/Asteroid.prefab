@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 953015237
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6691643d9d08ede40bc93504dc8acb2e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -136,4 +136,6 @@ MonoBehaviour:
   _rotateSpeed: 20
   _explosionPrefab: {fileID: 8212759654755576809, guid: ebb77c56ab3b84f758b652e79b3fb98c,
     type: 3}
-  _explosionAudioClip: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
+  startLerpDuration: 0
+  startOffScreenPos: {x: 0, y: 0, z: 0}
+  startOnScreenPos: {x: 0, y: 0, z: 0}
