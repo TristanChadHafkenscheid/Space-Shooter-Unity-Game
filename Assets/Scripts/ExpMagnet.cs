@@ -30,7 +30,6 @@ public class ExpMagnet : MonoBehaviour
             yield return null;
         }
         expGameObject.SetActive(false);
-        //collected exp
 
         _expManager.ExpCollected(expGameObject.GetComponent<Exp>().ExpAmount);
     }

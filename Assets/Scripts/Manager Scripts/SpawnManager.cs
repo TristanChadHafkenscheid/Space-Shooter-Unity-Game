@@ -3,24 +3,28 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    //[SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private GameObject _enemyContainer;
     [SerializeField] private GameObject[] powerups;
     [SerializeField] private int _enemySpawnTime;
     [SerializeField] private float _offScreenOffset;
     [SerializeField] private ObjectPool _enemyPool;
+    [SerializeField] private ObjectPool _expPool;
 
     private bool _stopSpawning = false;
 
-    private void Start()
+    public static SpawnManager instance = null;
+
+    private void Awake()
     {
-        //StartCoroutine(SpawnEnemy());
-        InvokeRepeating(nameof(SpawnEnemy), _enemySpawnTime, _enemySpawnTime);
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
     }
 
-    public void StartSpawning()
+    private void Start()
     {
-        //StartCoroutine(SpawnPowerupRoutine());
+        InvokeRepeating(nameof(SpawnEnemy), _enemySpawnTime, _enemySpawnTime);
     }
 
     private IEnumerator SpawnPowerupRoutine()
@@ -41,25 +45,11 @@ public class SpawnManager : MonoBehaviour
         _stopSpawning = true;
     }
 
-    /*private IEnumerator SpawnEnemy()
-    {
-        yield return new WaitForSeconds(_enemySpawnTime);
-
-        while (_stopSpawning == false)
-        {
-            GameObject newEnemy = Instantiate(_enemyPrefab, CalculateSpawnPosition(), Quaternion.identity);
-            newEnemy.transform.parent = _enemyContainer.transform;
-            yield return new WaitForSeconds(_enemySpawnTime);
-        }
-    }*/
-
     private void SpawnEnemy()
     {
         GameObject newEnemy = _enemyPool.GetPooledObject();
         if (newEnemy != null)
         {
-            newEnemy.SetActive(true);
-            Debug.Log("spawn enemy " + newEnemy);
             newEnemy.transform.position = CalculateSpawnPosition();
             newEnemy.transform.rotation = Quaternion.identity;
             newEnemy.SetActive(true);
@@ -80,5 +70,16 @@ public class SpawnManager : MonoBehaviour
         Vector3[] directions = { posToSpawnTop, posToSpawnBottom, posToSpawnLeft, posToSpawnRight };
 
         return directions[Random.Range(0, directions.Length)];
+    }
+
+    public void SpawnExp(Transform enemyTranform)
+    {
+        GameObject newExp = _expPool.GetPooledObject();
+        if (newExp != null)
+        {
+            newExp.transform.position = enemyTranform.position;
+            newExp.transform.rotation = Quaternion.identity;
+            newExp.SetActive(true);
+        }
     }
 }

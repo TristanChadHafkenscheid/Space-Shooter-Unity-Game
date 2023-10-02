@@ -32,7 +32,6 @@ public class ExpManager : MonoBehaviour
 
     private void LevelUp()
     {
-        Debug.Log("Leveled up!");
         _expLevel++;
         _expToFillBarFromZero *= _expLevel;
 

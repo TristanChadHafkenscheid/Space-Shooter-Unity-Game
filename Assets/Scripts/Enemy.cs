@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _expPref;
 
     private Player _player;
+    private SpawnManager _spawnManager;
     private Animator _animator;
     private Collider2D _colldier;
     private AudioSource _audioSource;
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _player = Player.instance;
+        _spawnManager = SpawnManager.instance;
 
         if (_player == null)
         {
@@ -134,7 +136,7 @@ public class Enemy : MonoBehaviour
             _colldier.enabled = false;
             _isShooting = false;
 
-            Invoke(nameof(SpawnExp), 0.5f);
+            _spawnManager.SpawnExp(transform);
 
             //Destroy(gameObject, 2.8f);
             Invoke(nameof(DisableEnemy), 2.8f);
@@ -174,11 +176,5 @@ public class Enemy : MonoBehaviour
     private void DisableEnemy()
     {
         gameObject.SetActive(false);
-    }
-
-    private void SpawnExp()
-    {
-        //please pool this instead
-        Instantiate(_expPref, transform.position, Quaternion.identity);
     }
 }
