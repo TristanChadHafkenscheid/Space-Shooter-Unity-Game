@@ -114,7 +114,8 @@ public class Enemy : MonoBehaviour
 
             _colldier.enabled = false;
             _isShooting = false;
-            Destroy(gameObject, 2.8f);
+            //Destroy(gameObject, 2.8f);
+            Invoke(nameof(DisableEnemy), 2.8f);
         }
 
         if (collision.gameObject.CompareTag("PlayerLaser"))
@@ -135,7 +136,8 @@ public class Enemy : MonoBehaviour
 
             Invoke(nameof(SpawnExp), 0.5f);
 
-            Destroy(gameObject, 2.8f);
+            //Destroy(gameObject, 2.8f);
+            Invoke(nameof(DisableEnemy), 2.8f);
         }
 
         if (collision.gameObject.CompareTag("Attachment"))
@@ -148,7 +150,8 @@ public class Enemy : MonoBehaviour
 
             _colldier.enabled = false;
             _isShooting = false;
-            Destroy(gameObject, 2.8f);
+            //Destroy(gameObject, 2.8f);
+            Invoke(nameof(DisableEnemy), 2.8f);
         }
 
         if (collision.gameObject.CompareTag("BigLaser"))
@@ -163,8 +166,14 @@ public class Enemy : MonoBehaviour
 
             _colldier.enabled = false;
             _isShooting = false;
-            Destroy(gameObject, 2.8f);
+            //Destroy(gameObject, 2.8f);
+            Invoke(nameof(DisableEnemy), 2.8f);
         }
+    }
+
+    private void DisableEnemy()
+    {
+        gameObject.SetActive(false);
     }
 
     private void SpawnExp()

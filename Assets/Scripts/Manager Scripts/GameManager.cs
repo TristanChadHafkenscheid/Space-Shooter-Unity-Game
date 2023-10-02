@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
 
     private GameObject _pauseMenuGameObject;
     private GameObject _touchJoystickCanvas;
+    private GameObject _levelUpPanel;
 
     private void Start()
     {
         _pauseMenuGameObject = UIManager.instance.PauseMenuPanel;
         _touchJoystickCanvas = UIManager.instance.TouchJoystickCanvas;
+        _levelUpPanel = UIManager.instance.LevelUpPanel;
     }
 
     public void GameOver()
@@ -33,6 +35,22 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
             _pauseMenuGameObject.SetActive(false);
+            _touchJoystickCanvas.SetActive(true);
+        }
+    }
+
+    public void ActivateLevelUpPanel(bool isPaused)
+    {
+        if (isPaused == true)
+        {
+            Time.timeScale = 0;
+            _levelUpPanel.SetActive(true);
+            _touchJoystickCanvas.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            _levelUpPanel.SetActive(false);
             _touchJoystickCanvas.SetActive(true);
         }
     }

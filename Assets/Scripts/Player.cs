@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _damageRate = 0.5f;
     [SerializeField] private Color _damageColour;
     [SerializeField] private ParticleSystem _damageParticles;
+    [SerializeField] private ObjectPool _laserPool;
 
     [SerializeField] private SpriteRenderer _playerSprite;
     [SerializeField] private bool _canFire = false;
@@ -112,7 +113,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            GameObject laser = ObjectPool.SharedInstance.GetPooledObject();
+            GameObject laser = _laserPool.GetPooledObject();
 
             if (laser != null)
             {

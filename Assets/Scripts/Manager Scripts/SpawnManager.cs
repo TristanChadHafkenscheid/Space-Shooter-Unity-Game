@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyPrefab;
+    //[SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private GameObject _enemyContainer;
     [SerializeField] private GameObject[] powerups;
     [SerializeField] private int _enemySpawnTime;
     [SerializeField] private float _offScreenOffset;
+    [SerializeField] private ObjectPool _enemyPool;
 
     private bool _stopSpawning = false;
 
     private void Start()
     {
-        StartCoroutine(SpawnEnemy());
+        //StartCoroutine(SpawnEnemy());
+        InvokeRepeating(nameof(SpawnEnemy), _enemySpawnTime, _enemySpawnTime);
     }
 
     public void StartSpawning()
@@ -39,7 +41,7 @@ public class SpawnManager : MonoBehaviour
         _stopSpawning = true;
     }
 
-    private IEnumerator SpawnEnemy()
+    /*private IEnumerator SpawnEnemy()
     {
         yield return new WaitForSeconds(_enemySpawnTime);
 
@@ -48,6 +50,19 @@ public class SpawnManager : MonoBehaviour
             GameObject newEnemy = Instantiate(_enemyPrefab, CalculateSpawnPosition(), Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
             yield return new WaitForSeconds(_enemySpawnTime);
+        }
+    }*/
+
+    private void SpawnEnemy()
+    {
+        GameObject newEnemy = _enemyPool.GetPooledObject();
+        if (newEnemy != null)
+        {
+            newEnemy.SetActive(true);
+            Debug.Log("spawn enemy " + newEnemy);
+            newEnemy.transform.position = CalculateSpawnPosition();
+            newEnemy.transform.rotation = Quaternion.identity;
+            newEnemy.SetActive(true);
         }
     }
 
