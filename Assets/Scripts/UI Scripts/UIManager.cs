@@ -12,9 +12,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private TextMeshProUGUI _gameOverText;
     [SerializeField] private GameObject _pauseMenuPanel;
+    [SerializeField] private GameObject _LevelUpPanel;
     [SerializeField] private GameObject _touchJoystickCanvas;
 
     public GameObject PauseMenuPanel { get { return _pauseMenuPanel; } }
+    public GameObject LevelUpPanel { get { return _LevelUpPanel; } }
     public GameObject TouchJoystickCanvas { get { return _touchJoystickCanvas; } }
     public static UIManager instance = null;
 
@@ -75,8 +77,6 @@ public class UIManager : MonoBehaviour
     public void SetExpBar(float expAmount)
     {
         _expSlider.value = expAmount;
-
-        //if (_expSlider)
     }
 
     private void GameOverSequence()

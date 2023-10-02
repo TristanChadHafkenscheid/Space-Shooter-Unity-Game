@@ -15,10 +15,6 @@ public class GameManager : MonoBehaviour
         _touchJoystickCanvas = UIManager.instance.TouchJoystickCanvas;
     }
 
-    private void Update()
-    {
-    }
-
     public void GameOver()
     {
         _isGameOver = true;

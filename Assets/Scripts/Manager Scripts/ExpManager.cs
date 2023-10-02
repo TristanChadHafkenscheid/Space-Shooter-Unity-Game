@@ -34,6 +34,8 @@ public class ExpManager : MonoBehaviour
         Debug.Log("Leveled up!");
         _expLevel++;
         _expToFillBarFromZero *= _expLevel;
+
+        _currentExp = 0;
         _uiManager.SetExpBar(0);
     }
 }
