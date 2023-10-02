@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText, _highScoreText, _gameOverScoreText;
     [SerializeField] private Slider _playerHealthSlider;
+    [SerializeField] private Slider _expSlider;
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private TextMeshProUGUI _gameOverText;
     [SerializeField] private GameObject _pauseMenuPanel;
@@ -69,6 +70,13 @@ public class UIManager : MonoBehaviour
     {
         _playerHealthSlider.maxValue = health;
         _playerHealthSlider.value = health;
+    }
+
+    public void SetExpBar(float expAmount)
+    {
+        _expSlider.value = expAmount;
+
+        //if (_expSlider)
     }
 
     private void GameOverSequence()

@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _laserAudioClip, _laserTripleShotAudioClip;
     [SerializeField] private float _damageRate = 0.5f;
     [SerializeField] private Color _damageColour;
+    [SerializeField] private ParticleSystem _damageParticles;
 
     [SerializeField] private SpriteRenderer _playerSprite;
     [SerializeField] private bool _canFire = false;
@@ -133,14 +134,13 @@ public class Player : MonoBehaviour
         }
 
         //_canTakeDamage = 0 and _damageRate = 0.5 at start
-
         if (Time.time > _canTakeDamage)
         {
             _canTakeDamage = Time.time + _damageRate;
             _health = _health - damageTaken;
 
             _uiManager.SetHealth(_health);
-            DamageFlash();
+            DamageVisuals();
         }
 
         if (_health <= 0)
@@ -153,9 +153,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void DamageFlash()
+    private void DamageVisuals()
     {
         _playerSprite.DOColor(_damageColour, 0.25f).SetInverted().SetLoops(2, LoopType.Restart);
+        _damageParticles.Play();
     }
 
     public void TripleShotActive()

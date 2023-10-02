@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExpMagnet : MonoBehaviour
@@ -7,7 +6,7 @@ public class ExpMagnet : MonoBehaviour
     private Player _playerController;
     [SerializeField] private float _magnetSpeed;
     [SerializeField] private float _closeToPlayer;
-
+    [SerializeField] private ExpManager _expManager;
 
     void Start()
     {
@@ -16,7 +15,6 @@ public class ExpMagnet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("collided");
         if (collision.CompareTag("Exp"))
         {
             StartCoroutine(MoveExp(collision.gameObject));
@@ -33,5 +31,7 @@ public class ExpMagnet : MonoBehaviour
         }
         expGameObject.SetActive(false);
         //collected exp
+
+        _expManager.ExpCollected(expGameObject.GetComponent<Exp>().ExpAmount);
     }
 }
