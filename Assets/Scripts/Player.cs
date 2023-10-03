@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -13,7 +12,6 @@ public class Player : MonoBehaviour
     [SerializeField] private int _health = 100;
     [SerializeField] private GameObject _bigLaser;
     [SerializeField] private GameObject _shieldsVisualizer;
-    [SerializeField] private GameObject _rightEngine, _leftEngine;
     [SerializeField] private SpriteRenderer _ThrusterImg;
     [SerializeField] private AudioClip _laserAudioClip, _laserTripleShotAudioClip;
     [SerializeField] private float _damageRate = 0.5f;
@@ -35,6 +33,18 @@ public class Player : MonoBehaviour
 
     public static Player instance = null;
 
+    public float FireRate
+    {
+        get => _fireRate;
+        set => _fireRate = value;
+    }
+
+    public float Speed
+    {
+        get => _speed;
+        set => _speed = value;
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -50,7 +60,6 @@ public class Player : MonoBehaviour
         _uiManager = UIManager.instance;
 
         _audioSource = GetComponent<AudioSource>();
-        //_playerSprite = GetComponent<SpriteRenderer>();
 
         if (_spawnManager == null)
         {
@@ -74,11 +83,6 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Game Manager is NULL");
         }
-
-        //if (_playerSprite = null)
-        //{
-        //    Debug.LogError("Sprite Renderer on the player is NULL");
-        //}
 
         //StartCoroutine(MoveToStartPosition(3f));
     }
