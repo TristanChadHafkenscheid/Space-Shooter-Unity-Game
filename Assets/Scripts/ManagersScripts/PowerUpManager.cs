@@ -10,6 +10,7 @@ namespace Managers
         private PlayerController _playerController;
         [SerializeField] private float _fireRateIncrease;
         [SerializeField] private float _speedIncrease;
+        [SerializeField] private float _expMagentIncrease;
 
         [SerializeField] private List<PowerUp> _powerUps = new List<PowerUp>();
 
@@ -26,18 +27,22 @@ namespace Managers
         {
             switch (_powerUpId)
             {
-                //fire rate increase
-                case 1:
+                case 1: //fire rate increase
                     _playerController.FireRate += _fireRateIncrease;
-                    Debug.Log("fire rate" + _playerController.FireRate);
                     break;
-                case 2:
+                case 2: //speed increase
                     _playerController.Speed += _speedIncrease;
                     break;
-                case 3:
-                    return;
+                case 3: //exp magnet increased
+                    break;
+                case 4: //laser increased
+                    break;
+                case 5: //exp magnet increased
+                    break;
+                case 6: //exp magnet increased
+                    break;
                 default:
-                    return;
+                    break;
             }
         }
     }

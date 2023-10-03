@@ -110,6 +110,8 @@ namespace Enemy
                     _player.AddScore(10);
                 }
 
+                collision.gameObject.SetActive(false);
+
                 _spawnManager.SpawnExp(transform);
                 _spawnManager.SpawnExplosion(transform);
                 gameObject.SetActive(false);
