@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
 
     private Player _player;
     private SpawnManager _spawnManager;
-    //private Animator _animator;
     private Collider2D _colldier;
     private AudioSource _audioSource;
     private float _fireRate = 3f;
@@ -23,13 +22,6 @@ public class Enemy : MonoBehaviour
     {
         _player = Player.instance;
         _spawnManager = SpawnManager.instance;
-
-        //_animator = GetComponent<Animator>();
-
-        /*if (_animator == null)
-        {
-            Debug.LogError("Animator is NULL");
-        }*/
 
         _audioSource = GetComponent<AudioSource>();
 
@@ -106,48 +98,23 @@ public class Enemy : MonoBehaviour
             {
                 _player.Damage(_damageToPlayer);
             }
-            //_animator.SetTrigger("OnEnemyDeath");
-
-           /* _speed = 0;
-            _audioSource.Play();
-
-            _colldier.enabled = false;
-            _isShooting = false;
-            Invoke(nameof(DisableEnemy), 2.8f);
-           */
         }
 
         if (collision.gameObject.CompareTag("PlayerLaser"))
         {
-            collision.gameObject.SetActive(false);
-
             if (_player != null)
             {
                 _player.AddScore(10);
             }
 
-            //_animator.SetTrigger("OnEnemyDeath");
-            _speed = 0;
-            //_audioSource.Play();
-
-            _colldier.enabled = false;
-            _isShooting = false;
-
             _spawnManager.SpawnExp(transform);
             _spawnManager.SpawnExplosion(transform);
             gameObject.SetActive(false);
-            //Invoke(nameof(DisableEnemy), 2.8f);
         }
 
         if (collision.gameObject.CompareTag("Attachment"))
         {
-            //_animator.SetTrigger("OnEnemyDeath");
-            _speed = 0;
-            //_audioSource.Play();
-
-            _colldier.enabled = false;
-            _isShooting = false;
-            Invoke(nameof(DisableEnemy), 2.8f);
+            //damage attachment
         }
 
         if (collision.gameObject.CompareTag("BigLaser"))
@@ -156,18 +123,9 @@ public class Enemy : MonoBehaviour
             {
                 _player.AddScore(20);
             }
-            //_animator.SetTrigger("OnEnemyDeath");
-            _speed = 0;
-            //_audioSource.Play();
-
-            _colldier.enabled = false;
-            _isShooting = false;
-            Invoke(nameof(DisableEnemy), 2.8f);
+            _spawnManager.SpawnExp(transform);
+            _spawnManager.SpawnExplosion(transform);
+            gameObject.SetActive(false);
         }
-    }
-
-    private void DisableEnemy()
-    {
-        gameObject.SetActive(false);
     }
 }

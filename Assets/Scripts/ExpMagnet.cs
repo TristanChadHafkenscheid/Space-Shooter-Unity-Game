@@ -7,10 +7,19 @@ public class ExpMagnet : MonoBehaviour
     [SerializeField] private float _magnetSpeed;
     [SerializeField] private float _closeToPlayer;
     [SerializeField] private ExpManager _expManager;
+    [SerializeField] private ParticleSystem _expCollectParticles;
+    private AudioSource _audioSource;
 
     void Start()
     {
         _playerController = Player.instance;
+
+        _audioSource = GetComponent<AudioSource>();
+
+        if (_audioSource == null)
+        {
+            Debug.LogError("Audio Source on the player is NULL");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,6 +39,8 @@ public class ExpMagnet : MonoBehaviour
             yield return null;
         }
         expGameObject.SetActive(false);
+        _expCollectParticles.Play();
+        _audioSource.Play();
 
         _expManager.ExpCollected(expGameObject.GetComponent<Exp>().ExpAmount);
     }

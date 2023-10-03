@@ -11,10 +11,12 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private ObjectPool _expPool;
     [SerializeField] private ObjectPool _playerLaserPool;
     [SerializeField] private ObjectPool _explosionPool;
+    [SerializeField] private float _explosionDisableTime;
 
     private bool _stopSpawning = false;
 
     public static SpawnManager instance = null;
+
 
     private void Awake()
     {
@@ -77,6 +79,7 @@ public class SpawnManager : MonoBehaviour
     public void SpawnExp(Transform enemyTranform)
     {
         GameObject newExp = _expPool.GetPooledObject();
+
         if (newExp != null)
         {
             newExp.transform.position = enemyTranform.position;
@@ -87,29 +90,34 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnExplosion(Transform enemyTranform)
     {
-        GameObject newExplosion = _expPool.GetPooledObject();
+        StartCoroutine(SpawnExplosionCo(enemyTranform));
+    }
+
+    private IEnumerator SpawnExplosionCo(Transform enemyTranform)
+    {
+        GameObject newExplosion = _explosionPool.GetPooledObject();
+
         if (newExplosion != null)
         {
             newExplosion.transform.position = enemyTranform.position;
             newExplosion.transform.rotation = Quaternion.identity;
             newExplosion.SetActive(true);
-            //Invoke(nameof)
         }
+
+        yield return new WaitForSeconds(_explosionDisableTime);
+
+        newExplosion.SetActive(false);
     }
 
     public void SpawnPlayerLaser(Transform barrelTrans, Transform playerTrans)
     {
         GameObject laser = _playerLaserPool.GetPooledObject();
+
         if (laser != null)
         {
             laser.SetActive(true);
             laser.transform.position = barrelTrans.position;
             laser.transform.rotation = playerTrans.rotation;
         }
-    }
-
-    private void DisableExplosion(GameObject explosion)
-    {
-        explosion.SetActive(false);
     }
 }
