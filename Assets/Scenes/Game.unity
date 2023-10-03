@@ -7934,6 +7934,7 @@ MonoBehaviour:
   _closeToPlayer: 0.1
   _expManager: {fileID: 4898494364969832243}
   _expCollectParticles: {fileID: 1985914906}
+  _expPlayerColour: {r: 1, g: 0.9267906, b: 0, a: 1}
 --- !u!82 &771964382
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9447,7 +9448,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
@@ -16488,7 +16489,7 @@ MonoBehaviour:
   _damageRate: 0.5
   _damageColour: {r: 1, g: 0, b: 0, a: 1}
   _damageParticles: {fileID: 354243796}
-  _playerSprite: {fileID: 4898494364969832237}
+  _sprite: {fileID: 0}
   _canFire: 1
 --- !u!212 &4898494364969832237
 SpriteRenderer:

@@ -21,7 +21,7 @@ namespace Player
         [SerializeField] private Color _damageColour;
         [SerializeField] private ParticleSystem _damageParticles;
 
-        [SerializeField] private SpriteRenderer _playerSprite;
+        [SerializeField] private SpriteRenderer _sprite;
         [SerializeField] private bool _canFire = false;
 
         private float _canFireRate = 0.1f;
@@ -35,6 +35,12 @@ namespace Player
         private float _canTakeDamage = 0f;
 
         public static PlayerController instance = null;
+
+        public SpriteRenderer Sprite
+        {
+            get => _sprite;
+            set => _sprite = value;
+        }
 
         public float FireRate
         {
@@ -133,7 +139,7 @@ namespace Player
             if (_health <= 0)
             {
                 _spawnManager.OnPlayerDeath();
-                _playerSprite.DOKill();
+                _sprite.DOKill();
                 gameObject.SetActive(false);
                 _uiManager.CheckForBestScore();
             }
@@ -141,7 +147,7 @@ namespace Player
 
         private void DamageVisuals()
         {
-            _playerSprite.DOColor(_damageColour, 0.25f).SetInverted().SetLoops(2, LoopType.Restart);
+            _sprite.DOColor(_damageColour, 0.25f).SetInverted().SetLoops(2, LoopType.Restart);
             _damageParticles.Play();
         }
 
