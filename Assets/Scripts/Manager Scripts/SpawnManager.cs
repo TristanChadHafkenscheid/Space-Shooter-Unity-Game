@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private ObjectPool _enemyPool;
     [SerializeField] private ObjectPool _expPool;
     [SerializeField] private ObjectPool _playerLaserPool;
+    [SerializeField] private ObjectPool _explosionPool;
 
     private bool _stopSpawning = false;
 
@@ -84,6 +85,18 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    public void SpawnExplosion(Transform enemyTranform)
+    {
+        GameObject newExplosion = _expPool.GetPooledObject();
+        if (newExplosion != null)
+        {
+            newExplosion.transform.position = enemyTranform.position;
+            newExplosion.transform.rotation = Quaternion.identity;
+            newExplosion.SetActive(true);
+            //Invoke(nameof)
+        }
+    }
+
     public void SpawnPlayerLaser(Transform barrelTrans, Transform playerTrans)
     {
         GameObject laser = _playerLaserPool.GetPooledObject();
@@ -93,5 +106,10 @@ public class SpawnManager : MonoBehaviour
             laser.transform.position = barrelTrans.position;
             laser.transform.rotation = playerTrans.rotation;
         }
+    }
+
+    private void DisableExplosion(GameObject explosion)
+    {
+        explosion.SetActive(false);
     }
 }

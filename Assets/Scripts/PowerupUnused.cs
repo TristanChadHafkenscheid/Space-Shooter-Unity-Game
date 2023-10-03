@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Powerup : MonoBehaviour
+public class PowerupUnused : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3;

@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     private Player _player;
     private SpawnManager _spawnManager;
-    private Animator _animator;
+    //private Animator _animator;
     private Collider2D _colldier;
     private AudioSource _audioSource;
     private float _fireRate = 3f;
@@ -24,16 +24,12 @@ public class Enemy : MonoBehaviour
         _player = Player.instance;
         _spawnManager = SpawnManager.instance;
 
-        if (_player == null)
-        {
-            Debug.LogError("Player is NULL");
-        }
-        _animator = GetComponent<Animator>();
+        //_animator = GetComponent<Animator>();
 
-        if (_animator == null)
+        /*if (_animator == null)
         {
             Debug.LogError("Animator is NULL");
-        }
+        }*/
 
         _audioSource = GetComponent<AudioSource>();
 
@@ -80,7 +76,7 @@ public class Enemy : MonoBehaviour
     private void CalculateDirection()
     {
         Vector3 direction = _player.transform.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         _rigidBody.rotation = angle;
         direction.Normalize();
         _movement = direction;
@@ -110,14 +106,15 @@ public class Enemy : MonoBehaviour
             {
                 _player.Damage(_damageToPlayer);
             }
-            _animator.SetTrigger("OnEnemyDeath");
-            _speed = 0;
+            //_animator.SetTrigger("OnEnemyDeath");
+
+           /* _speed = 0;
             _audioSource.Play();
 
             _colldier.enabled = false;
             _isShooting = false;
-            //Destroy(gameObject, 2.8f);
             Invoke(nameof(DisableEnemy), 2.8f);
+           */
         }
 
         if (collision.gameObject.CompareTag("PlayerLaser"))
@@ -129,30 +126,27 @@ public class Enemy : MonoBehaviour
                 _player.AddScore(10);
             }
 
-            _animator.SetTrigger("OnEnemyDeath");
+            //_animator.SetTrigger("OnEnemyDeath");
             _speed = 0;
-            _audioSource.Play();
+            //_audioSource.Play();
 
             _colldier.enabled = false;
             _isShooting = false;
 
             _spawnManager.SpawnExp(transform);
-
-            //Destroy(gameObject, 2.8f);
-            Invoke(nameof(DisableEnemy), 2.8f);
+            _spawnManager.SpawnExplosion(transform);
+            gameObject.SetActive(false);
+            //Invoke(nameof(DisableEnemy), 2.8f);
         }
 
         if (collision.gameObject.CompareTag("Attachment"))
         {
-            //collision.gameObject.SetActive(false);
-
-            _animator.SetTrigger("OnEnemyDeath");
+            //_animator.SetTrigger("OnEnemyDeath");
             _speed = 0;
-            _audioSource.Play();
+            //_audioSource.Play();
 
             _colldier.enabled = false;
             _isShooting = false;
-            //Destroy(gameObject, 2.8f);
             Invoke(nameof(DisableEnemy), 2.8f);
         }
 
@@ -162,13 +156,12 @@ public class Enemy : MonoBehaviour
             {
                 _player.AddScore(20);
             }
-            _animator.SetTrigger("OnEnemyDeath");
+            //_animator.SetTrigger("OnEnemyDeath");
             _speed = 0;
-            _audioSource.Play();
+            //_audioSource.Play();
 
             _colldier.enabled = false;
             _isShooting = false;
-            //Destroy(gameObject, 2.8f);
             Invoke(nameof(DisableEnemy), 2.8f);
         }
     }
