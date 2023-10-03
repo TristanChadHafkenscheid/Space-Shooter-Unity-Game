@@ -2,18 +2,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PowerUpDisplay : MonoBehaviour
+namespace PowerUps
 {
-    [SerializeField] private PowerUp _powerUp;
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
-    [SerializeField] private Image artworkImage;
-
-    private void Start()
+    public class PowerUpDisplay : MonoBehaviour
     {
-        nameText.text = _powerUp.name;
-        descriptionText.text = _powerUp.description;
+        [SerializeField] private PowerUp _powerUp;
+        [SerializeField] private TextMeshProUGUI nameText;
+        [SerializeField] private TextMeshProUGUI descriptionText;
+        [SerializeField] private Image artworkImage;
 
-        artworkImage.sprite = _powerUp.artwork;
+        private void Start()
+        {
+            nameText.text = _powerUp.name;
+            descriptionText.text = _powerUp.description;
+
+            artworkImage.sprite = _powerUp.artwork;
+        }
     }
 }

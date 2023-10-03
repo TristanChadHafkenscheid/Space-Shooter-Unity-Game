@@ -8987,6 +8987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireRateIncrease: 0.2
   _speedIncrease: 10
+  _powerUps: []
 --- !u!1 &1279267879
 GameObject:
   m_ObjectHideFlags: 0
@@ -9114,7 +9115,7 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 4596685650578586645, guid: 5683b77c2a90d4a1f8b3d9a4844c1347,
     type: 3}
-  amountToPool: 20
+  amountToPool: 6
 --- !u!1 &1334519856
 GameObject:
   m_ObjectHideFlags: 0

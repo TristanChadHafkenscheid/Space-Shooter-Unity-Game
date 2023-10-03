@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Player;
 
 public class PowerupUnused : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class PowerupUnused : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Player player = other.GetComponent<Player>();
+            PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
             {
                 AudioSource.PlayClipAtPoint(_audioClip, transform.position);
