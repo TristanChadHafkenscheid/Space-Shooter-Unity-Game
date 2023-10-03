@@ -8987,6 +8987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireRateIncrease: 0.2
   _speedIncrease: 10
+  _expMagentIncrease: 0
   _powerUps: []
 --- !u!1 &1279267879
 GameObject:
@@ -9446,9 +9447,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1430079570
 RectTransform:
