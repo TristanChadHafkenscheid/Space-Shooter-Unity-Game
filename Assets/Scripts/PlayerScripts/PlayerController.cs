@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Managers;
 using UnityEngine;
+using Audio;
 
 namespace Player
 {
@@ -16,12 +17,10 @@ namespace Player
         [SerializeField] private GameObject _bigLaser;
         [SerializeField] private GameObject _shieldsVisualizer;
         [SerializeField] private SpriteRenderer _ThrusterImg;
-        [SerializeField] private AudioClip _laserAudioClip, _laserTripleShotAudioClip;
+        //[SerializeField] private AudioClip _laserAudioClip, _laserTripleShotAudioClip;
         [SerializeField] private float _damageRate = 0.5f;
         [SerializeField] private Color _damageColour;
         [SerializeField] private ParticleSystem _damageParticles;
-
-        [SerializeField] private SpriteRenderer _sprite;
         [SerializeField] private bool _canFire = false;
 
         private float _canFireRate = 0.1f;
@@ -31,10 +30,13 @@ namespace Player
         private bool _isTripleShotActive = false;
         private bool _isShieldsActive = false;
         private UIManager _uiManager;
-        private AudioSource _audioSource;
+        //private AudioSource _audioSource;
         private float _canTakeDamage = 0f;
+        private AudioManager _audioManager;
+        private SpriteRenderer _sprite;
 
         public static PlayerController instance = null;
+
 
         public SpriteRenderer Sprite
         {
@@ -67,18 +69,26 @@ namespace Player
             _spawnManager = SpawnManager.instance;
             _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
             _uiManager = UIManager.instance;
+            _audioManager = AudioManager.Instance;
 
-            _audioSource = GetComponent<AudioSource>();
+            _sprite = GetComponent<SpriteRenderer>();
 
-            if (_audioSource == null)
+            if (_sprite == null)
             {
-                Debug.LogError("Audio Source on the player is NULL");
+                Debug.LogError("Sprite on the player is NULL");
             }
-            else
-            {
-                //remove this and have the sound play on the laser instead
-                _audioSource.clip = _laserAudioClip;
-            }
+
+            //_audioSource = GetComponent<AudioSource>();
+
+            //if (_audioSource == null)
+            //{
+            //    Debug.LogError("Audio Source on the player is NULL");
+            //}
+            //else
+            //{
+            //    //remove this and have the sound play on the laser instead
+            //    _audioSource.clip = _laserAudioClip;
+            //}
 
             if (_gameManager == null)
             {
@@ -109,11 +119,12 @@ namespace Player
             if (_isTripleShotActive == true)
             {
                 Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
-                _audioSource.Play();
+                //_audioSource.Play();
             }
             else
             {
                 _spawnManager.SpawnPlayerLaser(_laserBarrel, transform);
+                _audioManager.Play("Laser");
             }
         }
 
@@ -154,7 +165,7 @@ namespace Player
         public void TripleShotActive()
         {
             _isTripleShotActive = true;
-            _audioSource.clip = _laserTripleShotAudioClip;
+            //_audioSource.clip = _laserTripleShotAudioClip;
             StartCoroutine(TripleShotPowerDownRoutine());
         }
 
@@ -162,7 +173,7 @@ namespace Player
         {
             yield return new WaitForSeconds(5f);
             _isTripleShotActive = false;
-            _audioSource.clip = _laserAudioClip;
+            //_audioSource.clip = _laserAudioClip;
         }
 
         public void SpeedBoostActive()

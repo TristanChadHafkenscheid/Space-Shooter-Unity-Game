@@ -14,7 +14,7 @@ namespace Player
 
         private void Start()
         {
-            _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            _playerController = PlayerController.instance;
         }
 
         private void Update()
@@ -46,10 +46,9 @@ namespace Player
         {
             if (collision.gameObject.CompareTag("Player") && _isEnemyLaser == true)
             {
-                PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-                if (player != null)
+                if (_playerController != null)
                 {
-                    player.Damage(_damageToPlayer);
+                    _playerController.Damage(_damageToPlayer);
                 }
             }
         }
