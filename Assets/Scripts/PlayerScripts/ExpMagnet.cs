@@ -49,6 +49,9 @@ namespace Player
             //see if you can yield return a few seconds before adding to top
             expGameObject.SetActive(false);
             _expCollectParticles.Play();
+
+            _playerController.Sprite.DOKill();
+            _playerController.Sprite.color = Color.white;
             _playerController.Sprite.DOColor(_expPlayerColour, 0.25f).SetInverted().SetLoops(2, LoopType.Restart);
             _audioSource.Play();
 

@@ -13,7 +13,7 @@ namespace PowerUps
 
         private void Start()
         {
-            nameText.text = _powerUp.name;
+            nameText.text = _powerUp.powerUpName;
             descriptionText.text = _powerUp.description;
 
             artworkImage.sprite = _powerUp.artwork;

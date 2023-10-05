@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PauseMusic
   m_EditorClassIdentifier: 
   clipName: PauseMusic
-  clip: {fileID: 8300000, guid: 5b17a0088dcdf924fa92da5af1e1be07, type: 3}
+  clip: {fileID: 8300000, guid: 8d41a6ec7ec0b2f4499d214f63b321d2, type: 3}
   source: {fileID: 0}
   mixerGroup: {fileID: 24300002, guid: 531ac00dadd8f48ad8fe9ce85915d227, type: 2}
   Volume: 0.5

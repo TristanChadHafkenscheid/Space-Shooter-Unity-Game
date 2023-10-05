@@ -17,7 +17,6 @@ namespace Player
         [SerializeField] private GameObject _bigLaser;
         [SerializeField] private GameObject _shieldsVisualizer;
         [SerializeField] private SpriteRenderer _ThrusterImg;
-        //[SerializeField] private AudioClip _laserAudioClip, _laserTripleShotAudioClip;
         [SerializeField] private float _damageRate = 0.5f;
         [SerializeField] private Color _damageColour;
         [SerializeField] private ParticleSystem _damageParticles;
@@ -30,7 +29,6 @@ namespace Player
         private bool _isTripleShotActive = false;
         private bool _isShieldsActive = false;
         private UIManager _uiManager;
-        //private AudioSource _audioSource;
         private float _canTakeDamage = 0f;
         private AudioManager _audioManager;
         private SpriteRenderer _sprite;
@@ -78,18 +76,6 @@ namespace Player
                 Debug.LogError("Sprite on the player is NULL");
             }
 
-            //_audioSource = GetComponent<AudioSource>();
-
-            //if (_audioSource == null)
-            //{
-            //    Debug.LogError("Audio Source on the player is NULL");
-            //}
-            //else
-            //{
-            //    //remove this and have the sound play on the laser instead
-            //    _audioSource.clip = _laserAudioClip;
-            //}
-
             if (_gameManager == null)
             {
                 Debug.LogError("Game Manager is NULL");
@@ -119,7 +105,6 @@ namespace Player
             if (_isTripleShotActive == true)
             {
                 Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
-                //_audioSource.Play();
             }
             else
             {
@@ -158,6 +143,8 @@ namespace Player
 
         private void DamageVisuals()
         {
+            _sprite.DOKill();
+            _sprite.color = Color.white;
             _sprite.DOColor(_damageColour, 0.25f).SetInverted().SetLoops(2, LoopType.Restart);
             _damageParticles.Play();
         }
@@ -165,7 +152,6 @@ namespace Player
         public void TripleShotActive()
         {
             _isTripleShotActive = true;
-            //_audioSource.clip = _laserTripleShotAudioClip;
             StartCoroutine(TripleShotPowerDownRoutine());
         }
 
@@ -173,7 +159,6 @@ namespace Player
         {
             yield return new WaitForSeconds(5f);
             _isTripleShotActive = false;
-            //_audioSource.clip = _laserAudioClip;
         }
 
         public void SpeedBoostActive()

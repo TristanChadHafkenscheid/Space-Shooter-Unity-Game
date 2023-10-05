@@ -8,9 +8,7 @@ namespace Attachments
         [SerializeField] private Transform _botOfPlayer;
         [SerializeField] private List<ShipAttachment> _attachmentsList = new List<ShipAttachment>();
         [SerializeField] private int _attachmentSizeCap = 5;
-        [SerializeField] private float _timeBeforeDamage = 0.5f;
         [SerializeField] private Rigidbody2D _playerRigidbody;
-        private float _timer = 0f;
 
         public static ShipAttachmentController instance = null;
 
@@ -31,8 +29,6 @@ namespace Attachments
             {
                 AddAttachment(attachTest);
             }
-
-            _timer += Time.deltaTime;
         }
 
         //add ship attachment and instantiate it and parent to player
@@ -73,13 +69,6 @@ namespace Attachments
         //remove ship attachment and move the rest up 1
         public void RemoveAttachment(ShipAttachment attachment)
         {
-            //damage buffer of _timeBeforeDamage before taking damage again
-            if (_timer <= _timeBeforeDamage)
-            {
-                _timer = 0;
-                return;
-            }
-
             _attachmentsList.Remove(attachment);
 
             Destroy(attachment.gameObject);

@@ -1,6 +1,7 @@
 ﻿using Player;
 using UnityEngine;
 using Managers;
+using Audio;
 
 namespace Enemy
 {
@@ -14,10 +15,10 @@ namespace Enemy
         private PlayerController _player;
         private SpawnManager _spawnManager;
         private Collider2D _colldier;
-        private AudioSource _audioSource;
-        private float _fireRate = 3f;
-        private float _canFire = -1f;
-        private bool _isShooting = false;
+        private AudioManager _audioManager;
+        //private float _fireRate = 3f;
+        //private float _canFire = -1f;
+        //private bool _isShooting = false;
         private Rigidbody2D _rigidBody;
         private Vector2 _movement;
 
@@ -26,12 +27,7 @@ namespace Enemy
             _player = PlayerController.instance;
             _spawnManager = SpawnManager.instance;
 
-            _audioSource = GetComponent<AudioSource>();
-
-            if (_audioSource == null)
-            {
-                Debug.LogError("AudioSource on player is NULL");
-            }
+            _audioManager = AudioManager.Instance;
 
             _colldier = GetComponent<Collider2D>();
 
@@ -47,7 +43,7 @@ namespace Enemy
                 Debug.LogError("Rigidbody on player is NULL");
             }
 
-            _isShooting = true;
+            //_isShooting = true;
         }
 
         void Update()
@@ -112,9 +108,7 @@ namespace Enemy
 
                 collision.gameObject.SetActive(false);
 
-                _spawnManager.SpawnExp(transform);
-                _spawnManager.SpawnExplosion(transform);
-                gameObject.SetActive(false);
+                EnemyDestroyed();
             }
 
             if (collision.gameObject.CompareTag("Attachment"))
@@ -128,10 +122,16 @@ namespace Enemy
                 {
                     _player.AddScore(20);
                 }
-                _spawnManager.SpawnExp(transform);
-                _spawnManager.SpawnExplosion(transform);
-                gameObject.SetActive(false);
+                EnemyDestroyed();
             }
+        }
+
+        private void EnemyDestroyed()
+        {
+            _spawnManager.SpawnExp(transform);
+            _spawnManager.SpawnExplosion(transform);
+            _audioManager.Play("EnemyExplosion");
+            gameObject.SetActive(false);
         }
     }
 }

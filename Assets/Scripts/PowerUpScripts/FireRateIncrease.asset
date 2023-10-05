@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FireRateIncrease
   m_EditorClassIdentifier: 
   powerUpId: 1
-  powerUpName: Fire Rate
+  powerUpName: Fire Rate Increase
   description: Increase the fire rate
+  health: 0
   artwork: {fileID: 21300000, guid: 1b16faa86f0364cb0b15268ced77c365, type: 3}

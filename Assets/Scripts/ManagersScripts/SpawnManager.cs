@@ -5,7 +5,6 @@ namespace Managers
 {
     public class SpawnManager : MonoBehaviour
     {
-        [SerializeField] private GameObject _enemyContainer;
         [SerializeField] private GameObject[] powerups;
         [SerializeField] private int _enemySpawnTime;
         [SerializeField] private float _offScreenOffset;
@@ -14,6 +13,8 @@ namespace Managers
         [SerializeField] private ObjectPool _playerLaserPool;
         [SerializeField] private ObjectPool _explosionPool;
         [SerializeField] private float _explosionDisableTime;
+
+        [SerializeField] private bool _stopEnemiesSpawning = false;
 
         private bool _stopSpawning = false;
 
@@ -53,6 +54,9 @@ namespace Managers
 
         private void SpawnEnemy()
         {
+            if (_stopEnemiesSpawning)
+                return;
+
             GameObject newEnemy = _enemyPool.GetPooledObject();
             if (newEnemy != null)
             {

@@ -28,7 +28,7 @@ namespace Managers
             switch (_powerUpId)
             {
                 case 1: //fire rate increase
-                    _playerController.FireRate += _fireRateIncrease;
+                    _playerController.FireRate -= _fireRateIncrease;
                     break;
                 case 2: //speed increase
                     _playerController.Speed += _speedIncrease;
