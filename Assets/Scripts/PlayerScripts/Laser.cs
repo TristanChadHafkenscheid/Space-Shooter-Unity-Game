@@ -7,6 +7,7 @@ namespace Player
         [SerializeField] private float _speed = 8.0f;
         [SerializeField] private int _damageToPlayer = 15;
         [SerializeField] private float _lifeCycle = 2f;
+        private float timer = 0;
 
         private bool _isEnemyLaser = false;
 
@@ -20,21 +21,19 @@ namespace Player
         private void Update()
         {
             MoveForward();
-        }
 
-        private void OnEnable()
-        {
-            Invoke(nameof(DeactivateLaser), _lifeCycle);
+            timer += Time.deltaTime;
+
+            if (timer >= _lifeCycle)
+            {
+                gameObject.SetActive(false);
+                timer = 0;
+            }
         }
 
         private void MoveForward()
         {
             transform.Translate(_speed * Time.deltaTime * Vector3.up);
-        }
-
-        private void DeactivateLaser()
-        {
-            gameObject.SetActive(false);
         }
 
         public void AssignEnemyLaser()

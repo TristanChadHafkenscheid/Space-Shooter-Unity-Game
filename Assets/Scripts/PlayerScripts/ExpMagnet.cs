@@ -3,6 +3,7 @@ using DG.Tweening;
 using Managers;
 using PickUps;
 using UnityEngine;
+using Audio;
 
 namespace Player
 {
@@ -15,17 +16,22 @@ namespace Player
         [SerializeField] private ExpManager _expManager;
         [SerializeField] private ParticleSystem _expCollectParticles;
         [SerializeField] private Color _expPlayerColour;
-        private AudioSource _audioSource;
+        [SerializeField] private float _magnetRange = 0.2f;
+
+        private AudioManager _audioManager;
+
+        private CircleCollider2D _magnetCollider;
 
         void Start()
         {
             _playerController = PlayerController.instance;
 
-            _audioSource = GetComponent<AudioSource>();
+            _audioManager = AudioManager.Instance;
 
-            if (_audioSource == null)
+            _magnetCollider = GetComponent<CircleCollider2D>();
+            if (_magnetCollider == null)
             {
-                Debug.LogError("Audio Source on the player is NULL");
+                Debug.LogError("Collider on ExpMagnet is NULL");
             }
         }
 
@@ -49,13 +55,19 @@ namespace Player
             //see if you can yield return a few seconds before adding to top
             expGameObject.SetActive(false);
             _expCollectParticles.Play();
+            _audioManager.Play("ExpCollect");
 
             _playerController.Sprite.DOKill();
             _playerController.Sprite.color = Color.white;
             _playerController.Sprite.DOColor(_expPlayerColour, 0.25f).SetInverted().SetLoops(2, LoopType.Restart);
-            _audioSource.Play();
 
             _expManager.ExpCollected(expGameObject.GetComponent<Exp>().ExpAmount);
+        }
+
+        public void IncreaseRange(float rangeIncrease)
+        {
+            //range starts at 0.2
+            _magnetCollider.radius = _magnetRange + rangeIncrease;
         }
     }
 }

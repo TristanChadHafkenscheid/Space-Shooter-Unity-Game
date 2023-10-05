@@ -130,6 +130,7 @@ namespace Player
 
                 _uiManager.SetHealth(_health);
                 DamageVisuals();
+                _audioManager.Play("Hurt");
             }
 
             if (_health <= 0)
@@ -179,7 +180,7 @@ namespace Player
             _ThrusterImg.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
-        public void ShieldsActive()
+        public void ShieldActive(float reactivateTime)
         {
             _isShieldsActive = true;
             _shieldsVisualizer.SetActive(true);

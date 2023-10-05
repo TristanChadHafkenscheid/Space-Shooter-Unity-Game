@@ -42,7 +42,7 @@ public class PowerupUnused : MonoBehaviour
                         player.SpeedBoostActive();
                         break;
                     case 2:
-                        player.ShieldsActive();
+                        //player.ShieldsActive();
                         break;
                     case 3:
                         player.BigLaserActive();

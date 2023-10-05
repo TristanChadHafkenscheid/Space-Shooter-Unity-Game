@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8116,6 +8116,7 @@ MonoBehaviour:
   _expManager: {fileID: 697865111}
   _expCollectParticles: {fileID: 1985914906}
   _expPlayerColour: {r: 1, g: 0.9267906, b: 0, a: 1}
+  _magnetRange: 0.2
 --- !u!82 &771964382
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9141,6 +9142,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3c407ceef21b445dd8bb502e6fa48fcb, type: 2}
   - {fileID: 11400000, guid: d427e66c8572d4a50851b8b198ee8b2d, type: 2}
   - {fileID: 11400000, guid: a8279999949df4ba095f82d7a9eb5072, type: 2}
+  - {fileID: 11400000, guid: 34e7303e7993846b7a975ea256af0a26, type: 2}
+  - {fileID: 11400000, guid: 2e448babf4f294ca889e53d200f9bae2, type: 2}
   optionSlider: {fileID: 0}
   m_AudioMixer: {fileID: 24100000, guid: 531ac00dadd8f48ad8fe9ce85915d227, type: 2}
   audioChannels:
@@ -9196,13 +9199,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4e4c6e4b4cc4e2eab6ef47079a055b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _expMagnet: {fileID: 771964381}
   _fireRateIncrease: 0.05
   _speedIncrease: 10
-  _expMagentIncrease: 0
+  _expMagentIncrease: 0.5
+  _healOverTime: 0
+  _bigLaserCoolDownDecrease: 0
   _powerUps:
   - {fileID: 11400000, guid: 079fd527e1d346d42a2de5d8d842432f, type: 2}
-  - {fileID: 11400000, guid: 0c0c5540c770f654d82ef69f9aa2579b, type: 2}
   - {fileID: 11400000, guid: f9284eaed04575f40993ca90644779db, type: 2}
+  - {fileID: 11400000, guid: ee1debaa5211a4a80b225800d52a0b1c, type: 2}
+  - {fileID: 11400000, guid: e1a11d338e63046d8ae35d0fce410932, type: 2}
 --- !u!1 &1279267879
 GameObject:
   m_ObjectHideFlags: 0
@@ -16240,7 +16247,7 @@ Transform:
   m_GameObject: {fileID: 4898494364566090030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_LocalScale: {x: 0.12, y: 0.1, z: 0.12}
   m_Children: []
   m_Father: {fileID: 4898494364969832238}
   m_RootOrder: 2
@@ -16721,7 +16728,6 @@ MonoBehaviour:
   _botOfPlayer: {fileID: 4898494364787940968}
   _attachmentsList: []
   _attachmentSizeCap: 5
-  _timeBeforeDamage: 5
   _playerRigidbody: {fileID: 5}
   attachTest: {fileID: 2075217223107937759, guid: ba60d765249504fd794384de656b8204,
     type: 3}
@@ -17097,7 +17103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5104331130278483985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0.002, y: 0.9, z: 0}
   m_LocalScale: {x: 0.2, y: 0.65, z: 1}
   m_Children: []
   m_Father: {fileID: 4898494364969832238}
@@ -17212,7 +17218,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.109188914}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -17223,5 +17229,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 2.87}
+  m_Size: {x: 0.25, y: 2.651622}
   m_EdgeRadius: 0

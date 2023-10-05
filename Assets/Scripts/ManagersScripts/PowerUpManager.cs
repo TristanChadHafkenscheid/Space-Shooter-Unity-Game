@@ -8,21 +8,22 @@ namespace Managers
     public class PowerUpManager : MonoBehaviour
     {
         private PlayerController _playerController;
+        [SerializeField] private ExpMagnet _expMagnet;
         [SerializeField] private float _fireRateIncrease;
         [SerializeField] private float _speedIncrease;
         [SerializeField] private float _expMagentIncrease;
+        [SerializeField] private float _healOverTime;
+        [SerializeField] private float _bigLaserCoolDownDecrease;
+        //[SerializeField] private float _shieldActiveAmountIncrease;
 
         [SerializeField] private List<PowerUp> _powerUps = new List<PowerUp>();
 
-        //[SerializeField] private PowerUp _powerUp1;
-
-        //private int _powerUpId;
 
         private void Start()
         {
             _playerController = PlayerController.instance;
-            //_powerUpId = _powerUp1.powerUpId;
         }
+
         public void CallPowerUp(int _powerUpId)
         {
             switch (_powerUpId)
@@ -34,12 +35,13 @@ namespace Managers
                     _playerController.Speed += _speedIncrease;
                     break;
                 case 3: //exp magnet increased
+                    _expMagnet.IncreaseRange(_expMagentIncrease);
                     break;
-                case 4: //laser increased
+                case 4: //heal over time
                     break;
-                case 5: //exp magnet increased
+                case 5: //big laser blast
                     break;
-                case 6: //exp magnet increased
+                case 6: //shields
                     break;
                 default:
                     break;
