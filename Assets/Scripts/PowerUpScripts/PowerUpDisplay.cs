@@ -11,7 +11,13 @@ namespace PowerUps
         [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private Image artworkImage;
 
-        private void Start()
+        public PowerUp DisplayedPowerUp
+        {
+            get { return _powerUp; }
+            set { _powerUp = value; }
+        }
+
+        public void UpdateDisplay()
         {
             nameText.text = _powerUp.powerUpName;
             descriptionText.text = _powerUp.description;

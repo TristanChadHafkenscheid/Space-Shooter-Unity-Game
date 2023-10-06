@@ -54,6 +54,12 @@ namespace Player
             set => _speed = value;
         }
 
+        public int Health
+        {
+            get => _health;
+            set => _health = value;
+        }
+
         private void Awake()
         {
             if (instance == null)

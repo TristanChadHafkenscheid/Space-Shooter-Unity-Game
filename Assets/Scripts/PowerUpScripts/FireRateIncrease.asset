@@ -15,4 +15,4 @@ MonoBehaviour:
   powerUpId: 1
   powerUpName: Fire Rate
   description: Increase the fire rate
-  artwork: {fileID: 21300000, guid: 1b16faa86f0364cb0b15268ced77c365, type: 3}
+  artwork: {fileID: -209682078468060337, guid: 64056e944c506425e9bff252a1323995, type: 3}

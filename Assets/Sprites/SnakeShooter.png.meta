@@ -47,6 +47,39 @@ TextureImporter:
   - first:
       213: 8755591262435691780
     second: GreenLaserSprite
+  - first:
+      213: 3569060591338150036
+    second: PowerUpPanel
+  - first:
+      213: 3037246863605689607
+    second: HealthRegenIcon
+  - first:
+      213: -4270841917978208107
+    second: BigLaserIcon
+  - first:
+      213: 4108709483861734172
+    second: Shield
+  - first:
+      213: 117579240609610034
+    second: GreenButton
+  - first:
+      213: -4279491114197954309
+    second: RedButton
+  - first:
+      213: 5864925733272587875
+    second: BlueButton
+  - first:
+      213: -808852002972430351
+    second: MagnetIcon
+  - first:
+      213: -209682078468060337
+    second: FireRateIcon
+  - first:
+      213: 5953836168609581550
+    second: SpeedIcon
+  - first:
+      213: 4223864689885752515
+    second: ShieldIcon
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -192,7 +225,7 @@ TextureImporter:
       name: Enemy1Sprite
       rect:
         serializedVersion: 2
-        x: 24
+        x: 21
         y: 38
         width: 19
         height: 26
@@ -213,10 +246,10 @@ TextureImporter:
       name: Enemy2Sprite
       rect:
         serializedVersion: 2
-        x: 44
-        y: 38
+        x: 41
+        y: 43
         width: 20
-        height: 26
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,8 +288,8 @@ TextureImporter:
       name: PauseButtonSprite
       rect:
         serializedVersion: 2
-        x: 20
-        y: 22
+        x: 109
+        y: 50
         width: 14
         height: 14
       alignment: 0
@@ -276,8 +309,8 @@ TextureImporter:
       name: HeartSprite
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
+        x: 97
+        y: 60
         width: 5
         height: 4
       alignment: 0
@@ -297,9 +330,9 @@ TextureImporter:
       name: AmoungUsSprite
       rect:
         serializedVersion: 2
-        x: 12
-        y: 0
-        width: 7
+        x: 0
+        y: 3
+        width: 8
         height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -318,8 +351,8 @@ TextureImporter:
       name: BobSprite
       rect:
         serializedVersion: 2
-        x: 20
-        y: 9
+        x: 0
+        y: 12
         width: 8
         height: 8
       alignment: 0
@@ -339,8 +372,8 @@ TextureImporter:
       name: DogSprite
       rect:
         serializedVersion: 2
-        x: 29
-        y: 9
+        x: 9
+        y: 12
         width: 8
         height: 8
       alignment: 0
@@ -360,8 +393,8 @@ TextureImporter:
       name: FishSprite
       rect:
         serializedVersion: 2
-        x: 20
-        y: 0
+        x: 9
+        y: 3
         width: 8
         height: 8
       alignment: 0
@@ -381,8 +414,8 @@ TextureImporter:
       name: AsteroidSprite
       rect:
         serializedVersion: 2
-        x: 29
-        y: 0
+        x: 18
+        y: 12
         width: 8
         height: 8
       alignment: 0
@@ -402,8 +435,8 @@ TextureImporter:
       name: ExpSprite
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 97
+        y: 52
         width: 5
         height: 5
       alignment: 0
@@ -423,12 +456,12 @@ TextureImporter:
       name: RedLaserSprite
       rect:
         serializedVersion: 2
-        x: 6
-        y: 0
+        x: 103
+        y: 52
         width: 2
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -444,12 +477,12 @@ TextureImporter:
       name: GreenLaserSprite
       rect:
         serializedVersion: 2
-        x: 9
-        y: 1
+        x: 106
+        y: 52
         width: 2
-        height: 11
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -457,6 +490,237 @@ TextureImporter:
       bones: []
       spriteID: 40d4ef33ddb128970800000000000000
       internalID: 8755591262435691780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerUpPanel
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4985e88b2b9d78130800000000000000
+      internalID: 3569060591338150036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthRegenIcon
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 11
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70de2603ee7762a20800000000000000
+      internalID: 3037246863605689607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigLaserIcon
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 15
+        height: 10
+      alignment: 9
+      pivot: {x: -4.1836057, y: -2.128431}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5989f0b47ebeab4c0800000000000000
+      internalID: -4270841917978208107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 0
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c137bd6b181150930800000000000000
+      internalID: 4108709483861734172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenButton
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 239fe7542b9b1a100800000000000000
+      internalID: 117579240609610034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedButton
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf05ace51813c94c0800000000000000
+      internalID: -4279491114197954309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlueButton
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36e82c571e6646150800000000000000
+      internalID: 5864925733272587875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagnetIcon
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 39
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ff07f6836166c4f0800000000000000
+      internalID: -808852002972430351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRateIcon
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 22
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4b4525b24f071df0800000000000000
+      internalID: -209682078468060337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeedIcon
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 28
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee9c8d8537640a250800000000000000
+      internalID: 5953836168609581550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShieldIcon
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 17
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cca4f37e8e2e9a30800000000000000
+      internalID: 4223864689885752515
       vertices: []
       indices: 
       edges: []

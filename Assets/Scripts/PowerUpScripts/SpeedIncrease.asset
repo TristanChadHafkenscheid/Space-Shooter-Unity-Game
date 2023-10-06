@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SpeedIncrease
   m_EditorClassIdentifier: 
   powerUpId: 2
-  powerUpName: Speed Boost
+  powerUpName: Jet Boosters
   description: Increase your speed
-  artwork: {fileID: 21300000, guid: 1b16faa86f0364cb0b15268ced77c365, type: 3}
+  artwork: {fileID: 5953836168609581550, guid: 64056e944c506425e9bff252a1323995, type: 3}

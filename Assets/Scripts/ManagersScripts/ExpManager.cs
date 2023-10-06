@@ -9,6 +9,7 @@ namespace Managers
         [SerializeField] private float _currentExp = 0;
         [SerializeField] private float _expToFillBarFromZero = 5;
         [SerializeField] private int _expLevel = 1;
+        [SerializeField] private PowerUpManager _powerUpManager;
 
         private void Start()
         {
@@ -38,6 +39,7 @@ namespace Managers
             _currentExp = 0;
             _uiManager.SetExpBar(0);
             _gameManager.ActivateLevelUpPanel(true);
+            _powerUpManager.RandomlySelectPowerUps();
         }
     }
 }

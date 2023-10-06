@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8cf8c964ee8e324ca81eeeafc405b6d, type: 3}
-  m_Name: ExpMagnetRangeIncrease
+  m_Name: MagnetRange
   m_EditorClassIdentifier: 
   powerUpId: 1
-  powerUpName: Magent Range Increase
-  description: Increases the magent range
-  artwork: {fileID: 21300000, guid: 1b16faa86f0364cb0b15268ced77c365, type: 3}
+  powerUpName: Magnet
+  description: Tape this bad boy on your ship to collect more EXP
+  artwork: {fileID: -808852002972430351, guid: 64056e944c506425e9bff252a1323995, type: 3}

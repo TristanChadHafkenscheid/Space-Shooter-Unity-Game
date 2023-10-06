@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HealthRegen
   m_EditorClassIdentifier: 
   powerUpId: 1
-  powerUpName: Health Regeneration
-  description: Increases the magent range
-  artwork: {fileID: 21300000, guid: 1b16faa86f0364cb0b15268ced77c365, type: 3}
+  powerUpName: Health Kit
+  description: Infinite Health glitch
+  artwork: {fileID: 3037246863605689607, guid: 64056e944c506425e9bff252a1323995, type: 3}
