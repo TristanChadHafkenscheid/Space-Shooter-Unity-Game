@@ -17,6 +17,7 @@ namespace Managers
         [SerializeField] private float _healOverTime;
         [SerializeField] private int _healthAmount;
         [SerializeField] private float _bigLaserCoolDownDecrease;
+        [SerializeField] private float _shieldCoolDown;
 
         [SerializeField] private PowerUpDisplay _powerUpDisplay1;
         [SerializeField] private PowerUpDisplay _powerUpDisplay2;
@@ -52,6 +53,7 @@ namespace Managers
                 case 5: //big laser blast
                     break;
                 case 6: //shields
+                    StartCoroutine(ActivateShieldsPeriodicly());
                     break;
                 default:
                     break;
@@ -66,6 +68,17 @@ namespace Managers
                 _uiManager.SetHealth(_playerController.Health);
 
                 yield return new WaitForSeconds(_healOverTime);
+            }
+        }
+
+        IEnumerator ActivateShieldsPeriodicly()
+        {
+            //while shield is false
+            while (_playerController.IsShieldsActive == false)
+            {
+                yield return new WaitForSeconds(_shieldCoolDown);
+                //activate shield
+                _playerController.ActivateShields();
             }
         }
 

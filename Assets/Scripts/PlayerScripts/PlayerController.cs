@@ -3,6 +3,7 @@ using DG.Tweening;
 using Managers;
 using UnityEngine;
 using Audio;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -40,6 +41,11 @@ namespace Player
         {
             get => _sprite;
             set => _sprite = value;
+        }
+
+        public bool IsShieldsActive
+        {
+            get => _isShieldsActive;
         }
 
         public float FireRate
@@ -93,6 +99,11 @@ namespace Player
             if (Time.time > _canFireRate && _canFire == true)
             {
                 FireLaser();
+            }
+
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                ActivateShields();
             }
         }
 
@@ -186,7 +197,7 @@ namespace Player
             _ThrusterImg.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
-        public void ShieldActive(float reactivateTime)
+        public void ActivateShields()
         {
             _isShieldsActive = true;
             _shieldsVisualizer.SetActive(true);
