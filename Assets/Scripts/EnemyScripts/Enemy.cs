@@ -22,6 +22,9 @@ namespace Enemy
         private Rigidbody2D _rigidBody;
         private Vector2 _movement;
 
+        private float _canDamage;
+        [SerializeField] float _damageRate;
+
         void Start()
         {
             _player = PlayerController.instance;
@@ -91,14 +94,6 @@ namespace Enemy
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                if (_player != null)
-                {
-                    _player.Damage(_damageToPlayer);
-                }
-            }
-
             if (collision.gameObject.CompareTag("PlayerLaser"))
             {
                 if (_player != null)
@@ -123,6 +118,19 @@ namespace Enemy
                     _player.AddScore(20);
                 }
                 EnemyDestroyed();
+            }
+        }
+
+        void OnCollisionStay2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("player hit");
+                if (_player != null && Time.time >= _canDamage)
+                {
+                    _canDamage = Time.time + _damageRate;
+                    _player.Damage(_damageToPlayer);
+                }
             }
         }
 

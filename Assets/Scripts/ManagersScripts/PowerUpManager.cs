@@ -82,8 +82,8 @@ namespace Managers
             {
                 if (_playerController.IsShieldsActive == false)
                 {
-                    yield return new WaitForSeconds(_shieldCoolDown);
                     _playerController.ActivateShields();
+                    yield return new WaitForSeconds(_shieldCoolDown);
                 }
                 else
                 {

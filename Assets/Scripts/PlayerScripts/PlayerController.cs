@@ -30,7 +30,6 @@ namespace Player
         private bool _isTripleShotActive = false;
         private bool _isShieldsActive = false;
         private UIManager _uiManager;
-        private float _canTakeDamage = 0f;
         private AudioManager _audioManager;
         private SpriteRenderer _sprite;
 
@@ -140,15 +139,11 @@ namespace Player
             }
 
             //_canTakeDamage = 0 and _damageRate = 0.5 at start
-            if (Time.time > _canTakeDamage)
-            {
-                _canTakeDamage = Time.time + _damageRate;
-                _health = _health - damageTaken;
+            _health = _health - damageTaken;
 
-                _uiManager.SetHealth(_health);
-                DamageVisuals();
-                _audioManager.Play("Hurt");
-            }
+            _uiManager.SetHealth(_health);
+            DamageVisuals();
+            _audioManager.Play("Hurt");
 
             if (_health <= 0)
             {
