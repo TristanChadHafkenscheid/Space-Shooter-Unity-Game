@@ -9553,8 +9553,8 @@ MonoBehaviour:
   _expMagentIncrease: 0.05
   _healOverTime: 5
   _healthAmount: 1
-  _bigLaserCoolDownDecrease: 0
-  _shieldCoolDown: 0
+  _bigLaserCoolDownDecrease: 2
+  _shieldCoolDown: 15
   _powerUpDisplay1: {fileID: 776557343}
   _powerUpDisplay2: {fileID: 1687784949}
   _powerUpDisplay3: {fileID: 1658262347}
@@ -17033,7 +17033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4898494364566090031
 Transform:
   m_ObjectHideFlags: 0

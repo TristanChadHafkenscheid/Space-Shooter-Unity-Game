@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8cf8c964ee8e324ca81eeeafc405b6d, type: 3}
   m_Name: Shields
   m_EditorClassIdentifier: 
-  powerUpId: 3
+  powerUpId: 6
   powerUpName: Shields
   description: Shields activate every 20 seconds
   artwork: {fileID: 4223864689885752515, guid: 64056e944c506425e9bff252a1323995, type: 3}

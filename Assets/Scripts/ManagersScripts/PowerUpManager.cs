@@ -23,8 +23,6 @@ namespace Managers
         [SerializeField] private PowerUpDisplay _powerUpDisplay2;
         [SerializeField] private PowerUpDisplay _powerUpDisplay3;
 
-        //[SerializeField] private float _shieldActiveAmountIncrease;
-
         [SerializeField] private List<PowerUp> _powerUps = new List<PowerUp>();
 
 
@@ -62,23 +60,35 @@ namespace Managers
 
         IEnumerator HealOverTime()
         {
-            while (_playerController.Health < 100)
+            while (true)
             {
-                _playerController.Health += _healthAmount;
-                _uiManager.SetHealth(_playerController.Health);
+                if (_playerController.Health < 100)
+                {
+                    _playerController.Health += _healthAmount;
+                    _uiManager.SetHealth(_playerController.Health);
 
-                yield return new WaitForSeconds(_healOverTime);
+                    yield return new WaitForSeconds(_healOverTime);
+                }
+                else
+                {
+                    yield return null;
+                }
             }
         }
 
         IEnumerator ActivateShieldsPeriodicly()
         {
-            //while shield is false
-            while (_playerController.IsShieldsActive == false)
+            while (true)
             {
-                yield return new WaitForSeconds(_shieldCoolDown);
-                //activate shield
-                _playerController.ActivateShields();
+                if (_playerController.IsShieldsActive == false)
+                {
+                    yield return new WaitForSeconds(_shieldCoolDown);
+                    _playerController.ActivateShields();
+                }
+                else
+                {
+                    yield return null;
+                }
             }
         }
 

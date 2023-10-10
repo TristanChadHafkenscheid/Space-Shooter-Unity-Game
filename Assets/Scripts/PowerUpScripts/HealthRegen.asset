@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8cf8c964ee8e324ca81eeeafc405b6d, type: 3}
   m_Name: HealthRegen
   m_EditorClassIdentifier: 
-  powerUpId: 1
+  powerUpId: 4
   powerUpName: Health Kit
   description: Infinite Health glitch
   artwork: {fileID: 3037246863605689607, guid: 64056e944c506425e9bff252a1323995, type: 3}
