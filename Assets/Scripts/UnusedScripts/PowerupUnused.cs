@@ -45,7 +45,7 @@ public class PowerupUnused : MonoBehaviour
                         //player.ShieldsActive();
                         break;
                     case 3:
-                        player.BigLaserActive();
+                        //player.BigLaserActive();
                         break;
                     default:
                         Debug.Log("Default value");

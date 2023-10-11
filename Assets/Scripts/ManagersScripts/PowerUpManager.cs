@@ -16,7 +16,7 @@ namespace Managers
         [SerializeField] private float _expMagentIncrease;
         [SerializeField] private float _healOverTime;
         [SerializeField] private int _healthAmount;
-        [SerializeField] private float _bigLaserCoolDownDecrease;
+        [SerializeField] private float _bigLaserCoolDown;
         [SerializeField] private float _shieldCoolDown;
 
         [SerializeField] private PowerUpDisplay _powerUpDisplay1;
@@ -24,6 +24,8 @@ namespace Managers
         [SerializeField] private PowerUpDisplay _powerUpDisplay3;
 
         [SerializeField] private List<PowerUp> _powerUps = new List<PowerUp>();
+
+        [SerializeField] private float _incremenetNumber;
 
 
         private void Start()
@@ -34,9 +36,12 @@ namespace Managers
 
         public void CallPowerUp(PowerUpDisplay displayedPowerUp)
         {
+            displayedPowerUp.DisplayedPowerUp.level++;
+
             switch (displayedPowerUp.DisplayedPowerUp.powerUpId)
             {
                 case 1: //fire rate increase
+                    _fireRateIncrease *= displayedPowerUp.DisplayedPowerUp.level * _incremenetNumber;
                     _playerController.FireRate -= _fireRateIncrease;
                     break;
                 case 2: //speed increase
@@ -49,9 +54,10 @@ namespace Managers
                     StartCoroutine(HealOverTime());
                     break;
                 case 5: //big laser blast
+                    StartCoroutine(ActivateBigLaserPeriodicaly());
                     break;
                 case 6: //shields
-                    StartCoroutine(ActivateShieldsPeriodicly());
+                    StartCoroutine(ActivateShieldsPeriodicaly());
                     break;
                 default:
                     break;
@@ -70,13 +76,11 @@ namespace Managers
                     yield return new WaitForSeconds(_healOverTime);
                 }
                 else
-                {
                     yield return null;
-                }
             }
         }
 
-        IEnumerator ActivateShieldsPeriodicly()
+        IEnumerator ActivateShieldsPeriodicaly()
         {
             while (true)
             {
@@ -86,9 +90,21 @@ namespace Managers
                     yield return new WaitForSeconds(_shieldCoolDown);
                 }
                 else
-                {
                     yield return null;
+            }
+        }
+
+        IEnumerator ActivateBigLaserPeriodicaly()
+        {
+            while (true)
+            {
+                if (_playerController.IsBigLaserActive == false)
+                {
+                    yield return new WaitForSeconds(_bigLaserCoolDown);
+                    _playerController.FireBigLaser();
                 }
+                else
+                    yield return null;
             }
         }
 

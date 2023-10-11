@@ -7,8 +7,10 @@ namespace PowerUps
     public class PowerUpDisplay : MonoBehaviour
     {
         [SerializeField] private PowerUp _powerUp;
-        [SerializeField] private TextMeshProUGUI nameText;
-        [SerializeField] private TextMeshProUGUI descriptionText;
+        [SerializeField] private TextMeshProUGUI _nameText;
+        [SerializeField] private TextMeshProUGUI _descriptionText;
+        [SerializeField] private TextMeshProUGUI _levelText;
+
         [SerializeField] private Image artworkImage;
 
         public PowerUp DisplayedPowerUp
@@ -19,8 +21,9 @@ namespace PowerUps
 
         public void UpdateDisplay()
         {
-            nameText.text = _powerUp.powerUpName;
-            descriptionText.text = _powerUp.description;
+            _nameText.text = _powerUp.powerUpName;
+            _descriptionText.text = _powerUp.description;
+            _levelText.text = _powerUp.level.ToString();
 
             artworkImage.sprite = _powerUp.artwork;
         }

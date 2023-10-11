@@ -8,6 +8,7 @@ namespace PowerUps
         public int powerUpId;
         public string powerUpName;
         public string description;
+        public int level;
 
         public Sprite artwork;
     }

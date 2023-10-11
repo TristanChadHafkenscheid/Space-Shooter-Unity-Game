@@ -9,16 +9,15 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private int _health = 100;
         [SerializeField] private float _speed = 3.5f;
         [SerializeField] private float _speedMultiplier = 1.5f;
         [SerializeField] Transform _laserBarrel;
         [SerializeField] private GameObject _tripleShotPrefab;
         [SerializeField] private float _fireRate = 0.5f;
-        [SerializeField] private int _health = 100;
         [SerializeField] private GameObject _bigLaser;
         [SerializeField] private GameObject _shieldsVisualizer;
         [SerializeField] private SpriteRenderer _ThrusterImg;
-        [SerializeField] private float _damageRate = 0.5f;
         [SerializeField] private Color _damageColour;
         [SerializeField] private ParticleSystem _damageParticles;
         [SerializeField] private bool _canFire = false;
@@ -29,6 +28,7 @@ namespace Player
         private GameManager _gameManager;
         private bool _isTripleShotActive = false;
         private bool _isShieldsActive = false;
+        private bool _isBigLaserActive = false;
         private UIManager _uiManager;
         private AudioManager _audioManager;
         private SpriteRenderer _sprite;
@@ -45,6 +45,11 @@ namespace Player
         public bool IsShieldsActive
         {
             get => _isShieldsActive;
+        }
+
+        public bool IsBigLaserActive
+        {
+            get => _isBigLaserActive;
         }
 
         public float FireRate
@@ -198,8 +203,9 @@ namespace Player
             _shieldsVisualizer.SetActive(true);
         }
 
-        public void BigLaserActive()
+        public void FireBigLaser()
         {
+            _isBigLaserActive = true;
             _bigLaser.SetActive(true);
             _canFire = false;
             StartCoroutine(BigLaserPowerDownRoutine());
@@ -210,6 +216,7 @@ namespace Player
             yield return new WaitForSeconds(5.5f);
             _canFire = true;
             _bigLaser.SetActive(false);
+            _isBigLaserActive = false;
         }
 
         public void AddScore(int points)
