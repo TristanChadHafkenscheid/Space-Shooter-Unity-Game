@@ -110,12 +110,22 @@ namespace Enemy
             {
                 //damage attachment
             }
+
+            if (collision.gameObject.CompareTag("BigLaser"))
+            {
+                if (_player != null)
+                {
+                    _player.AddScore(20);
+                }
+                EnemyDestroyed();
+            }
         }
 
-        void OnCollisionStay2D(Collision2D collision)
+        void OnCollisionStay2D(Collision collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
+                Debug.Log("player hit");
                 if (_player != null && Time.time >= _canDamage)
                 {
                     _canDamage = Time.time + _damageRate;
