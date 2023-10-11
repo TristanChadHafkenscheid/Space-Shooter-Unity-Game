@@ -94,7 +94,15 @@ namespace Enemy
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("PlayerLaser"))
+            if (collision.gameObject.CompareTag("BigLaser"))
+            {
+                if (_player != null)
+                {
+                    _player.AddScore(10);
+                }
+                EnemyDestroyed();
+            }
+            else if (collision.gameObject.CompareTag("PlayerLaser"))
             {
                 if (_player != null)
                 {
@@ -105,23 +113,13 @@ namespace Enemy
 
                 EnemyDestroyed();
             }
-
-            if (collision.gameObject.CompareTag("Attachment"))
+            else if (collision.gameObject.CompareTag("Attachment"))
             {
                 //damage attachment
             }
-
-            if (collision.gameObject.CompareTag("BigLaser"))
-            {
-                if (_player != null)
-                {
-                    _player.AddScore(20);
-                }
-                EnemyDestroyed();
-            }
         }
 
-        void OnCollisionStay2D(Collision collision)
+        private void OnCollisionStay2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {

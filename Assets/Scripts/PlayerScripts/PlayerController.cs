@@ -213,7 +213,7 @@ namespace Player
 
         IEnumerator BigLaserPowerDownRoutine()
         {
-            yield return new WaitForSeconds(5.5f);
+            yield return new WaitForSeconds(1.5f);
             _canFire = true;
             _bigLaser.SetActive(false);
             _isBigLaserActive = false;
