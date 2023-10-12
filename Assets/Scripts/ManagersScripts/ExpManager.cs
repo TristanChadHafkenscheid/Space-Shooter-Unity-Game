@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Managers
 {
@@ -14,6 +15,14 @@ namespace Managers
         private void Start()
         {
             _uiManager = UIManager.instance;
+        }
+
+        private void Update()
+        {
+            if (Keyboard.current.aKey.wasPressedThisFrame)
+            {
+                LevelUpDebugger();
+            }
         }
 
         public void ExpCollected(int expAdded)
@@ -40,6 +49,17 @@ namespace Managers
             _uiManager.SetExpBar(0);
             _gameManager.ActivateLevelUpPanel(true);
             _powerUpManager.RandomlySelectPowerUps();
+        }
+
+        private void LevelUpDebugger()
+        {
+            _expLevel++;
+            _expToFillBarFromZero *= _expLevel;
+
+            _currentExp = 0;
+            _uiManager.SetExpBar(0);
+            _gameManager.ActivateLevelUpPanel(true);
+            _powerUpManager.SelectPowerUpsDebug();
         }
     }
 }

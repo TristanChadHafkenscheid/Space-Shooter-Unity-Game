@@ -15,4 +15,5 @@ MonoBehaviour:
   powerUpId: 4
   powerUpName: Health Kit
   description: Infinite Health glitch
+  level: 0
   artwork: {fileID: 3037246863605689607, guid: 64056e944c506425e9bff252a1323995, type: 3}

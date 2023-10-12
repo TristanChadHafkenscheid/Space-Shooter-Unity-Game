@@ -10,7 +10,6 @@ namespace Managers
     {
         private PlayerController _playerController;
         [SerializeField] private ExpMagnet _expMagnet;
-        private UIManager _uiManager;
         [SerializeField] private float _fireRateIncrease;
         [SerializeField] private float _speedIncrease;
         [SerializeField] private float _expMagentIncrease;
@@ -27,21 +26,31 @@ namespace Managers
 
         [SerializeField] private float _incremenetNumber;
 
+        [SerializeField] private Vector3Int _powerUpsChosenDebug;
+
+        private UIManager _uiManager;
+
+        [SerializeField] private int _maxPowerUpLevel = 10;
+
 
         private void Start()
         {
             _playerController = PlayerController.instance;
             _uiManager = UIManager.instance;
+
+            ResetPowerUpLevels();
         }
 
         public void CallPowerUp(PowerUpDisplay displayedPowerUp)
         {
             displayedPowerUp.DisplayedPowerUp.level++;
 
+            RemovePowerUpFromList();
+
             switch (displayedPowerUp.DisplayedPowerUp.powerUpId)
             {
-                case 1: //fire rate increase
-                    _fireRateIncrease *= displayedPowerUp.DisplayedPowerUp.level * _incremenetNumber;
+                case 1: //fire rate increase - fire rate starts at 0.7
+                    //_fireRateIncrease *= displayedPowerUp.DisplayedPowerUp.level;
                     _playerController.FireRate -= _fireRateIncrease;
                     break;
                 case 2: //speed increase
@@ -129,6 +138,36 @@ namespace Managers
             _powerUpDisplay2.UpdateDisplay();
             _powerUpDisplay3.DisplayedPowerUp = selectedPowerUps[2];
             _powerUpDisplay3.UpdateDisplay();
+        }
+
+        //debugger for power up
+        public void SelectPowerUpsDebug()
+        {
+            _powerUpDisplay1.DisplayedPowerUp = _powerUps[_powerUpsChosenDebug.x];
+            _powerUpDisplay1.UpdateDisplay();
+            _powerUpDisplay2.DisplayedPowerUp = _powerUps[_powerUpsChosenDebug.y];
+            _powerUpDisplay2.UpdateDisplay();
+            _powerUpDisplay3.DisplayedPowerUp = _powerUps[_powerUpsChosenDebug.z];
+            _powerUpDisplay3.UpdateDisplay();
+        }
+
+        private void ResetPowerUpLevels()
+        {
+            for (int i = 0; i < _powerUps.Count; i++)
+            {
+                _powerUps[i].level = 0;
+            }
+        }
+
+        private void RemovePowerUpFromList()
+        {
+            for (int i = 0; i < _powerUps.Count; i++)
+            {
+                if (_powerUps[i].level >= _maxPowerUpLevel)
+                {
+                    _powerUps.RemoveAt(i);
+                }
+            }
         }
     }
 }

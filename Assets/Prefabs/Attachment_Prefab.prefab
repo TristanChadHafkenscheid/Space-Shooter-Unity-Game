@@ -10,13 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2075217223107937746}
   - component: {fileID: 2075217223107937747}
-  - component: {fileID: 2075217223107937744}
   - component: {fileID: 2075217223107937758}
   - component: {fileID: 2075217223107937745}
   - component: {fileID: 2075217223107937749}
   - component: {fileID: 7994542000478603520}
   m_Layer: 0
-  m_Name: Attachement_Prefab
+  m_Name: Attachment_Prefab
   m_TagString: Attachment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 953015237
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: 2105604887180491051, guid: 64056e944c506425e9bff252a1323995,
+  m_Sprite: {fileID: 1768650093140228677, guid: 64056e944c506425e9bff252a1323995,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -88,22 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2075217223107937744
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075217223107937759}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.05
 --- !u!50 &2075217223107937758
 Rigidbody2D:
   serializedVersion: 4
@@ -162,8 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _botOfAttachment: {fileID: 2075217223107937746}
-  _health: 5
+  _health: 100
   _timeBeforeDamage: 1
+  _healthBarPref: {fileID: 141341436619738839, guid: 2f0cdf292071d446b9372a42ce5c585b,
+    type: 3}
+  _damageColour: {r: 0.8784314, g: 0.21960784, b: 0.39215687, a: 1}
 --- !u!61 &7994542000478603520
 BoxCollider2D:
   m_ObjectHideFlags: 0

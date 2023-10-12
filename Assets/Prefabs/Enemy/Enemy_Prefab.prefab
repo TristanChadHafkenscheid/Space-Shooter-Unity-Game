@@ -51,7 +51,7 @@ MonoBehaviour:
   _speed: 2
   _laserPrefab: {fileID: 8129611029231179434, guid: 42d1b13c8e7b049959acb03a5516d876,
     type: 3}
-  _damageToPlayer: 10
+  _damageToPlayer: 5
   _expPref: {fileID: 3952710885986676070, guid: 7438d2d705679435cb4e1d886a1e41c7,
     type: 3}
   _damageRate: 2

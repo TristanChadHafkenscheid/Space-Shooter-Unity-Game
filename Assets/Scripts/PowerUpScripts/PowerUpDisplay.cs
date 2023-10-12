@@ -23,7 +23,7 @@ namespace PowerUps
         {
             _nameText.text = _powerUp.powerUpName;
             _descriptionText.text = _powerUp.description;
-            _levelText.text = _powerUp.level.ToString();
+            _levelText.text = "Level: " + _powerUp.level.ToString();
 
             artworkImage.sprite = _powerUp.artwork;
         }

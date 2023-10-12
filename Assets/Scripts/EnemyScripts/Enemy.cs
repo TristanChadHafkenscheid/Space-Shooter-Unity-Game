@@ -2,6 +2,7 @@
 using UnityEngine;
 using Managers;
 using Audio;
+using Attachments;
 
 namespace Enemy
 {
@@ -123,11 +124,18 @@ namespace Enemy
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                Debug.Log("player hit");
                 if (_player != null && Time.time >= _canDamage)
                 {
                     _canDamage = Time.time + _damageRate;
                     _player.Damage(_damageToPlayer);
+                }
+            }
+            if (collision.gameObject.CompareTag("Attachment"))
+            {
+                if (_player != null && Time.time >= _canDamage)
+                {
+                    _canDamage = Time.time + _damageRate;
+                    collision.gameObject.GetComponent<ShipAttachment>().Damage(_damageToPlayer);
                 }
             }
         }

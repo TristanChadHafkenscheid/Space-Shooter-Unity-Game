@@ -80,6 +80,12 @@ TextureImporter:
   - first:
       213: 4223864689885752515
     second: ShieldIcon
+  - first:
+      213: 1313727726640032021
+    second: JoystickOuterRing
+  - first:
+      213: -8696046247174097598
+    second: JoystickKnob
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -120,7 +126,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -205,7 +211,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 43
+        y: 107
         width: 20
         height: 21
       alignment: 0
@@ -226,7 +232,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 21
-        y: 38
+        y: 102
         width: 19
         height: 26
       alignment: 0
@@ -247,7 +253,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 41
-        y: 43
+        y: 107
         width: 20
         height: 21
       alignment: 0
@@ -268,7 +274,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 21
+        y: 85
         width: 18
         height: 17
       alignment: 0
@@ -289,7 +295,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 109
-        y: 50
+        y: 114
         width: 14
         height: 14
       alignment: 0
@@ -310,7 +316,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 97
-        y: 60
+        y: 124
         width: 5
         height: 4
       alignment: 0
@@ -331,7 +337,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3
+        y: 67
         width: 8
         height: 8
       alignment: 0
@@ -352,7 +358,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 12
+        y: 76
         width: 8
         height: 8
       alignment: 0
@@ -373,7 +379,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 9
-        y: 12
+        y: 76
         width: 8
         height: 8
       alignment: 0
@@ -394,7 +400,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 9
-        y: 3
+        y: 67
         width: 8
         height: 8
       alignment: 0
@@ -415,7 +421,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 18
-        y: 12
+        y: 76
         width: 8
         height: 8
       alignment: 0
@@ -436,7 +442,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 97
-        y: 52
+        y: 116
         width: 5
         height: 5
       alignment: 0
@@ -457,12 +463,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 103
-        y: 52
+        y: 116
         width: 2
         height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 1, y: 3, z: 1, w: 3}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -478,7 +484,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 106
-        y: 52
+        y: 116
         width: 2
         height: 12
       alignment: 0
@@ -499,7 +505,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 0
+        y: 64
         width: 48
         height: 16
       alignment: 0
@@ -520,7 +526,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 11
+        y: 75
         width: 15
         height: 10
       alignment: 0
@@ -541,11 +547,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 0
+        y: 64
         width: 15
         height: 10
-      alignment: 9
-      pivot: {x: -4.1836057, y: -2.128431}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -562,7 +568,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 97
-        y: 0
+        y: 78
         width: 22
         height: 24
       alignment: 0
@@ -583,7 +589,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 48
+        y: 112
         width: 32
         height: 16
       alignment: 0
@@ -604,7 +610,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 32
+        y: 96
         width: 32
         height: 16
       alignment: 0
@@ -625,7 +631,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 16
+        y: 80
         width: 32
         height: 16
       alignment: 0
@@ -646,11 +652,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 97
-        y: 39
+        y: 103
         width: 15
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -667,11 +673,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 22
+        y: 86
         width: 15
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -688,11 +694,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 28
+        y: 92
         width: 15
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -709,11 +715,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 17
+        y: 81
         width: 15
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -721,6 +727,48 @@ TextureImporter:
       bones: []
       spriteID: 3cca4f37e8e2e9a30800000000000000
       internalID: 4223864689885752515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoystickOuterRing
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 519e5fd286c4b3210800000000000000
+      internalID: 1313727726640032021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoystickKnob
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 245b1d60300715780800000000000000
+      internalID: -8696046247174097598
       vertices: []
       indices: 
       edges: []

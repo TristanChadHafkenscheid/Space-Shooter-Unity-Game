@@ -15,4 +15,5 @@ MonoBehaviour:
   powerUpId: 3
   powerUpName: Magnet
   description: Tape this bad boy on your ship to collect more EXP
+  level: 0
   artwork: {fileID: -808852002972430351, guid: 64056e944c506425e9bff252a1323995, type: 3}

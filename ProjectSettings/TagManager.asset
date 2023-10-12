@@ -10,6 +10,7 @@ TagManager:
   - EnemyLaser
   - Attachment
   - Exp
+  - CanvasWorldSpace
   layers:
   - Default
   - TransparentFX

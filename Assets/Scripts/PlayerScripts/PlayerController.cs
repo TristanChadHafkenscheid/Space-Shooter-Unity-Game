@@ -104,11 +104,6 @@ namespace Player
             {
                 FireLaser();
             }
-
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            {
-                ActivateShields();
-            }
         }
 
         public void Movement(float horizontalInput, float verticalInput)
@@ -140,11 +135,11 @@ namespace Player
             {
                 _isShieldsActive = false;
                 _shieldsVisualizer.SetActive(false);
+                _audioManager.Stop("Shield");
                 return;
             }
 
-            //_canTakeDamage = 0 and _damageRate = 0.5 at start
-            _health = _health - damageTaken;
+            _health -= damageTaken;
 
             _uiManager.SetHealth(_health);
             DamageVisuals();
@@ -199,6 +194,7 @@ namespace Player
 
         public void ActivateShields()
         {
+            _audioManager.Play("Shield");
             _isShieldsActive = true;
             _shieldsVisualizer.SetActive(true);
         }
@@ -213,7 +209,7 @@ namespace Player
 
         IEnumerator BigLaserPowerDownRoutine()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1.7f);
             _canFire = true;
             _bigLaser.SetActive(false);
             _isBigLaserActive = false;
