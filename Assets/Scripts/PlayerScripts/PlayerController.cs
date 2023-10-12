@@ -3,7 +3,6 @@ using DG.Tweening;
 using Managers;
 using UnityEngine;
 using Audio;
-using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -12,21 +11,21 @@ namespace Player
         [SerializeField] private int _health = 100;
         [SerializeField] private float _speed = 3.5f;
         [SerializeField] private float _speedMultiplier = 1.5f;
-        [SerializeField] Transform _laserBarrel;
-        [SerializeField] private GameObject _tripleShotPrefab;
+        [SerializeField] private Transform _laserBarrel;
         [SerializeField] private float _fireRate = 0.5f;
         [SerializeField] private GameObject _bigLaser;
         [SerializeField] private GameObject _shieldsVisualizer;
-        [SerializeField] private SpriteRenderer _ThrusterImg;
         [SerializeField] private Color _damageColour;
         [SerializeField] private ParticleSystem _damageParticles;
         [SerializeField] private bool _canFire = false;
+
+        [SerializeField] private GameObject _startCamera;
+        [SerializeField] private GameObject _playerCamera;
 
         private float _canFireRate = 0.1f;
 
         private SpawnManager _spawnManager;
         private GameManager _gameManager;
-        private bool _isTripleShotActive = false;
         private bool _isShieldsActive = false;
         private bool _isBigLaserActive = false;
         private UIManager _uiManager;
@@ -96,6 +95,9 @@ namespace Player
             {
                 Debug.LogError("Game Manager is NULL");
             }
+
+            _startCamera.SetActive(false);
+            _playerCamera.SetActive(true);
         }
 
         void Update()
@@ -117,16 +119,8 @@ namespace Player
         private void FireLaser()
         {
             _canFireRate = Time.time + _fireRate;
-
-            if (_isTripleShotActive == true)
-            {
-                Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
-            }
-            else
-            {
-                _spawnManager.SpawnPlayerLaser(_laserBarrel, transform);
-                _audioManager.Play("Laser");
-            }
+            _spawnManager.SpawnPlayerLaser(_laserBarrel, transform);
+            _audioManager.Play("Laser");
         }
 
         public void Damage(int damageTaken)
@@ -160,36 +154,6 @@ namespace Player
             _sprite.color = Color.white;
             _sprite.DOColor(_damageColour, 0.25f).SetInverted().SetLoops(2, LoopType.Restart);
             _damageParticles.Play();
-        }
-
-        public void TripleShotActive()
-        {
-            _isTripleShotActive = true;
-            StartCoroutine(TripleShotPowerDownRoutine());
-        }
-
-        IEnumerator TripleShotPowerDownRoutine()
-        {
-            yield return new WaitForSeconds(5f);
-            _isTripleShotActive = false;
-        }
-
-        public void SpeedBoostActive()
-        {
-            _speed *= _speedMultiplier;
-            _ThrusterImg.color = new Color(0, 163, 255);
-            _ThrusterImg.gameObject.transform.localPosition = new Vector3(0, -4f, 0);
-            _ThrusterImg.gameObject.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
-            StartCoroutine(SpeedBoostPowerDownRoutine());
-        }
-
-        IEnumerator SpeedBoostPowerDownRoutine()
-        {
-            yield return new WaitForSeconds(5f);
-            _speed /= _speedMultiplier;
-            _ThrusterImg.color = new Color(255, 255, 255);
-            _ThrusterImg.gameObject.transform.localPosition = new Vector3(0, -3.3f, 0);
-            _ThrusterImg.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
         public void ActivateShields()

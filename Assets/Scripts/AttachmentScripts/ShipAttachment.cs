@@ -57,8 +57,6 @@ namespace Attachments
         void Update()
         {
             //_healthBar.transform.rotation = transform.rotation;
-            //_healthBar.transform.position = transform.position + new Vector3(0f, 0.2f, 0);
-
             //_healthBar.transform.position = transform.position + _healthBarPosOffset;
 
             _healthBar.transform.SetPositionAndRotation(transform.position + _healthBarPosOffset, transform.rotation);

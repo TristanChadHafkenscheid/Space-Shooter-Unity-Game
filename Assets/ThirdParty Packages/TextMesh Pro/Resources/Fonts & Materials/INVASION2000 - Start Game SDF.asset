@@ -2450,7 +2450,7 @@ Material:
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
     - _GlowOffset: 0
-    - _GlowOuter: 0.05
+    - _GlowOuter: 0.917
     - _GlowPower: 0.75
     - _GradientScale: 6
     - _LightAngle: 3.1416
