@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ButtonPress
   m_EditorClassIdentifier: 
   clipName: ButtonPress
-  clip: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  clip: {fileID: 8300000, guid: ae86227d9192d496ab4cc716facf8122, type: 3}
   source: {fileID: 0}
   mixerGroup: {fileID: 24300002, guid: 531ac00dadd8f48ad8fe9ce85915d227, type: 2}
   Volume: 0.5

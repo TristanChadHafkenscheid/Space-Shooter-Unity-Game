@@ -3,6 +3,7 @@ using UnityEngine;
 using Player;
 using PowerUps;
 using System.Collections;
+using Audio;
 
 namespace Managers
 {
@@ -29,6 +30,7 @@ namespace Managers
         [SerializeField] private Vector3Int _powerUpsChosenDebug;
 
         private UIManager _uiManager;
+        private AudioManager _audioManager;
 
         [SerializeField] private int _maxPowerUpLevel = 10;
 
@@ -37,6 +39,7 @@ namespace Managers
         {
             _playerController = PlayerController.instance;
             _uiManager = UIManager.instance;
+            _audioManager = AudioManager.Instance;
 
             ResetPowerUpLevels();
         }
@@ -46,6 +49,8 @@ namespace Managers
             displayedPowerUp.DisplayedPowerUp.level++;
 
             RemovePowerUpFromList();
+
+            _audioManager.Play("ButtonPress");
 
             switch (displayedPowerUp.DisplayedPowerUp.powerUpId)
             {

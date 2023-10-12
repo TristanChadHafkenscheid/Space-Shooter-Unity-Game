@@ -31,6 +31,7 @@ namespace Managers
 
         public void PauseGame(bool isPaused)
         {
+            _audioManager.Play("ButtonPress");
             if (isPaused == true)
             {
                 Time.timeScale = 0;

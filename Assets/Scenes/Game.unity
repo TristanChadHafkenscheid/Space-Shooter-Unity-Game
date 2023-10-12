@@ -1053,7 +1053,7 @@ MonoBehaviour:
   _playerLaserPool: {fileID: 1303739013}
   _explosionPool: {fileID: 1059174464}
   _explosionDisableTime: 0.6
-  _stopEnemiesSpawning: 0
+  _stopEnemiesSpawning: 1
 --- !u!4 &276056264
 Transform:
   m_ObjectHideFlags: 0
@@ -8912,8 +8912,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285398881
-  m_fontColor: {r: 0.3820755, g: 1, b: 0.42786503, a: 1}
+    rgba: 4285319531
+  m_fontColor: {r: 0.41960785, g: 0.7882353, b: 0.42352942, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9496,6 +9496,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34e7303e7993846b7a975ea256af0a26, type: 2}
   - {fileID: 11400000, guid: 2e448babf4f294ca889e53d200f9bae2, type: 2}
   - {fileID: 11400000, guid: ffdc3e091a4db4bb0aaa24e5e6e30221, type: 2}
+  - {fileID: 11400000, guid: c97f3581d14f34f8cb906ce7521c840e, type: 2}
   optionSlider: {fileID: 0}
   m_AudioMixer: {fileID: 24100000, guid: 531ac00dadd8f48ad8fe9ce85915d227, type: 2}
   audioChannels:
@@ -9552,13 +9553,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _expMagnet: {fileID: 771964381}
-  _fireRateIncrease: 0.1
+  _fireRateIncrease: 0.07
   _speedIncrease: 10
   _expMagentIncrease: 0.05
   _healOverTime: 5
   _healthAmount: 1
-  _bigLaserCoolDown: 30
-  _shieldCoolDown: 30
+  _bigLaserCoolDown: 20
+  _shieldCoolDown: 15
   _powerUpDisplay1: {fileID: 776557343}
   _powerUpDisplay2: {fileID: 1687784949}
   _powerUpDisplay3: {fileID: 1658262347}

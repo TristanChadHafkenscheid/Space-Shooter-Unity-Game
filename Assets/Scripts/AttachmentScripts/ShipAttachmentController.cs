@@ -50,7 +50,7 @@ namespace Attachments
 
                 newShipAttachment.Joint.connectedBody = _playerRigidbody;
                 newShipAttachment.Joint.anchor = new Vector2(0f, 0.05f);
-                newShipAttachment.Joint.connectedAnchor = new Vector2(0, -0.12f);
+                newShipAttachment.Joint.connectedAnchor = new Vector2(0, -0.1f);
             }
             //last postion
             else
@@ -60,8 +60,8 @@ namespace Attachments
 
                 newShipAttachment = newShipAttachmentObj.GetComponent<ShipAttachment>();
                 newShipAttachment.Joint.connectedBody = _attachmentsList[_attachmentsList.Count - 1].GetComponent<Rigidbody2D>();
-                newShipAttachment.Joint.anchor = new Vector2(0, 0.05f);
-                newShipAttachment.Joint.connectedAnchor = new Vector2(0, -0.05f);
+                newShipAttachment.Joint.anchor = new Vector2(0, 0.046f);
+                newShipAttachment.Joint.connectedAnchor = new Vector2(0, -0.04f);
             }
             _attachmentsList.Add(newShipAttachment);
         }
