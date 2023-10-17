@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f4dc6fd8902428bb32df80ed407b29, type: 3}
+  m_Name: DogCompanion
+  m_EditorClassIdentifier: 
+  companionId: 1
+  companionName: Doggy
+  description: It's a dog
+  shipAttachmentSprite: {fileID: -3018373719272794405, guid: 64056e944c506425e9bff252a1323995,
+    type: 3}
+  collectableCompanion: {fileID: 3935030489936459385, guid: c5231df245f40494c984aecb845d4f91,
+    type: 3}
+  artwork: {fileID: -3018373719272794405, guid: 64056e944c506425e9bff252a1323995,
+    type: 3}

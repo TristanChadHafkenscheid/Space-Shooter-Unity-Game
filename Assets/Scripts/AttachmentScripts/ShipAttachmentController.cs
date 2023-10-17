@@ -13,7 +13,8 @@ namespace Attachments
         public static ShipAttachmentController instance = null;
 
         //change this after testing
-        public GameObject attachTest;
+        public GameObject attachmentObject;
+        public Sprite attachmentSpriteTest;
 
         private void Awake()
         {
@@ -27,12 +28,12 @@ namespace Attachments
         {
             if (UnityEngine.InputSystem.Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-                AddAttachment(attachTest);
+                AddAttachment(attachmentSpriteTest);
             }
         }
 
         //add ship attachment and instantiate it and parent to player
-        public void AddAttachment(GameObject attachment)
+        public void AddAttachment(Sprite attachmentSprite)
         {
             if (_attachmentsList.Count == _attachmentSizeCap)
             {
@@ -42,9 +43,11 @@ namespace Attachments
             GameObject newShipAttachmentObj;
             ShipAttachment newShipAttachment;
 
+            attachmentObject.GetComponent<SpriteRenderer>().sprite = attachmentSprite;
+
             if (_attachmentsList.Count == 0)
             {
-                newShipAttachmentObj = Instantiate(attachment.gameObject, _botOfPlayer.position, Quaternion.identity);
+                newShipAttachmentObj = Instantiate(attachmentObject.gameObject, _botOfPlayer.position, Quaternion.identity);
 
                 newShipAttachment = newShipAttachmentObj.GetComponent<ShipAttachment>();
 
@@ -55,7 +58,7 @@ namespace Attachments
             //last postion
             else
             {
-                newShipAttachmentObj = Instantiate(attachment.gameObject,
+                newShipAttachmentObj = Instantiate(attachmentObject.gameObject,
                     _attachmentsList[_attachmentsList.Count - 1].BotOfAttachment.position, Quaternion.identity);
 
                 newShipAttachment = newShipAttachmentObj.GetComponent<ShipAttachment>();

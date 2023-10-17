@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f4dc6fd8902428bb32df80ed407b29, type: 3}
+  m_Name: BobCompanion
+  m_EditorClassIdentifier: 
+  companionId: 2
+  companionName: Bob the Slime
+  description: It's a slime
+  shipAttachmentSprite: {fileID: -1363144565666374382, guid: 64056e944c506425e9bff252a1323995,
+    type: 3}
+  collectableCompanion: {fileID: 8465244143781412896, guid: 84fbaf17c141a4c6cbd9ed3ec48ddc45,
+    type: 3}
+  artwork: {fileID: -1363144565666374382, guid: 64056e944c506425e9bff252a1323995,
+    type: 3}

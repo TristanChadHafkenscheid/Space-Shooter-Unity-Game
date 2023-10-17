@@ -15,6 +15,7 @@ namespace Managers
         [SerializeField] private GameObject _pauseMenuPanel;
         [SerializeField] private GameObject _LevelUpPanel;
         [SerializeField] private GameObject _touchJoystickCanvas;
+        [SerializeField] private CompanionManager _companionManager;
 
         public GameObject PauseMenuPanel { get { return _pauseMenuPanel; } }
         public GameObject LevelUpPanel { get { return _LevelUpPanel; } }
@@ -49,6 +50,11 @@ namespace Managers
         {
             _score += addToScore;
             _scoreText.text = "Score: " + _score.ToString();
+
+            if (_score >= _companionManager.ScoreToSpawnCompanion)
+            {
+                _companionManager.SpawnCollectableCompanion();
+            }
         }
 
         public void CheckForBestScore()

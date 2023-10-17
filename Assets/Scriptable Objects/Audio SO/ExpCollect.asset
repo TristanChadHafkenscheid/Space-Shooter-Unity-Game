@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ExpCollect
   m_EditorClassIdentifier: 
   clipName: ExpCollect
-  clip: {fileID: 8300000, guid: 28df3725b9ff841bc9e6a5e0a39d8160, type: 3}
+  clip: {fileID: 8300000, guid: a2b342a2ca98246308092d26f728ec2b, type: 3}
   source: {fileID: 0}
   mixerGroup: {fileID: 24300002, guid: 531ac00dadd8f48ad8fe9ce85915d227, type: 2}
-  Volume: 0.5
+  Volume: 0.8
   Pitch: 1
   Loop: 0
   playedThisFrame: 0

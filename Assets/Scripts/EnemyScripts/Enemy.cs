@@ -114,10 +114,6 @@ namespace Enemy
 
                 EnemyDestroyed();
             }
-            else if (collision.gameObject.CompareTag("Attachment"))
-            {
-                //damage attachment
-            }
         }
 
         private void OnCollisionStay2D(Collision2D collision)
