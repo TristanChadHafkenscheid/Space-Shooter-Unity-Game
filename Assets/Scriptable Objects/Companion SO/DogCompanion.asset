@@ -19,5 +19,4 @@ MonoBehaviour:
     type: 3}
   collectableCompanion: {fileID: 3935030489936459385, guid: c5231df245f40494c984aecb845d4f91,
     type: 3}
-  artwork: {fileID: -3018373719272794405, guid: 64056e944c506425e9bff252a1323995,
-    type: 3}
+  artwork: {fileID: 516600885337197556, guid: 64056e944c506425e9bff252a1323995, type: 3}

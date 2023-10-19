@@ -4,88 +4,103 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 1234284071641561191
-    second: PlayerSprite
+    second: SS_PlayerSprite
   - first:
       213: -1134422737162685038
-    second: Enemy1Sprite
+    second: SS_Enemy1Sprite
   - first:
       213: 7859423916816016066
-    second: Enemy2Sprite
+    second: SS_Enemy2Sprite
   - first:
       213: -6072658622951829477
-    second: Enemy3Sprite
+    second: SS_Enemy3Sprite
   - first:
       213: 1363500662810241915
-    second: PauseButtonSprite
+    second: SS_PauseButtonSprite
   - first:
       213: 7008846806024951563
     second: Bunny Ship copy_5
   - first:
       213: -5110723405426805416
-    second: HeartSprite
+    second: SS_HeartSprite
   - first:
       213: -5308954254844984303
-    second: AmoungUsSprite
+    second: SS_AstronautSprite
   - first:
       213: -1363144565666374382
-    second: BobSprite
+    second: SS_BobSprite
   - first:
       213: -3018373719272794405
-    second: DogSprite
+    second: SS_DogSprite
   - first:
       213: 1768650093140228677
-    second: FishSprite
+    second: SS_FishSprite
   - first:
       213: 2105604887180491051
-    second: AsteroidSprite
+    second: SS_AsteroidSprite
   - first:
       213: 4210503003860296552
-    second: ExpSprite
+    second: SS_ExpSprite
   - first:
       213: 5546671543968653177
-    second: RedLaserSprite
+    second: SS_RedLaserSprite
   - first:
       213: 8755591262435691780
-    second: GreenLaserSprite
+    second: SS_GreenLaserSprite
   - first:
       213: 3569060591338150036
-    second: PowerUpPanel
+    second: SS_PowerUpPanel
   - first:
       213: 3037246863605689607
-    second: HealthRegenIcon
+    second: SS_HealthRegenIcon
   - first:
       213: -4270841917978208107
-    second: BigLaserIcon
+    second: SS_BigLaserIcon
   - first:
       213: 4108709483861734172
-    second: Shield
+    second: SS_Shield
   - first:
       213: 117579240609610034
-    second: GreenButton
+    second: SS_GreenButton
   - first:
       213: -4279491114197954309
-    second: RedButton
+    second: SS_RedButton
   - first:
       213: 5864925733272587875
-    second: BlueButton
+    second: SS_BlueButton
   - first:
       213: -808852002972430351
-    second: MagnetIcon
+    second: SS_MagnetIcon
   - first:
       213: -209682078468060337
-    second: FireRateIcon
+    second: SS_FireRateIcon
   - first:
       213: 5953836168609581550
-    second: SpeedIcon
+    second: SS_SpeedIcon
   - first:
       213: 4223864689885752515
-    second: ShieldIcon
+    second: SS_ShieldIcon
   - first:
       213: 1313727726640032021
-    second: JoystickOuterRing
+    second: SS_JoystickOuterRing
   - first:
       213: -8696046247174097598
-    second: JoystickKnob
+    second: SS_JoystickKnob
+  - first:
+      213: -8473648798283249283
+    second: SS_CompanionPanel
+  - first:
+      213: 516600885337197556
+    second: SS_DogIcon
+  - first:
+      213: 2476015795204076375
+    second: SS_FishIcon
+  - first:
+      213: -7219902515997830323
+    second: SS_AstronautIcon
+  - first:
+      213: 7890891646848442187
+    second: SS_BobIcon
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -207,7 +222,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerSprite
+      name: SS_PlayerSprite
       rect:
         serializedVersion: 2
         x: 0
@@ -228,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Sprite
+      name: SS_Enemy1Sprite
       rect:
         serializedVersion: 2
         x: 21
@@ -249,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy2Sprite
+      name: SS_Enemy2Sprite
       rect:
         serializedVersion: 2
         x: 41
@@ -270,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy3Sprite
+      name: SS_Enemy3Sprite
       rect:
         serializedVersion: 2
         x: 0
@@ -291,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PauseButtonSprite
+      name: SS_PauseButtonSprite
       rect:
         serializedVersion: 2
         x: 109
@@ -312,7 +327,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HeartSprite
+      name: SS_HeartSprite
       rect:
         serializedVersion: 2
         x: 97
@@ -333,7 +348,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AmoungUsSprite
+      name: SS_AstronautSprite
       rect:
         serializedVersion: 2
         x: 0
@@ -354,7 +369,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BobSprite
+      name: SS_BobSprite
       rect:
         serializedVersion: 2
         x: 0
@@ -375,7 +390,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DogSprite
+      name: SS_DogSprite
       rect:
         serializedVersion: 2
         x: 9
@@ -396,7 +411,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FishSprite
+      name: SS_FishSprite
       rect:
         serializedVersion: 2
         x: 9
@@ -417,7 +432,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsteroidSprite
+      name: SS_AsteroidSprite
       rect:
         serializedVersion: 2
         x: 18
@@ -438,7 +453,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ExpSprite
+      name: SS_ExpSprite
       rect:
         serializedVersion: 2
         x: 97
@@ -459,7 +474,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedLaserSprite
+      name: SS_RedLaserSprite
       rect:
         serializedVersion: 2
         x: 103
@@ -480,7 +495,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GreenLaserSprite
+      name: SS_GreenLaserSprite
       rect:
         serializedVersion: 2
         x: 106
@@ -501,7 +516,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PowerUpPanel
+      name: SS_PowerUpPanel
       rect:
         serializedVersion: 2
         x: 48
@@ -522,7 +537,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealthRegenIcon
+      name: SS_HealthRegenIcon
       rect:
         serializedVersion: 2
         x: 32
@@ -543,7 +558,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigLaserIcon
+      name: SS_BigLaserIcon
       rect:
         serializedVersion: 2
         x: 32
@@ -564,7 +579,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shield
+      name: SS_Shield
       rect:
         serializedVersion: 2
         x: 97
@@ -585,7 +600,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GreenButton
+      name: SS_GreenButton
       rect:
         serializedVersion: 2
         x: 64
@@ -606,7 +621,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedButton
+      name: SS_RedButton
       rect:
         serializedVersion: 2
         x: 64
@@ -627,7 +642,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BlueButton
+      name: SS_BlueButton
       rect:
         serializedVersion: 2
         x: 64
@@ -648,7 +663,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MagnetIcon
+      name: SS_MagnetIcon
       rect:
         serializedVersion: 2
         x: 97
@@ -669,7 +684,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireRateIcon
+      name: SS_FireRateIcon
       rect:
         serializedVersion: 2
         x: 32
@@ -690,7 +705,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpeedIcon
+      name: SS_SpeedIcon
       rect:
         serializedVersion: 2
         x: 48
@@ -711,7 +726,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShieldIcon
+      name: SS_ShieldIcon
       rect:
         serializedVersion: 2
         x: 48
@@ -732,7 +747,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JoystickOuterRing
+      name: SS_JoystickOuterRing
       rect:
         serializedVersion: 2
         x: 0
@@ -753,7 +768,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JoystickKnob
+      name: SS_JoystickKnob
       rect:
         serializedVersion: 2
         x: 0
@@ -769,6 +784,111 @@ TextureImporter:
       bones: []
       spriteID: 245b1d60300715780800000000000000
       internalID: -8696046247174097598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_CompanionPanel
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7949e2305d876a80800000000000000
+      internalID: -8473648798283249283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_DogIcon
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fb0d25a4c55b2700800000000000000
+      internalID: 516600885337197556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_FishIcon
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 753356b4f339c5220800000000000000
+      internalID: 2476015795204076375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_AstronautIcon
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4310051ae0cdcb90800000000000000
+      internalID: -7219902515997830323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_BobIcon
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4f9f732524128d60800000000000000
+      internalID: 7890891646848442187
       vertices: []
       indices: 
       edges: []

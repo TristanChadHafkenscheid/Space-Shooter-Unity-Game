@@ -12,6 +12,7 @@ namespace Managers
         private GameObject _pauseMenuGameObject;
         private GameObject _touchJoystickCanvas;
         private GameObject _levelUpPanel;
+        private GameObject _companionPanel;
         private AudioManager _audioManager;
 
         private void Start()
@@ -19,6 +20,7 @@ namespace Managers
             _pauseMenuGameObject = UIManager.instance.PauseMenuPanel;
             _touchJoystickCanvas = UIManager.instance.TouchJoystickCanvas;
             _levelUpPanel = UIManager.instance.LevelUpPanel;
+            _companionPanel = UIManager.instance.CompanionPanel;
             _audioManager = AudioManager.Instance;
             _audioManager.Play("BackgroundMusic");
         }
@@ -62,6 +64,22 @@ namespace Managers
             {
                 Time.timeScale = 1;
                 _levelUpPanel.SetActive(false);
+                _touchJoystickCanvas.SetActive(true);
+            }
+        }
+
+        public void ActivateCompanionPanel(bool isPaused)
+        {
+            if (isPaused == true)
+            {
+                Time.timeScale = 0;
+                _companionPanel.SetActive(true);
+                _touchJoystickCanvas.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                _companionPanel.SetActive(false);
                 _touchJoystickCanvas.SetActive(true);
             }
         }

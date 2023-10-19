@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3935030489936459381}
   - component: {fileID: 3935030489936459366}
   - component: {fileID: 3935030489936459367}
+  - component: {fileID: 4068899430088007310}
   m_Layer: 0
   m_Name: Dog_CollectableCompanion_Prefab
   m_TagString: Attachment
@@ -123,3 +124,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _companion: {fileID: 11400000, guid: 738fb97b871174b01be3e6985ab5d702, type: 2}
+--- !u!95 &4068899430088007310
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3935030489936459385}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 710c41554675640bb96531bfa8b0cab7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

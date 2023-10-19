@@ -16,15 +16,14 @@ namespace PowerUps
         public PowerUp DisplayedPowerUp
         {
             get { return _powerUp; }
-            set { _powerUp = value; }
         }
 
-        public void UpdateDisplay()
+        public void UpdateDisplay(PowerUp _newRandPowerUp)
         {
+            _powerUp = _newRandPowerUp;
             _nameText.text = _powerUp.powerUpName;
             _descriptionText.text = _powerUp.description;
             _levelText.text = "Level: " + _powerUp.level.ToString();
-
             artworkImage.sprite = _powerUp.artwork;
         }
     }

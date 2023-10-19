@@ -2,28 +2,24 @@
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
-using Audio;
+using Managers;
 
 public class CompanionManager : MonoBehaviour
 {
-    private PlayerController _playerController;
-
-    //[SerializeField] private PowerUpDisplay _powerUpDisplay;
-
     [SerializeField] private List<Companion> _allUncollectedCompanions = new List<Companion>();
+    [SerializeField] private int _scoreToSpawnCompanion = 200;
 
     private List<Companion> _playersCompanions = new List<Companion>();
     private Companion _randomlySelectedCompanion;
-
-    private AudioManager _audioManager;
-    [SerializeField] private int _scoreToSpawnCompanion = 200;
+    private PlayerController _playerController;
+    private CompanionPanelDisplay _companionPanelDisplay;
 
     public int ScoreToSpawnCompanion { get => _scoreToSpawnCompanion; }
 
     private void Start()
     {
         _playerController = PlayerController.instance;
-        _audioManager = AudioManager.Instance;
+        _companionPanelDisplay = UIManager.instance.CompanionPanel.GetComponent<CompanionPanelDisplay>();
     }
 
     public void ActivateCompanion()
@@ -40,54 +36,39 @@ public class CompanionManager : MonoBehaviour
         //    case 2: //speed increase
         //        _playerController.Speed += _speedIncrease;
         //        break;
-        //    case 3: //exp magnet increased
-        //        _expMagnet.IncreaseRange(_expMagentIncrease);
-        //        break;
-        //    case 4: //heal over time
-        //        StartCoroutine(HealOverTime());
-        //        break;
-        //    case 5: //big laser blast
-        //        StartCoroutine(ActivateBigLaserPeriodicaly());
-        //        break;
-        //    case 6: //shields
-        //        StartCoroutine(ActivateShieldsPeriodicaly());
-        //        break;
         //    default:
         //        break;
         //}
     }
 
-    //private void RemovePowerUpFromList()
-    //{
-    //    for (int i = 0; i < _powerUps.Count; i++)
-    //    {
-    //        if (_powerUps[i].level >= _maxPowerUpLevel)
-    //        {
-    //            _powerUps.RemoveAt(i);
-    //        }
-    //    }
-    //}
-
     public void SpawnCollectableCompanion()
     {
+        _scoreToSpawnCompanion += _scoreToSpawnCompanion;
+
         if (_allUncollectedCompanions.Count <= 0)
         {
             return;
         }
-        _scoreToSpawnCompanion += _scoreToSpawnCompanion;
 
         int randIndex = Random.Range(0, _allUncollectedCompanions.Count - 1);
         _randomlySelectedCompanion = _allUncollectedCompanions[randIndex];
 
-        GameObject spawnedCompanion = Instantiate(_randomlySelectedCompanion.collectableCompanion, _playerController.transform.position + new Vector3(3, 3, 0), Quaternion.identity);
+        Vector3 randomSpawn = _playerController.transform.position + new Vector3(5 * (Random.Range(0f, 1f) * 2 - 1), 5 * (Random.Range(0f, 1f) * 2 - 1), 0);
+
+        GameObject spawnedCompanion = Instantiate(_randomlySelectedCompanion.collectableCompanion, randomSpawn, Quaternion.identity);
         spawnedCompanion.GetComponent<SpriteRenderer>().sprite = _randomlySelectedCompanion.shipAttachmentSprite;
+
+        //updates the display for the companion to new randomly selected companion
+        _companionPanelDisplay.UpdateDisplay(_randomlySelectedCompanion);
+
         StartCoroutine(DestroyCollectableCompanion(spawnedCompanion));
     }
 
-    //display companion abilities on collect
-
     //remove companion ability when companion health is 0
+    public void RemoveCompanion()
+    {
 
+    }
 
     //delete spawned in companion if player does not collect after 20/30 seconds
     IEnumerator DestroyCollectableCompanion(GameObject companion)

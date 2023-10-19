@@ -13,12 +13,14 @@ namespace Managers
         [SerializeField] private GameObject _gameOverPanel;
         [SerializeField] private TextMeshProUGUI _gameOverText;
         [SerializeField] private GameObject _pauseMenuPanel;
-        [SerializeField] private GameObject _LevelUpPanel;
+        [SerializeField] private GameObject _levelUpPanel;
         [SerializeField] private GameObject _touchJoystickCanvas;
         [SerializeField] private CompanionManager _companionManager;
+        [SerializeField] private GameObject _companionPanel;
 
         public GameObject PauseMenuPanel { get { return _pauseMenuPanel; } }
-        public GameObject LevelUpPanel { get { return _LevelUpPanel; } }
+        public GameObject LevelUpPanel { get { return _levelUpPanel; } }
+        public GameObject CompanionPanel { get { return _companionPanel; } }
         public GameObject TouchJoystickCanvas { get { return _touchJoystickCanvas; } }
         public static UIManager instance = null;
 

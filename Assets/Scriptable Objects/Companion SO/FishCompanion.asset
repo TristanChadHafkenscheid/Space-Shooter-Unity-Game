@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70f4dc6fd8902428bb32df80ed407b29, type: 3}
-  m_Name: BobCompanion
+  m_Name: FishCompanion
   m_EditorClassIdentifier: 
-  companionId: 2
-  companionName: Bob the Slime
-  description: It's a slime
-  shipAttachmentSprite: {fileID: -1363144565666374382, guid: 64056e944c506425e9bff252a1323995,
+  companionId: 3
+  companionName: Fish
+  description: It's a fish
+  shipAttachmentSprite: {fileID: 1768650093140228677, guid: 64056e944c506425e9bff252a1323995,
     type: 3}
   collectableCompanion: {fileID: 8465244143781412896, guid: 84fbaf17c141a4c6cbd9ed3ec48ddc45,
     type: 3}
-  artwork: {fileID: 7890891646848442187, guid: 64056e944c506425e9bff252a1323995, type: 3}
+  artwork: {fileID: 2476015795204076375, guid: 64056e944c506425e9bff252a1323995, type: 3}

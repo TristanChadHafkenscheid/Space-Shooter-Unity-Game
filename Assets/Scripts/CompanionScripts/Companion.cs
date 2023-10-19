@@ -8,6 +8,8 @@ public class Companion : ScriptableObject
     public string description;
 
     public Sprite shipAttachmentSprite;
+
+    //Get rid of this and have a main one with a sprite replacement in manager?
     public GameObject collectableCompanion;
     public Sprite artwork;
 }

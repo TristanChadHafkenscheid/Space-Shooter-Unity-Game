@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70f4dc6fd8902428bb32df80ed407b29, type: 3}
-  m_Name: BobCompanion
+  m_Name: AstronautCompanion
   m_EditorClassIdentifier: 
-  companionId: 2
-  companionName: Bob the Slime
-  description: It's a slime
-  shipAttachmentSprite: {fileID: -1363144565666374382, guid: 64056e944c506425e9bff252a1323995,
+  companionId: 4
+  companionName: Astronaut
+  description: It's a Astronaut
+  shipAttachmentSprite: {fileID: -5308954254844984303, guid: 64056e944c506425e9bff252a1323995,
     type: 3}
-  collectableCompanion: {fileID: 8465244143781412896, guid: 84fbaf17c141a4c6cbd9ed3ec48ddc45,
+  collectableCompanion: {fileID: 2231883632069058341, guid: 62e6765fa142543ec9db0f8c6a96f7d0,
     type: 3}
-  artwork: {fileID: 7890891646848442187, guid: 64056e944c506425e9bff252a1323995, type: 3}
+  artwork: {fileID: -7219902515997830323, guid: 64056e944c506425e9bff252a1323995,
+    type: 3}

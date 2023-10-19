@@ -137,23 +137,17 @@ namespace Managers
                 }
                 selectedPowerUps.Add(selectedpowerUp);
             }
-            _powerUpDisplay1.DisplayedPowerUp = selectedPowerUps[0];
-            _powerUpDisplay1.UpdateDisplay();
-            _powerUpDisplay2.DisplayedPowerUp = selectedPowerUps[1];
-            _powerUpDisplay2.UpdateDisplay();
-            _powerUpDisplay3.DisplayedPowerUp = selectedPowerUps[2];
-            _powerUpDisplay3.UpdateDisplay();
+            _powerUpDisplay1.UpdateDisplay(selectedPowerUps[0]);
+            _powerUpDisplay2.UpdateDisplay(selectedPowerUps[1]);
+            _powerUpDisplay3.UpdateDisplay(selectedPowerUps[2]);
         }
 
         //debugger for power up
         public void SelectPowerUpsDebug()
         {
-            _powerUpDisplay1.DisplayedPowerUp = _powerUps[_powerUpsChosenDebug.x];
-            _powerUpDisplay1.UpdateDisplay();
-            _powerUpDisplay2.DisplayedPowerUp = _powerUps[_powerUpsChosenDebug.y];
-            _powerUpDisplay2.UpdateDisplay();
-            _powerUpDisplay3.DisplayedPowerUp = _powerUps[_powerUpsChosenDebug.z];
-            _powerUpDisplay3.UpdateDisplay();
+            _powerUpDisplay1.UpdateDisplay(_powerUps[_powerUpsChosenDebug.x]);
+            _powerUpDisplay2.UpdateDisplay(_powerUps[_powerUpsChosenDebug.y]);
+            _powerUpDisplay3.UpdateDisplay(_powerUps[_powerUpsChosenDebug.z]);
         }
 
         private void ResetPowerUpLevels()
