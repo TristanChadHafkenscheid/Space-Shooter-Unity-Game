@@ -17,24 +17,23 @@ namespace Enemy
         private SpawnManager _spawnManager;
         private Collider2D _colldier;
         private AudioManager _audioManager;
+        private Rigidbody2D _rigidBody;
+        private Vector2 _movement;
+
         //private float _fireRate = 3f;
         //private float _canFire = -1f;
         //private bool _isShooting = false;
-        private Rigidbody2D _rigidBody;
-        private Vector2 _movement;
 
         private float _canDamage;
         [SerializeField] float _damageRate;
 
         void Start()
         {
-            _player = PlayerController.instance;
+            _player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
             _spawnManager = SpawnManager.instance;
-
             _audioManager = AudioManager.Instance;
 
             _colldier = GetComponent<Collider2D>();
-
             if (_colldier == null)
             {
                 Debug.LogError("Colldier2D on enemy is NULL");

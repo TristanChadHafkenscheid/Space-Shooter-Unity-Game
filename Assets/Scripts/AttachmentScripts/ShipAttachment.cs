@@ -8,21 +8,28 @@ namespace Attachments
 {
     public class ShipAttachment : MonoBehaviour
     {
-        //public int powerupID; //0 equals triple shot, 1 = speed, 2 = shields, 3 = big laser
         [SerializeField] private Transform _botOfAttachment;
         [SerializeField] private int _health;
         [SerializeField] private GameObject _healthBarPref;
         [SerializeField] private Color _damageColour;
 
         private ShipAttachmentController _shipAttachmentController;
+        private CompanionManager _companionManager;
         private GameObject _healthBar;
         private SpriteRenderer _sprite;
         private AudioManager _audioManager;
         private Slider _healthSlider;
         private HingeJoint2D _joint;
+        private Companion _attachmentCompanion;
+        private SpawnManager _spawnManager;
 
         public HingeJoint2D Joint { get => _joint; }
         public Transform BotOfAttachment { get => _botOfAttachment; }
+        public Companion AttachmentCompanion 
+        { 
+            get => _attachmentCompanion; 
+            set => _attachmentCompanion = value;
+        }
 
         private void Awake()
         {
@@ -32,7 +39,9 @@ namespace Attachments
         private void Start()
         {
             _shipAttachmentController = ShipAttachmentController.instance;
+            _companionManager = GameObject.FindGameObjectWithTag("Player").GetComponent<CompanionManager>();
             _audioManager = AudioManager.Instance;
+            _spawnManager = SpawnManager.instance;
 
             _sprite = GetComponent<SpriteRenderer>();
             if (_sprite == null)
@@ -66,8 +75,10 @@ namespace Attachments
             {
                 _sprite.DOKill();
                 _shipAttachmentController.RemoveAttachment(this);
+                _companionManager.RemoveCompanion(_attachmentCompanion);
                 Destroy(_healthBar);
-                //spawn in expolosion
+                _spawnManager.SpawnExplosion(transform);
+                _audioManager.Play("EnemyExplosion");
             }
         }
 

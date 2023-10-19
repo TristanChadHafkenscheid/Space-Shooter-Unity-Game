@@ -17,6 +17,6 @@ MonoBehaviour:
   description: It's a fish
   shipAttachmentSprite: {fileID: 1768650093140228677, guid: 64056e944c506425e9bff252a1323995,
     type: 3}
-  collectableCompanion: {fileID: 8465244143781412896, guid: 84fbaf17c141a4c6cbd9ed3ec48ddc45,
+  collectableCompanion: {fileID: 5590198526425301037, guid: 45ca234cfff2d4e678cc2d3f086fedf7,
     type: 3}
   artwork: {fileID: 2476015795204076375, guid: 64056e944c506425e9bff252a1323995, type: 3}

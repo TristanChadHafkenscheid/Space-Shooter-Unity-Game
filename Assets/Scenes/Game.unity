@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: 164067008}
   - component: {fileID: 164067007}
   m_Layer: 5
-  m_Name: Canvas - world space
+  m_Name: ==Canvas_World_Space==
   m_TagString: CanvasWorldSpace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -929,7 +929,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7235,37 +7235,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2005758556}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &507198774
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 507198775}
-  m_Layer: 0
-  m_Name: ==Gameplay==
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &507198775
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507198774}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4898494364969832238}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &546247475
 GameObject:
@@ -14821,6 +14790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4e4c6e4b4cc4e2eab6ef47079a055b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxPowerUpLevel: 10
   _expMagnet: {fileID: 771964381}
   _fireRateIncrease: 0.07
   _speedIncrease: 10
@@ -14839,9 +14809,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1a11d338e63046d8ae35d0fce410932, type: 2}
   - {fileID: 11400000, guid: c26b27b6df7f06040b69ee2079082158, type: 2}
   - {fileID: 11400000, guid: 0c0c5540c770f654d82ef69f9aa2579b, type: 2}
-  _incremenetNumber: 1.1
   _powerUpsChosenDebug: {x: 0, y: 2, z: 3}
-  _maxPowerUpLevel: 10
 --- !u!1 &1279267879
 GameObject:
   m_ObjectHideFlags: 0
@@ -15309,7 +15277,7 @@ Transform:
   - {fileID: 287418824}
   - {fileID: 1926199594}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1391403698
 GameObject:
@@ -15431,7 +15399,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8, y: 3.2}
+    oldSize: {x: 0.42, y: 3.2}
     newSize: {x: 1.8, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -17350,7 +17318,7 @@ Transform:
   - {fileID: 837532353}
   - {fileID: 630618381}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1926199592
 GameObject:
@@ -22856,14 +22824,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 100
   _speed: 70
-  _speedMultiplier: 1.5
   _laserBarrel: {fileID: 4898494364439744115}
   _fireRate: 0.7
-  _bigLaser: {fileID: 1391403698}
+  _canFire: 1
   _shieldsVisualizer: {fileID: 4898494364566090030}
   _damageColour: {r: 0.8784314, g: 0.21960784, b: 0.39215687, a: 1}
   _damageParticles: {fileID: 354243796}
-  _canFire: 1
   _startCamera: {fileID: 630618380}
   _playerCamera: {fileID: 837532352}
 --- !u!212 &4898494364969832237
@@ -22935,8 +22901,8 @@ Transform:
   - {fileID: 354243794}
   - {fileID: 4898494364566090031}
   - {fileID: 1391403699}
-  m_Father: {fileID: 507198775}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4898494364969832239
 BoxCollider2D:
@@ -22997,8 +22963,7 @@ MonoBehaviour:
   _playerRigidbody: {fileID: 5}
   attachmentObject: {fileID: 2075217223107937759, guid: ba60d765249504fd794384de656b8204,
     type: 3}
-  attachmentSpriteTest: {fileID: 1768650093140228677, guid: 64056e944c506425e9bff252a1323995,
-    type: 3}
+  attachmentCompanionTest: {fileID: 0}
 --- !u!82 &4898494364969832242
 AudioSource:
   m_ObjectHideFlags: 0
@@ -23113,3 +23078,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 32908d07a1b924fdb8d9b4b5d5bd0d19, type: 2}
   - {fileID: 11400000, guid: 570171b104dcc40179626d8d15f4d19c, type: 2}
   _scoreToSpawnCompanion: 40
+  _spawnOffScreen: 5

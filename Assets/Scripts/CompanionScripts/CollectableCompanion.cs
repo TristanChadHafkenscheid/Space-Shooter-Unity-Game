@@ -26,8 +26,7 @@ public class CollectableCompanion : MonoBehaviour
             //start companion ability
             _gameManager.ActivateCompanionPanel(true);
             _companionManager.ActivateCompanion();
-            _attachmentController.AddAttachment(_companion.shipAttachmentSprite);
-
+            _attachmentController.AddAttachment(_companion);
             Destroy(gameObject);
         }
     }

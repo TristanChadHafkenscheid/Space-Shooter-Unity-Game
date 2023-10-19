@@ -9,12 +9,10 @@ namespace Attachments
         [SerializeField] private List<ShipAttachment> _attachmentsList = new List<ShipAttachment>();
         [SerializeField] private int _attachmentSizeCap = 5;
         [SerializeField] private Rigidbody2D _playerRigidbody;
+        [SerializeField] GameObject attachmentObject;
+        [SerializeField] Companion attachmentCompanionTest;
 
         public static ShipAttachmentController instance = null;
-
-        //change this after testing
-        public GameObject attachmentObject;
-        public Sprite attachmentSpriteTest;
 
         private void Awake()
         {
@@ -24,16 +22,25 @@ namespace Attachments
                 Destroy(gameObject);
         }
 
+        private void Start()
+        {
+            _playerRigidbody = GetComponent<Rigidbody2D>();
+            if (_playerRigidbody == null)
+            {
+                Debug.LogError("rigidbody on the player is NULL");
+            }
+        }
+
         void Update()
         {
             if (UnityEngine.InputSystem.Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-                AddAttachment(attachmentSpriteTest);
+                AddAttachment(attachmentCompanionTest);
             }
         }
 
         //add ship attachment and instantiate it and parent to player
-        public void AddAttachment(Sprite attachmentSprite)
+        public void AddAttachment(Companion companion)
         {
             if (_attachmentsList.Count == _attachmentSizeCap)
             {
@@ -43,17 +50,20 @@ namespace Attachments
             GameObject newShipAttachmentObj;
             ShipAttachment newShipAttachment;
 
-            attachmentObject.GetComponent<SpriteRenderer>().sprite = attachmentSprite;
+            attachmentObject.GetComponent<SpriteRenderer>().sprite = companion.shipAttachmentSprite;
 
+            //first position
             if (_attachmentsList.Count == 0)
             {
-                newShipAttachmentObj = Instantiate(attachmentObject.gameObject, _botOfPlayer.position, Quaternion.identity);
+                newShipAttachmentObj = Instantiate(attachmentObject.gameObject, _botOfPlayer.position, 
+                    Quaternion.identity);
 
                 newShipAttachment = newShipAttachmentObj.GetComponent<ShipAttachment>();
 
                 newShipAttachment.Joint.connectedBody = _playerRigidbody;
                 newShipAttachment.Joint.anchor = new Vector2(0f, 0.05f);
                 newShipAttachment.Joint.connectedAnchor = new Vector2(0, -0.1f);
+                newShipAttachment.AttachmentCompanion = companion;
             }
             //last postion
             else
@@ -65,6 +75,7 @@ namespace Attachments
                 newShipAttachment.Joint.connectedBody = _attachmentsList[_attachmentsList.Count - 1].GetComponent<Rigidbody2D>();
                 newShipAttachment.Joint.anchor = new Vector2(0, 0.046f);
                 newShipAttachment.Joint.connectedAnchor = new Vector2(0, -0.04f);
+                newShipAttachment.AttachmentCompanion = companion;
             }
             _attachmentsList.Add(newShipAttachment);
         }
