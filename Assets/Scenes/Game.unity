@@ -15793,7 +15793,8 @@ MonoBehaviour:
   _levelUpPanel: {fileID: 92160652}
   _touchJoystickCanvas: {fileID: 1618745677}
   _companionManager: {fileID: 4898494364969832243}
-  _companionPanel: {fileID: 1483753531}
+  _companionPanel: {fileID: 1483753536}
+  _companionArrowScreen: {fileID: 1717916189}
 --- !u!1 &1483753531
 GameObject:
   m_ObjectHideFlags: 0
@@ -17266,7 +17267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1717916188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17299,7 +17300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec53aa5ac8d54cf0a4838429daf42c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetObject: {fileID: 1527767386}
   _pointer: {fileID: 891314542}
   _borderSize: 100
 --- !u!1 &1802931398
@@ -23283,7 +23283,6 @@ MonoBehaviour:
     type: 3}
   attachmentCompanionTest: {fileID: 11400000, guid: 738fb97b871174b01be3e6985ab5d702,
     type: 2}
-  _companionManager: {fileID: 4898494364969832243}
 --- !u!82 &4898494364969832242
 AudioSource:
   m_ObjectHideFlags: 0
@@ -23398,3 +23397,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 32908d07a1b924fdb8d9b4b5d5bd0d19, type: 2}
   - {fileID: 11400000, guid: 570171b104dcc40179626d8d15f4d19c, type: 2}
   _scoreToSpawnCompanion: 40
+  spawnOffsetPos: 10

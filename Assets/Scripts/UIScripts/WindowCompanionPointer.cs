@@ -2,22 +2,26 @@
 
 public class WindowCompanionPointer : MonoBehaviour
 {
-    [SerializeField] private GameObject _targetObject;
     [SerializeField] private GameObject _pointer;
     [SerializeField] private float _borderSize;
 
-    private Vector3 _targetPosition;
+    private GameObject _targetObject;
     private RectTransform _pointerRectTransform;
+
+    public GameObject TargetObject
+    {
+        get => _targetObject;
+        set => _targetObject = value;
+    }
 
     private void Start()
     {
         _pointerRectTransform = _pointer.GetComponent<RectTransform>();
-        _targetPosition = _targetObject.transform.position;
     }
 
     private void Update()
     {
-        Vector3 toPosition = _targetPosition;
+        Vector3 toPosition = _targetObject.transform.position;
         Vector3 fromPosition = Camera.main.transform.position;
         fromPosition.z = 0;
 
@@ -25,7 +29,7 @@ public class WindowCompanionPointer : MonoBehaviour
         float angle = GetAngleFromVectorFloat(dir);
         _pointerRectTransform.localEulerAngles = new Vector3(0, 0, angle);
 
-        Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(_targetPosition);
+        Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(_targetObject.transform.position);
 
         bool isOffScreen = targetPositionScreenPoint.x <= _borderSize || targetPositionScreenPoint.x
             >= Screen.width - _borderSize || targetPositionScreenPoint.y <= _borderSize || targetPositionScreenPoint.y >= Screen.height - (_borderSize * 2);

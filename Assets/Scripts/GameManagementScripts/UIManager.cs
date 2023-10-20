@@ -16,11 +16,12 @@ namespace Managers
         [SerializeField] private GameObject _levelUpPanel;
         [SerializeField] private GameObject _touchJoystickCanvas;
         [SerializeField] private CompanionManager _companionManager;
-        [SerializeField] private GameObject _companionPanel;
+        [SerializeField] private CompanionPanelDisplay _companionPanel;
+        [SerializeField] private WindowCompanionPointer _companionArrowScreen;
 
         public GameObject PauseMenuPanel { get { return _pauseMenuPanel; } }
         public GameObject LevelUpPanel { get { return _levelUpPanel; } }
-        public GameObject CompanionPanel { get { return _companionPanel; } }
+        public CompanionPanelDisplay CompanionPanel { get { return _companionPanel; } }
         public GameObject TouchJoystickCanvas { get { return _touchJoystickCanvas; } }
         public static UIManager instance = null;
 
@@ -107,6 +108,18 @@ namespace Managers
                 _gameOverText.text = "";
                 yield return new WaitForSeconds(0.5f);
             }
+        }
+
+        public void ActivateCompanionArrow(GameObject targetObject)
+        {
+            _companionArrowScreen.gameObject.SetActive(true);
+            _companionArrowScreen.TargetObject = targetObject;
+        }
+
+        public void DeactivateCompanionArrow()
+        {
+            _companionArrowScreen.gameObject.SetActive(false);
+            _companionArrowScreen.TargetObject = null;
         }
     }
 }

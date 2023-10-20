@@ -12,7 +12,7 @@ namespace Managers
         private GameObject _pauseMenuGameObject;
         private GameObject _touchJoystickCanvas;
         private GameObject _levelUpPanel;
-        private GameObject _companionPanel;
+        private CompanionPanelDisplay _companionPanel;
         private AudioManager _audioManager;
 
         private void Start()
@@ -73,13 +73,13 @@ namespace Managers
             if (isPaused == true)
             {
                 Time.timeScale = 0;
-                _companionPanel.SetActive(true);
+                _companionPanel.gameObject.SetActive(true);
                 _touchJoystickCanvas.SetActive(false);
             }
             else
             {
                 Time.timeScale = 1;
-                _companionPanel.SetActive(false);
+                _companionPanel.gameObject.SetActive(false);
                 _touchJoystickCanvas.SetActive(true);
             }
         }

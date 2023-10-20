@@ -4,25 +4,27 @@ using Managers;
 
 public class CollectableCompanion : MonoBehaviour
 {
+    [SerializeField] private Companion _companion;
+
     private CompanionManager _companionManager;
     private ShipAttachmentController _attachmentController;
     private GameManager _gameManager;
-
-    [SerializeField] private Companion _companion;
+    private UIManager _uIManager;
 
     void Start()
     {
         _companionManager = GameObject.FindWithTag("Player").GetComponent<CompanionManager>();
         _attachmentController = GameObject.FindWithTag("Player").GetComponent<ShipAttachmentController>();
         _gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        _uIManager = UIManager.instance;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            //start companion ability
             _gameManager.ActivateCompanionPanel(true);
+            _uIManager.DeactivateCompanionArrow();
             _companionManager.ActivateCompanion();
             _attachmentController.AddAttachment(_companion);
 
