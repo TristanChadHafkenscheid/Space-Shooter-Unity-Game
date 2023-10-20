@@ -8,7 +8,6 @@ public class CompanionManager : MonoBehaviour
 {
     [SerializeField] private List<Companion> _allUncollectedCompanions = new List<Companion>();
     [SerializeField] private int _scoreToSpawnCompanion = 200;
-    [SerializeField] private int _spawnOffScreen;
 
     private List<Companion> _playersCompanions = new List<Companion>();
     private Companion _randomlySelectedCompanion;
@@ -44,17 +43,17 @@ public class CompanionManager : MonoBehaviour
 
     public void SpawnCollectableCompanion()
     {
-        _scoreToSpawnCompanion += 40;
+        _scoreToSpawnCompanion += _scoreToSpawnCompanion;
 
         if (_allUncollectedCompanions.Count <= 0)
         {
             return;
         }
 
-        int randIndex = Random.Range(0, _allUncollectedCompanions.Count);
+        int randIndex = Random.Range(0, _allUncollectedCompanions.Count - 1);
         _randomlySelectedCompanion = _allUncollectedCompanions[randIndex];
 
-        Vector3 randomSpawn = _playerController.transform.position + new Vector3(_spawnOffScreen * (Random.Range(0, 2) * 2 - 1), _spawnOffScreen * (Random.Range(0, 2) * 2 - 1), 0);
+        Vector3 randomSpawn = _playerController.transform.position + new Vector3(5 * (Random.Range(0f, 1f) * 2 - 1), 5 * (Random.Range(0f, 1f) * 2 - 1), 0);
 
         GameObject spawnedCompanion = Instantiate(_randomlySelectedCompanion.collectableCompanion, randomSpawn, Quaternion.identity);
         spawnedCompanion.GetComponentInChildren<SpriteRenderer>().sprite = _randomlySelectedCompanion.shipAttachmentSprite;
@@ -65,11 +64,10 @@ public class CompanionManager : MonoBehaviour
         StartCoroutine(DestroyCollectableCompanion(spawnedCompanion));
     }
 
-    //remove companion ability when companion health is 0
-    public void RemoveCompanion(Companion _destroyedCompanion)
+    public void RemoveCompanion(Companion companinonToRemove)
     {
-        _playersCompanions.Remove(_destroyedCompanion);
-        _allUncollectedCompanions.Add(_destroyedCompanion);
+        _playersCompanions.Remove(companinonToRemove);
+        _allUncollectedCompanions.Add(companinonToRemove);
     }
 
     //delete spawned in companion if player does not collect after 20/30 seconds

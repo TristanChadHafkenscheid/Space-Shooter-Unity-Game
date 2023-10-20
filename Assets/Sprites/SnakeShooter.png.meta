@@ -101,6 +101,24 @@ TextureImporter:
   - first:
       213: 7890891646848442187
     second: SS_BobIcon
+  - first:
+      213: 1738748926871258502
+    second: SS_CriticalHitIcon
+  - first:
+      213: 3370598268713403675
+    second: SS_InstantHealIcon
+  - first:
+      213: -875749481005204948
+    second: SS_MissileIcon
+  - first:
+      213: -7925541152557751157
+    second: SS_PorcupineSprite
+  - first:
+      213: 8345577637292657956
+    second: SS_PorcupineIcon
+  - first:
+      213: -4581617128633589996
+    second: SS_Arrow
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -483,7 +501,7 @@ TextureImporter:
         height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 1, y: 3, z: 1, w: 3}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -889,6 +907,132 @@ TextureImporter:
       bones: []
       spriteID: b4f9f732524128d60800000000000000
       internalID: 7890891646848442187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_CriticalHitIcon
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 53
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 685c0cbcfe6412810800000000000000
+      internalID: 1738748926871258502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_InstantHealIcon
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 65
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1585376445c6ce20800000000000000
+      internalID: 3370598268713403675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_MissileIcon
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 65
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2ab378ac76b8d3f0800000000000000
+      internalID: -875749481005204948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_PorcupineSprite
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 67
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b842e052052d20290800000000000000
+      internalID: -7925541152557751157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_PorcupineIcon
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42dc544f4a271d370800000000000000
+      internalID: 8345577637292657956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_Arrow
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41f13f6fe73da60c0800000000000000
+      internalID: -4581617128633589996
       vertices: []
       indices: 
       edges: []

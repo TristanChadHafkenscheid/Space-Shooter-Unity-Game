@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Attachments;
 using Managers;
 
@@ -27,6 +25,7 @@ public class CollectableCompanion : MonoBehaviour
             _gameManager.ActivateCompanionPanel(true);
             _companionManager.ActivateCompanion();
             _attachmentController.AddAttachment(_companion);
+
             Destroy(gameObject);
         }
     }
