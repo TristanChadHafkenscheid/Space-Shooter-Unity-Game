@@ -13,6 +13,7 @@ namespace Player
 
         [Header("Shooting")]
         [SerializeField] private Transform _laserBarrel;
+        [SerializeField] private GameObject _bigLaser;
         [SerializeField] private float _fireRate = 0.5f;
         [SerializeField] private bool _canFire = false;
 
@@ -32,7 +33,6 @@ namespace Player
 
         private SpriteRenderer _sprite;
         private Rigidbody2D _rigidBody;
-        private GameObject _bigLaser;
 
         private SpawnManager _spawnManager;
         private GameManager _gameManager;
@@ -105,12 +105,6 @@ namespace Player
             if (_rigidBody == null)
             {
                 Debug.LogError("Rigidbody2D on the player is NULL");
-            }
-
-            _bigLaser = GameObject.FindGameObjectWithTag("BigLaser");
-            if (_bigLaser == null)
-            {
-                Debug.LogError("Big laser object is NULL");
             }
 
             _startCamera.SetActive(false);

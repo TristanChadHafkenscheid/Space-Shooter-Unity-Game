@@ -52,11 +52,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: INVASION2000 - Fire SDF
+  m_Name: INVASION2000 - Main Text SDF
   m_EditorClassIdentifier: 
-  hashCode: 1016124557
+  hashCode: -144873437
   material: {fileID: 2520991819672441720}
-  materialHashCode: 1940465165
+  materialHashCode: 877216803
   m_Version: 1.1.0
   m_SourceFontFileGUID: 2162d2bf99df945069b1d9c145b4a78f
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 2162d2bf99df945069b1d9c145b4a78f,
@@ -2459,7 +2459,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.1
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
@@ -2478,8 +2478,8 @@ Material:
     - _TextureHeight: 512
     - _TextureWidth: 512
     - _UnderlayDilate: 0
-    - _UnderlayOffsetX: 0.5
-    - _UnderlayOffsetY: -0.5
+    - _UnderlayOffsetX: 0
+    - _UnderlayOffsetY: -1
     - _UnderlaySoftness: 0
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
