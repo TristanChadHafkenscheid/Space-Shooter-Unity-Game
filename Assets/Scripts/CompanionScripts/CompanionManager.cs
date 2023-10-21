@@ -82,6 +82,8 @@ public class CompanionManager : MonoBehaviour
     IEnumerator DestroyCollectableCompanion(GameObject companion)
     {
         yield return new WaitForSeconds(30f);
+
+        _uiManager.DeactivateCompanionArrow();
         if (companion != null)
         {
             Destroy(companion);
