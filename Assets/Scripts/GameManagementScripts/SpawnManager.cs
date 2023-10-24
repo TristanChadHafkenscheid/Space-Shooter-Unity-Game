@@ -9,8 +9,10 @@ namespace Managers
         [SerializeField] private int _enemySpawnTime;
         [SerializeField] private float _offScreenOffset;
         [SerializeField] private ObjectPool _enemyPool;
+        [SerializeField] private ObjectPool _enemyShooterPool;
         [SerializeField] private ObjectPool _expPool;
         [SerializeField] private ObjectPool _playerLaserPool;
+        [SerializeField] private ObjectPool _enemyLaserPool;
         [SerializeField] private ObjectPool _explosionPool;
         [SerializeField] private float _explosionDisableTime;
 
@@ -19,7 +21,6 @@ namespace Managers
         private bool _stopSpawning = false;
 
         public static SpawnManager instance = null;
-
 
         private void Awake()
         {
@@ -32,6 +33,7 @@ namespace Managers
         private void Start()
         {
             InvokeRepeating(nameof(SpawnEnemy), _enemySpawnTime, _enemySpawnTime);
+            //InvokeRepeating(nameof(SpawnShooterEnemy), _enemySpawnTime, _enemySpawnTime);
         }
 
         private IEnumerator SpawnPowerupRoutine()
@@ -58,6 +60,20 @@ namespace Managers
                 return;
 
             GameObject newEnemy = _enemyPool.GetPooledObject();
+            if (newEnemy != null)
+            {
+                newEnemy.transform.position = CalculateSpawnPosition();
+                newEnemy.transform.rotation = Quaternion.identity;
+                newEnemy.SetActive(true);
+            }
+        }
+
+        private void SpawnShooterEnemy()
+        {
+            if (_stopEnemiesSpawning)
+                return;
+
+            GameObject newEnemy = _enemyShooterPool.GetPooledObject();
             if (newEnemy != null)
             {
                 newEnemy.transform.position = CalculateSpawnPosition();
@@ -118,6 +134,18 @@ namespace Managers
         public void SpawnPlayerLaser(Transform barrelTrans, Transform playerTrans)
         {
             GameObject laser = _playerLaserPool.GetPooledObject();
+
+            if (laser != null)
+            {
+                laser.SetActive(true);
+                laser.transform.position = barrelTrans.position;
+                laser.transform.rotation = playerTrans.rotation;
+            }
+        }
+
+        public void SpawnEnemyLaser(Transform barrelTrans, Transform playerTrans)
+        {
+            GameObject laser = _enemyLaserPool.GetPooledObject();
 
             if (laser != null)
             {

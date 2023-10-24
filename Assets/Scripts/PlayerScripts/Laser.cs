@@ -9,7 +9,7 @@ namespace Player
         [SerializeField] private float _lifeCycle = 2f;
         private float timer = 0;
 
-        private bool _isEnemyLaser = false;
+        [SerializeField] private bool _isEnemyLaser = false;
 
         private PlayerController _playerController;
 
@@ -34,11 +34,6 @@ namespace Player
         private void MoveForward()
         {
             transform.Translate(_speed * Time.deltaTime * Vector3.up);
-        }
-
-        public void AssignEnemyLaser()
-        {
-            _isEnemyLaser = true;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
