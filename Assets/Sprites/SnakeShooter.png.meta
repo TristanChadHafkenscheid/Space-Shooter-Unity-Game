@@ -119,6 +119,24 @@ TextureImporter:
   - first:
       213: -4581617128633589996
     second: SS_Arrow
+  - first:
+      213: -5739611763169862242
+    second: SS_AngelBunnySprite
+  - first:
+      213: -5227885566686479890
+    second: SS_AngelBunnyIcon
+  - first:
+      213: -8357630937896690886
+    second: SS_Water1
+  - first:
+      213: 5448641342855559798
+    second: SS_Water2
+  - first:
+      213: -1077198347429665805
+    second: SS_Water3
+  - first:
+      213: -1061094731095954464
+    second: SS_Water4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1020,8 +1038,50 @@ TextureImporter:
       name: SS_Arrow
       rect:
         serializedVersion: 2
-        x: 112
-        y: 32
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41f13f6fe73da60c0800000000000000
+      internalID: -4581617128633589996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_AngelBunnySprite
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 88
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d5b9bd28dc850b0800000000000000
+      internalID: -5739611763169862242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_AngelBunnyIcon
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
         width: 16
         height: 16
       alignment: 0
@@ -1031,8 +1091,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41f13f6fe73da60c0800000000000000
-      internalID: -4581617128633589996
+      spriteID: ee9b24f86c1d277b0800000000000000
+      internalID: -5227885566686479890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_Water1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3b5ade41fab30c80800000000000000
+      internalID: -8357630937896690886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_Water2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67ab965ee667d9b40800000000000000
+      internalID: 5448641342855559798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_Water3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f321dc6fc50d01f0800000000000000
+      internalID: -1077198347429665805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_Water4
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ebacf7c6fb3641f0800000000000000
+      internalID: -1061094731095954464
       vertices: []
       indices: 
       edges: []

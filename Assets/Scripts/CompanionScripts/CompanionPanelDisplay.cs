@@ -7,6 +7,7 @@ public class CompanionPanelDisplay : MonoBehaviour
     private Companion _companion;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
+    [SerializeField] private Image artworkImageShadow;
     [SerializeField] private Image artworkImage;
 
     public Companion DisplayedCompanion
@@ -20,5 +21,6 @@ public class CompanionPanelDisplay : MonoBehaviour
         _nameText.text = _companion.companionName;
         _descriptionText.text = _companion.description;
         artworkImage.sprite = _companion.artwork;
+        artworkImageShadow.sprite = _companion.artwork;
     }
 }
