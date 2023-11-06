@@ -27,33 +27,25 @@ namespace Enemy
             base.Update();
 
             if (Time.time > _canFireRate && _canFire == true)
-            {
                 FireLaser();
-            }
         }
 
         protected override void MoveEnemy(Vector2 direction)
         {
             if (!_inPlayerVicinity)
-            {
                 base.MoveEnemy(direction);
-            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
-            {
                 _inPlayerVicinity = true;
-            }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
-            {
                 _inPlayerVicinity = false;
-            }
         }
     }
 }

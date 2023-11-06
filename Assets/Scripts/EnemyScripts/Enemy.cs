@@ -3,6 +3,7 @@ using UnityEngine;
 using Managers;
 using Audio;
 using Attachments;
+using DG.Tweening;
 
 namespace Enemy
 {
@@ -12,20 +13,28 @@ namespace Enemy
         [SerializeField] private int _damageToPlayer = 15;
         [SerializeField] private GameObject _expPref;
         [SerializeField] private int _health = 1;
+        [SerializeField] private Color _damageColour;
 
+        private int _initHealth;
         private PlayerController _player;
         protected SpawnManager _spawnManager;
         private Collider2D _colldier;
         protected AudioManager _audioManager;
         private Rigidbody2D _rigidBody;
         private Vector2 _movement;
+        private SpriteRenderer _sprite;
 
         private float _canDamage;
         [SerializeField] float _damageRate;
 
+        private void Awake()
+        {
+            _initHealth = _health;
+        }
+
         protected virtual void Start()
         {
-            _player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            _player = PlayerController.instance;
             _spawnManager = SpawnManager.instance;
             _audioManager = AudioManager.Instance;
 
@@ -38,7 +47,13 @@ namespace Enemy
             _rigidBody = GetComponent<Rigidbody2D>();
             if (_rigidBody == null)
             {
-                Debug.LogError("Rigidbody on player is NULL");
+                Debug.LogError("Rigidbody on enemy is NULL");
+            }
+
+            _sprite = GetComponent<SpriteRenderer>();
+            if (_sprite == null)
+            {
+                Debug.LogError("Sprite on enemy is NULL");
             }
         }
 
@@ -50,6 +65,11 @@ namespace Enemy
         private void FixedUpdate()
         {
             MoveEnemy(_movement);
+        }
+
+        private void OnEnable()
+        {
+            _health = _initHealth;
         }
 
         protected virtual void MoveEnemy(Vector2 direction)
@@ -68,24 +88,29 @@ namespace Enemy
 
         protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("BigLaser"))
+            if (collision.gameObject.CompareTag("PlayerLaser"))
             {
-                if (_player != null)
-                {
-                    //_player.LaserDamage
-                    _player.AddScore(10);
-                }
-                EnemyDestroyed();
-            }
-            else if (collision.gameObject.CompareTag("PlayerLaser"))
-            {
-                if (_player != null)
-                {
-                    _player.AddScore(10);
-                }
+                _health -= _player.LaserDamage;
+                DamageVisuals();
 
-                collision.gameObject.SetActive(false);
-                EnemyDestroyed();
+                if (_health <= 0)
+                {
+                    _player.AddScore(10);
+                    collision.gameObject.SetActive(false);
+                    EnemyDestroyed();
+                }
+            }
+            else if (collision.gameObject.CompareTag("BigLaser"))
+            {
+                _health -= _player.BigLaserDamage;
+                DamageVisuals();
+
+                if (_health <= 0)
+                {
+                    _player.AddScore(10);
+                    collision.gameObject.SetActive(false);
+                    EnemyDestroyed();
+                }
             }
         }
 
@@ -115,6 +140,13 @@ namespace Enemy
             _spawnManager.SpawnExplosion(transform);
             _audioManager.Play("EnemyExplosion");
             gameObject.SetActive(false);
+        }
+
+        private void DamageVisuals()
+        {
+            _sprite.DOKill();
+            _sprite.color = Color.white;
+            _sprite.DOColor(_damageColour, 0.25f).SetInverted().SetLoops(2, LoopType.Restart);
         }
     }
 }

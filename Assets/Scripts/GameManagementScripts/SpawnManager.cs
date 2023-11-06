@@ -5,29 +5,43 @@ namespace Managers
 {
     public class SpawnManager : MonoBehaviour
     {
-        [SerializeField] private GameObject[] powerups;
-        [SerializeField] private float _offScreenOffset;
+        [Header("Pools")]
         [SerializeField] private ObjectPool _enemyPool;
+        [SerializeField] private ObjectPool _enemyPurplePool;
         [SerializeField] private ObjectPool _enemyShooterPool;
         [SerializeField] private ObjectPool _expPool;
         [SerializeField] private ObjectPool _playerLaserPool;
         [SerializeField] private ObjectPool _enemyLaserPool;
         [SerializeField] private ObjectPool _explosionPool;
-        [SerializeField] private float _explosionDisableTime;
 
+        [Header("Basic Enemy Times")]
+        [SerializeField] private float _basicEnemySpawnTime = 2;
+        [SerializeField] private float _basicEnemyStartTime = 0;
+
+        [Header("Enemy Purple Times")]
+        [SerializeField] private float _enemyPurpleSpawnTime = 5;
+        [SerializeField] private float _enemyPurpleStartTime = 15;
+
+        [Header("Shooter Enemy Times")]
+        [SerializeField] private float _enemyShooterSpawnTime = 15;
+        [SerializeField] private float _enemyShooterStartTime = 30;
+
+        [Space]
+
+        [SerializeField] private float _offScreenOffset;
+        [SerializeField] private float _explosionDisableTime;
         [SerializeField] private bool _stopEnemiesSpawning = false;
 
-        [SerializeField] private float _basicEnemyTime = 2;
-        [SerializeField] private float _basicEnemyStartTime = 0;
         private float _basicEnemyTimer;
         private bool _basicEnemyTimeActive = false;
 
-        [SerializeField] private float _enemyShooterTime = 10;
-        [SerializeField] private float _enemyShooterStartTime = 20;
+        private float _enemyPurpleTimer;
+        private bool _enemyPurpleTimeActive = false;
+
         private float _enemyShooterTimer;
         private bool _enemyShooterTimeActive = false;
 
-        private bool _stopSpawning = false;
+        private bool _stopAllSpawning = false;
 
         public static SpawnManager instance = null;
 
@@ -41,21 +55,34 @@ namespace Managers
 
         private void Update()
         {
+            if (_stopAllSpawning || _stopEnemiesSpawning)
+                return;
             BasicEnemyTimer();
             ShooterEnemyTimer();
+            EnemyPurpleTimer();
         }
 
         private void BasicEnemyTimer()
         {
             _basicEnemyTimer += Time.deltaTime;
             if (_basicEnemyTimer >= _basicEnemyStartTime)
-            {
                 _basicEnemyTimeActive = true;
-            }
-            if (_basicEnemyTimer >= _basicEnemyTime && _basicEnemyTimeActive)
+            if (_basicEnemyTimer >= _basicEnemySpawnTime && _basicEnemyTimeActive)
             {
-                SpawnEnemy();
+                SpawnEnemy(_enemyPool);
                 _basicEnemyTimer = 0;
+            }
+        }
+
+        private void EnemyPurpleTimer()
+        {
+            _enemyPurpleTimer += Time.deltaTime;
+            if (_enemyPurpleTimer >= _enemyPurpleStartTime)
+                _enemyPurpleTimeActive = true;
+            if (_enemyPurpleTimer >= _enemyPurpleSpawnTime && _enemyPurpleTimeActive)
+            {
+                SpawnEnemy(_enemyPurplePool);
+                _enemyPurpleTimer = 0;
             }
         }
 
@@ -63,64 +90,25 @@ namespace Managers
         {
             _enemyShooterTimer += Time.deltaTime;
             if (_enemyShooterTimer >= _enemyShooterStartTime)
-            {
                 _enemyShooterTimeActive = true;
-            }
-            if (_enemyShooterTimer >= _enemyShooterTime && _enemyShooterTimeActive)
+            if (_enemyShooterTimer >= _enemyShooterSpawnTime && _enemyShooterTimeActive)
             {
-                SpawnShooterEnemy();
+                SpawnEnemy(_enemyShooterPool);
                 _enemyShooterTimer = 0;
             }
         }
 
-        private void Start()
-        {
-            //InvokeRepeating(nameof(SpawnEnemy), _enemySpawnTime, _enemySpawnTime);
-            //InvokeRepeating(nameof(SpawnShooterEnemy), _enemySpawnTime, _enemySpawnTime);
-        }
-
-        //private IEnumerator SpawnPowerupRoutine()
-        //{
-        //    yield return new WaitForSeconds(_enemySpawnTime);
-
-        //    while (_stopSpawning == false)
-        //    {
-        //        Vector3 posToSpawn = new Vector3(Random.Range(-2.1f, 2.1f), 6.5f, 0);
-        //        int randomPowerup = Random.Range(0, powerups.Length);
-        //        Instantiate(powerups[randomPowerup], posToSpawn, Quaternion.identity);
-        //        yield return new WaitForSeconds(Random.Range(3f, 7f));
-        //    }
-        //}
-
         public void OnPlayerDeath()
         {
-            _stopSpawning = true;
+            _stopAllSpawning = true;
         }
 
-        private void SpawnEnemy()
+        private void SpawnEnemy(ObjectPool enemyPool)
         {
-            if (_stopEnemiesSpawning)
-                return;
-
-            GameObject newEnemy = _enemyPool.GetPooledObject();
+            GameObject newEnemy = enemyPool.GetPooledObject();
             if (newEnemy != null)
             {
-                newEnemy.transform.position = CalculateSpawnPosition();
-                newEnemy.transform.rotation = Quaternion.identity;
-                newEnemy.SetActive(true);
-            }
-        }
-
-        private void SpawnShooterEnemy()
-        {
-            if (_stopEnemiesSpawning)
-                return;
-
-            GameObject newEnemy = _enemyShooterPool.GetPooledObject();
-            if (newEnemy != null)
-            {
-                newEnemy.transform.position = CalculateSpawnPosition();
-                newEnemy.transform.rotation = Quaternion.identity;
+                newEnemy.transform.SetPositionAndRotation(CalculateSpawnPosition(), Quaternion.identity);
                 newEnemy.SetActive(true);
             }
         }
@@ -147,8 +135,7 @@ namespace Managers
 
             if (newExp != null)
             {
-                newExp.transform.position = enemyTranform.position;
-                newExp.transform.rotation = Quaternion.identity;
+                newExp.transform.SetPositionAndRotation(enemyTranform.position, Quaternion.identity);
                 newExp.SetActive(true);
             }
         }
@@ -164,8 +151,7 @@ namespace Managers
 
             if (newExplosion != null)
             {
-                newExplosion.transform.position = enemyTranform.position;
-                newExplosion.transform.rotation = Quaternion.identity;
+                newExplosion.transform.SetPositionAndRotation(enemyTranform.position, Quaternion.identity);
                 newExplosion.SetActive(true);
             }
 
@@ -181,8 +167,7 @@ namespace Managers
             if (laser != null)
             {
                 laser.SetActive(true);
-                laser.transform.position = barrelTrans.position;
-                laser.transform.rotation = playerTrans.rotation;
+                laser.transform.SetPositionAndRotation(barrelTrans.position, playerTrans.rotation);
             }
         }
 
@@ -193,8 +178,7 @@ namespace Managers
             if (laser != null)
             {
                 laser.SetActive(true);
-                laser.transform.position = barrelTrans.position;
-                laser.transform.rotation = playerTrans.rotation;
+                laser.transform.SetPositionAndRotation(barrelTrans.position, playerTrans.rotation);
             }
         }
     }

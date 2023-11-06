@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -490,6 +490,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115364808}
   m_CullTransparentMesh: 0
+--- !u!1 &135507518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 135507519}
+  - component: {fileID: 135507520}
+  m_Layer: 0
+  m_Name: Enemy_Purple_Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &135507519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135507518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 276056264}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &135507520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135507518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c93c7d63af1e4c7db07c794f0273d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 858260004363844076, guid: eb36ec6ee38b649e0960a8d125f1af0a,
+    type: 3}
+  amountToPool: 10
 --- !u!1 &146761067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,24 +1222,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aedf93dff7333448eabc09f1c5bc63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerups:
-  - {fileID: 6983840748480677310, guid: 07387d6f75dc89947b917b96c5bf5e26, type: 3}
-  - {fileID: 4199950312389168252, guid: 07b85ac5726fca24b8a8dde501c6ad63, type: 3}
-  - {fileID: 6685224757467906816, guid: a630ad34a14d6c8439c81a8723675f53, type: 3}
-  - {fileID: 5122294953043294417, guid: 91432173d48244dbf9854025f2c27854, type: 3}
-  _offScreenOffset: 0.5
   _enemyPool: {fileID: 1990648344}
+  _enemyPurplePool: {fileID: 135507520}
   _enemyShooterPool: {fileID: 1074025552}
   _expPool: {fileID: 388967543}
   _playerLaserPool: {fileID: 1303739013}
   _enemyLaserPool: {fileID: 286082343}
   _explosionPool: {fileID: 1059174464}
+  _basicEnemySpawnTime: 2
+  _basicEnemyStartTime: 0
+  _enemyPurpleSpawnTime: 5
+  _enemyPurpleStartTime: 15
+  _enemyShooterSpawnTime: 15
+  _enemyShooterStartTime: 30
+  _offScreenOffset: 0.5
   _explosionDisableTime: 0.6
   _stopEnemiesSpawning: 0
-  _basicEnemyTime: 2
-  _basicEnemyStartTime: 0
-  _enemyShooterTime: 10
-  _enemyShooterStartTime: 20
 --- !u!4 &276056264
 Transform:
   m_ObjectHideFlags: 0
@@ -1205,6 +1250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1990648343}
+  - {fileID: 135507519}
   - {fileID: 1074025551}
   - {fileID: 286082342}
   - {fileID: 388967542}
@@ -1507,7 +1553,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 276056264}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &286082343
 MonoBehaviour:
@@ -7032,7 +7078,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 276056264}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &388967543
 MonoBehaviour:
@@ -14352,7 +14398,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 276056264}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1059174464
 MonoBehaviour:
@@ -14681,7 +14727,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 276056264}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1074025552
 MonoBehaviour:
@@ -15237,6 +15283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4e4c6e4b4cc4e2eab6ef47079a055b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _powerUpDisplay1: {fileID: 776557343}
+  _powerUpDisplay2: {fileID: 1687784949}
+  _powerUpDisplay3: {fileID: 1658262347}
   _maxPowerUpLevel: 10
   _expMagnet: {fileID: 771964381}
   _fireRateIncrease: 0.07
@@ -15246,9 +15295,6 @@ MonoBehaviour:
   _healthAmount: 1
   _bigLaserCoolDown: 25
   _shieldCoolDown: 15
-  _powerUpDisplay1: {fileID: 776557343}
-  _powerUpDisplay2: {fileID: 1687784949}
-  _powerUpDisplay3: {fileID: 1658262347}
   _powerUps:
   - {fileID: 11400000, guid: 079fd527e1d346d42a2de5d8d842432f, type: 2}
   - {fileID: 11400000, guid: f9284eaed04575f40993ca90644779db, type: 2}
@@ -15603,7 +15649,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 276056264}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1303739013
 MonoBehaviour:
@@ -23825,7 +23871,9 @@ MonoBehaviour:
   _health: 100
   _speed: 70
   _laserBarrel: {fileID: 4898494364439744115}
+  _laserDamage: 1
   _bigLaser: {fileID: 1391403698}
+  _bigLaserDamage: 10
   _fireRate: 0.7
   _canFire: 1
   _shieldsVisualizer: {fileID: 4898494364566090030}
@@ -23984,5 +24032,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 570171b104dcc40179626d8d15f4d19c, type: 2}
   - {fileID: 11400000, guid: b87c81b7a6ff04b5ba2f8faa0eaa54c1, type: 2}
   - {fileID: 11400000, guid: a0de998680b6f4490ab49c9bc14c5425, type: 2}
-  _scoreToSpawnCompanion: 40
+  _scoreToSpawnCompanion: 200
   spawnOffsetPos: 10

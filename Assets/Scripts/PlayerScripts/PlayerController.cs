@@ -82,6 +82,11 @@ namespace Player
             get => _laserDamage;
         }
 
+        public int BigLaserDamage
+        {
+            get => _bigLaserDamage;
+        }
+
         private void Awake()
         {
             if (instance == null)

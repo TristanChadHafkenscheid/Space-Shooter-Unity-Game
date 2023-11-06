@@ -21,9 +21,7 @@ namespace Managers
         private void Update()
         {
             if (Keyboard.current.aKey.wasPressedThisFrame)
-            {
                 LevelUpDebugger();
-            }
         }
 
         public void ExpCollected(int expAdded)
@@ -31,9 +29,7 @@ namespace Managers
             _currentExp += expAdded;
 
             if (_currentExp == _expToFillBarFromZero)
-            {
                 LevelUp();
-            }
             else
             {
                 float fillBarAmount = _currentExp / _expToFillBarFromZero * 100;

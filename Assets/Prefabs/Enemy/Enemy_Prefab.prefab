@@ -50,6 +50,8 @@ MonoBehaviour:
   _damageToPlayer: 3
   _expPref: {fileID: 3952710885986676070, guid: 7438d2d705679435cb4e1d886a1e41c7,
     type: 3}
+  _health: 1
+  _damageColour: {r: 0.8784314, g: 0.21960784, b: 0.39215687, a: 1}
   _damageRate: 2
 --- !u!212 &4216913876852724715
 SpriteRenderer:

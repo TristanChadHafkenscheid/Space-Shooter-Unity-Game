@@ -10,8 +10,13 @@ namespace PowerUps
 {
     public class PowerUpManager : MonoBehaviour
     {
+        [Header("Power Up Displays")]
+        [SerializeField] private PowerUpDisplay _powerUpDisplay1;
+        [SerializeField] private PowerUpDisplay _powerUpDisplay2;
+        [SerializeField] private PowerUpDisplay _powerUpDisplay3;
+
+        [Header("Power Up adjustments")]
         [SerializeField] private int _maxPowerUpLevel = 10;
-        private PlayerController _playerController;
         [SerializeField] private ExpMagnet _expMagnet;
         [SerializeField] private float _fireRateIncrease;
         [SerializeField] private float _speedIncrease;
@@ -21,14 +26,11 @@ namespace PowerUps
         [SerializeField] private float _bigLaserCoolDown;
         [SerializeField] private float _shieldCoolDown;
 
-        [SerializeField] private PowerUpDisplay _powerUpDisplay1;
-        [SerializeField] private PowerUpDisplay _powerUpDisplay2;
-        [SerializeField] private PowerUpDisplay _powerUpDisplay3;
-
         [SerializeField] private List<PowerUp> _powerUps = new List<PowerUp>();
 
         [SerializeField] private Vector3Int _powerUpsChosenDebug;
 
+        private PlayerController _playerController;
         private UIManager _uiManager;
         private AudioManager _audioManager;
 
@@ -160,9 +162,7 @@ namespace PowerUps
             for (int i = 0; i < _powerUps.Count; i++)
             {
                 if (_powerUps[i].level >= _maxPowerUpLevel)
-                {
                     _powerUps.RemoveAt(i);
-                }
             }
         }
     }
