@@ -38,6 +38,9 @@ namespace Player
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (!collision.gameObject.CompareTag("EnemyLaser"))
+                gameObject.SetActive(false);
+
             if (collision.gameObject.CompareTag("Player") && _isEnemyLaser == true)
             {
                 if (_playerController != null)

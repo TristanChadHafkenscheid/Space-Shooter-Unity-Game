@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5591458823737994813}
   m_Layer: 0
   m_Name: EnemyLaser
-  m_TagString: Untagged
+  m_TagString: EnemyLaser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.02, y: 0.11}
+  m_Size: {x: 0.02, y: 0.12}
   m_EdgeRadius: 0
 --- !u!50 &5733280705950733063
 Rigidbody2D:
@@ -145,6 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 8
-  _damageToPlayer: 15
+  _damageToPlayer: 5
   _lifeCycle: 2
   _isEnemyLaser: 1

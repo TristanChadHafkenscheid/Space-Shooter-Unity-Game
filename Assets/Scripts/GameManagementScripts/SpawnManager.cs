@@ -6,7 +6,6 @@ namespace Managers
     public class SpawnManager : MonoBehaviour
     {
         [SerializeField] private GameObject[] powerups;
-        [SerializeField] private int _enemySpawnTime;
         [SerializeField] private float _offScreenOffset;
         [SerializeField] private ObjectPool _enemyPool;
         [SerializeField] private ObjectPool _enemyShooterPool;
@@ -17,6 +16,16 @@ namespace Managers
         [SerializeField] private float _explosionDisableTime;
 
         [SerializeField] private bool _stopEnemiesSpawning = false;
+
+        [SerializeField] private float _basicEnemyTime = 2;
+        [SerializeField] private float _basicEnemyStartTime = 0;
+        private float _basicEnemyTimer;
+        private bool _basicEnemyTimeActive = false;
+
+        [SerializeField] private float _enemyShooterTime = 10;
+        [SerializeField] private float _enemyShooterStartTime = 20;
+        private float _enemyShooterTimer;
+        private bool _enemyShooterTimeActive = false;
 
         private bool _stopSpawning = false;
 
@@ -30,24 +39,58 @@ namespace Managers
                 Destroy(gameObject);
         }
 
+        private void Update()
+        {
+            BasicEnemyTimer();
+            ShooterEnemyTimer();
+        }
+
+        private void BasicEnemyTimer()
+        {
+            _basicEnemyTimer += Time.deltaTime;
+            if (_basicEnemyTimer >= _basicEnemyStartTime)
+            {
+                _basicEnemyTimeActive = true;
+            }
+            if (_basicEnemyTimer >= _basicEnemyTime && _basicEnemyTimeActive)
+            {
+                SpawnEnemy();
+                _basicEnemyTimer = 0;
+            }
+        }
+
+        private void ShooterEnemyTimer()
+        {
+            _enemyShooterTimer += Time.deltaTime;
+            if (_enemyShooterTimer >= _enemyShooterStartTime)
+            {
+                _enemyShooterTimeActive = true;
+            }
+            if (_enemyShooterTimer >= _enemyShooterTime && _enemyShooterTimeActive)
+            {
+                SpawnShooterEnemy();
+                _enemyShooterTimer = 0;
+            }
+        }
+
         private void Start()
         {
-            InvokeRepeating(nameof(SpawnEnemy), _enemySpawnTime, _enemySpawnTime);
+            //InvokeRepeating(nameof(SpawnEnemy), _enemySpawnTime, _enemySpawnTime);
             //InvokeRepeating(nameof(SpawnShooterEnemy), _enemySpawnTime, _enemySpawnTime);
         }
 
-        private IEnumerator SpawnPowerupRoutine()
-        {
-            yield return new WaitForSeconds(_enemySpawnTime);
+        //private IEnumerator SpawnPowerupRoutine()
+        //{
+        //    yield return new WaitForSeconds(_enemySpawnTime);
 
-            while (_stopSpawning == false)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-2.1f, 2.1f), 6.5f, 0);
-                int randomPowerup = Random.Range(0, powerups.Length);
-                Instantiate(powerups[randomPowerup], posToSpawn, Quaternion.identity);
-                yield return new WaitForSeconds(Random.Range(3f, 7f));
-            }
-        }
+        //    while (_stopSpawning == false)
+        //    {
+        //        Vector3 posToSpawn = new Vector3(Random.Range(-2.1f, 2.1f), 6.5f, 0);
+        //        int randomPowerup = Random.Range(0, powerups.Length);
+        //        Instantiate(powerups[randomPowerup], posToSpawn, Quaternion.identity);
+        //        yield return new WaitForSeconds(Random.Range(3f, 7f));
+        //    }
+        //}
 
         public void OnPlayerDeath()
         {

@@ -15,6 +15,7 @@ namespace PickUps
         [SerializeField] private float _closeToPlayer;
         [SerializeField] private ExpManager _expManager;
         [SerializeField] private ParticleSystem _expCollectParticles;
+        [SerializeField] private Animator _expAura;
         [SerializeField] private Color _expPlayerColour;
         [SerializeField] private float _magnetRange = 0.2f;
 
@@ -45,6 +46,7 @@ namespace PickUps
 
         IEnumerator MoveExp(GameObject expGameObject)
         {
+            _expAura.SetTrigger("ExpAura");
             while (Vector3.Distance(expGameObject.transform.position, transform.position) >= _closeToPlayer)
             {
                 expGameObject.transform.position = Vector3.MoveTowards(expGameObject.transform.position,

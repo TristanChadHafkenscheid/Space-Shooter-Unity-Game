@@ -11,6 +11,7 @@ namespace Enemy
         [SerializeField] private float _speed = 4;
         [SerializeField] private int _damageToPlayer = 15;
         [SerializeField] private GameObject _expPref;
+        [SerializeField] private int _health = 1;
 
         private PlayerController _player;
         protected SpawnManager _spawnManager;
@@ -71,6 +72,7 @@ namespace Enemy
             {
                 if (_player != null)
                 {
+                    //_player.LaserDamage
                     _player.AddScore(10);
                 }
                 EnemyDestroyed();
