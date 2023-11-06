@@ -28,7 +28,7 @@ namespace Managers
         {
             _currentExp += expAdded;
 
-            if (_currentExp == _expToFillBarFromZero)
+            if (_currentExp >= _expToFillBarFromZero)
                 LevelUp();
             else
             {
@@ -40,7 +40,7 @@ namespace Managers
         private void LevelUp()
         {
             _expLevel++;
-            _expToFillBarFromZero *= _expLevel;
+            _expToFillBarFromZero *= 1.3f;
 
             _currentExp = 0;
             _uiManager.SetExpBar(0);
@@ -51,7 +51,7 @@ namespace Managers
         private void LevelUpDebugger()
         {
             _expLevel++;
-            _expToFillBarFromZero *= _expLevel;
+            _expToFillBarFromZero *= 1.3f;
 
             _currentExp = 0;
             _uiManager.SetExpBar(0);
