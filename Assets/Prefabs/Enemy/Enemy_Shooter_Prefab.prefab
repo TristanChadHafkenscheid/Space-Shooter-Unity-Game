@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 858260004363844065}
+  - component: {fileID: 8738278483338412616}
   - component: {fileID: 4216913876852724715}
   - component: {fileID: 2295693526046186360}
   - component: {fileID: -3478654879763091569}
-  - component: {fileID: 8738278483338412616}
   - component: {fileID: 7497219401510929717}
   m_Layer: 0
   m_Name: Enemy_Shooter_Prefab
@@ -36,6 +36,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8738278483338412616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858260004363844076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e6c73ce5f5649d3adfa90561cb4e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 1.1
+  _damageToPlayer: 1
+  _expPref: {fileID: 3952710885986676070, guid: 7438d2d705679435cb4e1d886a1e41c7,
+    type: 3}
+  _health: 1
+  _damageColour: {r: 0.8784314, g: 0.21960784, b: 0.39215687, a: 1}
+  _damageRate: 2
+  _laserBarrel: {fileID: 1799026024105765217}
+  _fireRate: 4
+  _canFire: 1
 --- !u!212 &4216913876852724715
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -134,28 +156,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.21}
   m_EdgeRadius: 0
---- !u!114 &8738278483338412616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858260004363844076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e6c73ce5f5649d3adfa90561cb4e68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 0.9
-  _damageToPlayer: 2
-  _expPref: {fileID: 3952710885986676070, guid: 7438d2d705679435cb4e1d886a1e41c7,
-    type: 3}
-  _health: 1
-  _damageColour: {r: 0.8784314, g: 0.21960784, b: 0.39215687, a: 1}
-  _damageRate: 2
-  _laserBarrel: {fileID: 1799026024105765217}
-  _fireRate: 4
-  _canFire: 1
 --- !u!58 &7497219401510929717
 CircleCollider2D:
   m_ObjectHideFlags: 0
