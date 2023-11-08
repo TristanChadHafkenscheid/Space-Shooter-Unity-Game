@@ -25,6 +25,8 @@ namespace PowerUps
         [SerializeField] private int _healthAmount;
         [SerializeField] private float _bigLaserCoolDown;
         [SerializeField] private float _shieldCoolDown;
+        [SerializeField] private int _maxHealthIncreaseAmount;
+        [SerializeField] private float _healPercentOnMaxHealthActivate;
 
         [SerializeField] private List<PowerUp> _powerUps = new List<PowerUp>();
 
@@ -72,9 +74,25 @@ namespace PowerUps
                 case 6: //shields
                     StartCoroutine(ActivateShieldsPeriodicaly());
                     break;
+                case 7: //increase max health and heal
+                    // set max health on ui and make max health valkue on player
+                    //ste player health to + 20%
+                    _playerController.MaxHealth += _maxHealthIncreaseAmount;
+                    _uiManager.SetMaxHealth(_playerController.MaxHealth);
+                    if (_playerController.Health + (int)(_playerController.MaxHealth * _healPercentOnMaxHealthActivate/100) >= 
+                        _playerController.MaxHealth)
+                    {
+                        _playerController.Health = _playerController.MaxHealth;
+                    }
+                    else
+                    {
+                        _playerController.Health += (int)(_playerController.MaxHealth * _healPercentOnMaxHealthActivate/100);
+                    }
+                    _uiManager.SetHealth(_playerController.Health);
+                    break;
                 default:
                     break;
-            }
+            }   
         }
 
         IEnumerator HealOverTime()
@@ -144,9 +162,9 @@ namespace PowerUps
         //debugger for power up
         public void SelectPowerUpsDebug()
         {
-            _powerUpDisplay1.UpdateDisplay(_powerUps[_powerUpsChosenDebug.x]);
-            _powerUpDisplay2.UpdateDisplay(_powerUps[_powerUpsChosenDebug.y]);
-            _powerUpDisplay3.UpdateDisplay(_powerUps[_powerUpsChosenDebug.z]);
+            _powerUpDisplay1.UpdateDisplay(_powerUps[_powerUpsChosenDebug.x-1]);
+            _powerUpDisplay2.UpdateDisplay(_powerUps[_powerUpsChosenDebug.y-1]);
+            _powerUpDisplay3.UpdateDisplay(_powerUps[_powerUpsChosenDebug.z-1]);
         }
 
         private void ResetPowerUpLevels()

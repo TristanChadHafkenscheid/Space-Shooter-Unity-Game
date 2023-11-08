@@ -157,7 +157,10 @@ namespace Managers
 
             yield return new WaitForSeconds(_explosionDisableTime);
 
-            newExplosion.SetActive(false);
+            if (newExplosion != null)
+            {
+                newExplosion.SetActive(false);
+            }
         }
 
         public void SpawnPlayerLaser(Transform barrelTrans, Transform playerTrans)

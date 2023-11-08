@@ -73,15 +73,12 @@ namespace Managers
         {
             _playerHealthSlider.value = playerHealth;
             if (playerHealth <= 0)
-            {
                 GameOverSequence();
-            }
         }
 
-        public void SetMaxHealth(int health)
+        public void SetMaxHealth(int maxHealth)
         {
-            _playerHealthSlider.maxValue = health;
-            _playerHealthSlider.value = health;
+            _playerHealthSlider.maxValue = maxHealth;
         }
 
         public void SetExpBar(float expAmount)

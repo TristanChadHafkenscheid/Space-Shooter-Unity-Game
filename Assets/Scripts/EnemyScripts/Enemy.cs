@@ -108,7 +108,6 @@ namespace Enemy
                 if (_health <= 0)
                 {
                     _player.AddScore(10);
-                    collision.gameObject.SetActive(false);
                     EnemyDestroyed();
                 }
             }

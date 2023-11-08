@@ -1229,7 +1229,7 @@ MonoBehaviour:
   _playerLaserPool: {fileID: 1303739013}
   _enemyLaserPool: {fileID: 286082343}
   _explosionPool: {fileID: 1059174464}
-  _basicEnemySpawnTime: 1.5
+  _basicEnemySpawnTime: 1
   _basicEnemyStartTime: 0
   _enemyPurpleSpawnTime: 7
   _enemyPurpleStartTime: 45
@@ -2238,7 +2238,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4898494364969832238}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!199 &354243795
 ParticleSystemRenderer:
@@ -7414,7 +7414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546247475}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: -24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1921604462}
@@ -7454,6 +7454,108 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &556274348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 556274349}
+  - component: {fileID: 556274351}
+  - component: {fileID: 556274350}
+  m_Layer: 0
+  m_Name: Water_Blast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &556274349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556274348}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: 0.131, y: -0.014, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4898494364969832238}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
+--- !u!95 &556274350
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556274348}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65f7d88504a0c3847b09f1d4e9359241, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!212 &556274351
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556274348}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 953015237
+  m_SortingLayer: 2
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -8357630937896690886, guid: 64056e944c506425e9bff252a1323995,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.9, y: 2.22}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &582890871
 GameObject:
   m_ObjectHideFlags: 0
@@ -8668,14 +8770,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771964377}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1985914904}
   - {fileID: 1232454321}
   m_Father: {fileID: 4898494364969832238}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &771964379
 CircleCollider2D:
@@ -8692,7 +8794,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.15
 --- !u!50 &771964380
 Rigidbody2D:
   serializedVersion: 4
@@ -8726,13 +8828,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb66c5865eb584d78ad4a271b310ef2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magnetSpeed: 3
+  _magnetSpeed: 2
   _closeToPlayer: 0.1
   _expManager: {fileID: 697865111}
   _expCollectParticles: {fileID: 1985914906}
   _expAura: {fileID: 1232454322}
   _expPlayerColour: {r: 1, g: 0.9267906, b: 0, a: 1}
-  _magnetRange: 0.2
+  _magnetRange: 0.15
 --- !u!1 &776557341
 GameObject:
   m_ObjectHideFlags: 0
@@ -13820,7 +13922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &837532353
 Transform:
   m_ObjectHideFlags: 0
@@ -13829,7 +13931,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837532352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -20}
+  m_LocalPosition: {x: 0, y: 0, z: -24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 741676510}
@@ -14415,7 +14517,7 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 2890922954622059625, guid: 9515cb5747717cf4c853a1e83ceb3a9a,
     type: 3}
-  amountToPool: 10
+  amountToPool: 30
 --- !u!1 &1064604713
 GameObject:
   m_ObjectHideFlags: 0
@@ -15295,6 +15397,8 @@ MonoBehaviour:
   _healthAmount: 1
   _bigLaserCoolDown: 25
   _shieldCoolDown: 15
+  _maxHealthIncreaseAmount: 15
+  _healPercentOnMaxHealthActivate: 20
   _powerUps:
   - {fileID: 11400000, guid: 079fd527e1d346d42a2de5d8d842432f, type: 2}
   - {fileID: 11400000, guid: f9284eaed04575f40993ca90644779db, type: 2}
@@ -15302,6 +15406,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1a11d338e63046d8ae35d0fce410932, type: 2}
   - {fileID: 11400000, guid: c26b27b6df7f06040b69ee2079082158, type: 2}
   - {fileID: 11400000, guid: 0c0c5540c770f654d82ef69f9aa2579b, type: 2}
+  - {fileID: 11400000, guid: 48eef1725087a21458fc2a9ffd72a4c7, type: 2}
   _powerUpsChosenDebug: {x: 5, y: 2, z: 3}
 --- !u!1 &1232454320
 GameObject:
@@ -15903,8 +16008,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391403698}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0.002, y: 1.04, z: 0}
-  m_LocalScale: {x: 0.59, y: 0.59, z: 0.59}
+  m_LocalPosition: {x: 0.002, y: 1.21, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 4898494364969832238}
   m_RootOrder: 5
@@ -23257,7 +23362,7 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 858260004363844076, guid: a11bed604acf04b299cfe11206276108,
     type: 3}
-  amountToPool: 25
+  amountToPool: 45
 --- !u!1 &2003745462
 GameObject:
   m_ObjectHideFlags: 0
@@ -23945,10 +24050,11 @@ Transform:
   m_Children:
   - {fileID: 4898494364787940968}
   - {fileID: 4898494364439744115}
-  - {fileID: 771964378}
   - {fileID: 354243794}
+  - {fileID: 771964378}
   - {fileID: 4898494364566090031}
   - {fileID: 1391403699}
+  - {fileID: 556274349}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

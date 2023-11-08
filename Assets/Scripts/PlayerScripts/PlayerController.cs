@@ -28,6 +28,8 @@ namespace Player
         [SerializeField] private GameObject _startCamera;
         [SerializeField] private GameObject _playerCamera;
 
+        private int _maxHealth;
+
         private float _canFireRate = 0.1f;
 
         private bool _isShieldsActive = false;
@@ -77,6 +79,12 @@ namespace Player
             set => _health = value;
         }
 
+        public int MaxHealth
+        {
+            get => _maxHealth;
+            set => _maxHealth = value;
+        }
+
         public int LaserDamage
         {
             get => _laserDamage;
@@ -121,14 +129,14 @@ namespace Player
 
             _startCamera.SetActive(false);
             _playerCamera.SetActive(true);
+
+            _maxHealth = _health;
         }
 
         void Update()
         {
             if (Time.time > _canFireRate && _canFire == true)
-            {
                 FireLaser();
-            }
         }
 
         public void Movement(float horizontalInput, float verticalInput)
@@ -161,7 +169,7 @@ namespace Player
             _audioManager.Play("Hurt");
 
             if (_health <= 0)
-            {
+            {      
                 _spawnManager.OnPlayerDeath();
                 _sprite.DOKill();
                 gameObject.SetActive(false);
@@ -194,7 +202,7 @@ namespace Player
 
         IEnumerator BigLaserPowerDownRoutine()
         {
-            yield return new WaitForSeconds(1.7f);
+            yield return new WaitForSeconds(2.9f);
             _canFire = true;
             _bigLaser.SetActive(false);
             _isBigLaserActive = false;

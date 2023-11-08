@@ -68,7 +68,7 @@ namespace PickUps
 
         public void IncreaseRange(float rangeIncrease)
         {
-            //range starts at 0.2
+            //range starts at 0.15
             _magnetCollider.radius = _magnetRange + rangeIncrease;
         }
     }

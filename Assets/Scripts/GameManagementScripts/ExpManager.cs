@@ -9,7 +9,7 @@ namespace Managers
         private UIManager _uiManager;
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private float _currentExp = 0;
-        [SerializeField] private float _expToFillBarFromZero = 5;
+        [SerializeField] private int _expToFillBarFromZero = 5;
         [SerializeField] private int _expLevel = 1;
         [SerializeField] private PowerUpManager _powerUpManager;
 
@@ -40,7 +40,7 @@ namespace Managers
         private void LevelUp()
         {
             _expLevel++;
-            _expToFillBarFromZero *= 1.3f;
+            _expToFillBarFromZero = (int)(_expToFillBarFromZero * 1.3f);
 
             _currentExp = 0;
             _uiManager.SetExpBar(0);
@@ -51,7 +51,7 @@ namespace Managers
         private void LevelUpDebugger()
         {
             _expLevel++;
-            _expToFillBarFromZero *= 1.3f;
+            _expToFillBarFromZero = (int)(_expToFillBarFromZero * 1.3f);
 
             _currentExp = 0;
             _uiManager.SetExpBar(0);
