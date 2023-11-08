@@ -149,6 +149,9 @@ TextureImporter:
   - first:
       213: 6793553114248903976
     second: SS_Exp_Aura_3
+  - first:
+      213: 4843763352952416721
+    second: SS_PauseButton2Sprite
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1273,6 +1276,27 @@ TextureImporter:
       bones: []
       spriteID: 82dfd89409c874e50800000000000000
       internalID: 6793553114248903976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_PauseButton2Sprite
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 142
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d9a8cc2b11883340800000000000000
+      internalID: 4843763352952416721
       vertices: []
       indices: 
       edges: []

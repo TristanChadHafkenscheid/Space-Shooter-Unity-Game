@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Player;
 using UnityEngine;
 using Managers;
+using Attachments;
 
 public class CompanionManager : MonoBehaviour
 {
@@ -10,14 +11,20 @@ public class CompanionManager : MonoBehaviour
     [SerializeField] private int _scoreToSpawnCompanion;
     [SerializeField] private float spawnOffsetPos;
 
+    [SerializeField] private GameObject _waterJetPrefab;
+    [SerializeField] private int _waterJetDamage;
+
     private List<Companion> _playersCompanions = new List<Companion>();
     private Companion _randomlySelectedCompanion;
     private PlayerController _playerController;
     private CompanionPanelDisplay _companionPanelDisplay;
     private UIManager _uiManager;
+    private SpawnManager _spawnManager;
+    private ShipAttachmentController _shipAttachmentController;
     private int _initialScoreToSpawnCompanion;
 
     public int ScoreToSpawnCompanion { get => _scoreToSpawnCompanion; }
+    public int WaterJetDamage { get => _waterJetDamage; }
 
     private void Start()
     {
@@ -26,6 +33,8 @@ public class CompanionManager : MonoBehaviour
         _companionPanelDisplay = _uiManager.CompanionPanel;
 
         _initialScoreToSpawnCompanion = _scoreToSpawnCompanion;
+        _spawnManager = SpawnManager.instance;
+        _shipAttachmentController = ShipAttachmentController.instance;
     }
 
     public void ActivateCompanion()
@@ -33,18 +42,23 @@ public class CompanionManager : MonoBehaviour
         _playersCompanions.Add(_randomlySelectedCompanion);
         _allUncollectedCompanions.Remove(_randomlySelectedCompanion);
 
-        //switch (displayedPowerUp.DisplayedPowerUp.powerUpId)
-        //{
-        //    case 1: //fire rate increase - fire rate starts at 0.7
-        //            //_fireRateIncrease *= displayedPowerUp.DisplayedPowerUp.level;
-        //        _playerController.FireRate -= _fireRateIncrease;
-        //        break;
-        //    case 2: //speed increase
-        //        _playerController.Speed += _speedIncrease;
-        //        break;
-        //    default:
-        //        break;
-        //}
+        switch (_randomlySelectedCompanion.companionId)
+        {
+            case 1: //fire rate increase - fire rate starts at 0.7
+                    //_fireRateIncrease *= displayedPowerUp.DisplayedPowerUp.level;
+                //_playerController.FireRate -= _fireRateIncrease;
+                break;
+            case 2: //speed increase
+                //_playerController.Speed += _speedIncrease;
+                break;
+            case 3:
+                //fish shoot water
+                ShipAttachment fishShip = FindCompanionShip(3);
+                ShootWater(fishShip.gameObject);
+                break;
+            default:
+                break;
+        }
     }
 
     public void SpawnCollectableCompanion()
@@ -88,5 +102,37 @@ public class CompanionManager : MonoBehaviour
         {
             Destroy(companion);
         }
+    }
+
+    private void ShootWater(GameObject fishShip)
+    {
+        //_spawnManager.SpawnWaterShot(fishShip);
+        Vector3 waterOffsetRight = new Vector3(0.257f, -0.003f, 0);
+        GameObject waterJetRight = Instantiate(_waterJetPrefab, fishShip.transform.position, fishShip.transform.rotation);
+        waterJetRight.transform.parent = fishShip.transform;
+        waterJetRight.transform.localPosition = waterOffsetRight;
+
+        Vector3 waterOffsetLeft = new Vector3(-0.257f, -0.003f, 0);
+        GameObject waterJetLeft = Instantiate(_waterJetPrefab, fishShip.transform.position, fishShip.transform.rotation);
+        waterJetLeft.transform.parent = fishShip.transform;
+        waterJetLeft.transform.localScale = new Vector3(-waterJetLeft.transform.localScale.x, waterJetLeft.transform.localScale.y,
+            waterJetLeft.transform.localScale.z);
+        waterJetLeft.transform.localPosition = waterOffsetLeft;
+    }
+
+    public ShipAttachment FindCompanionShip(int companionID)
+    {
+        int playerCompanionListIndex = 0;
+
+        for (int i = 0; i < _shipAttachmentController.AttachmentList.Count; i++)
+        {
+            if (_shipAttachmentController.AttachmentList[i].AttachmentCompanion.companionId == companionID)
+            {
+                Debug.Log("atttachemnt companion is " + _shipAttachmentController.AttachmentList[i].AttachmentCompanion);
+                playerCompanionListIndex = i;
+                break;
+            }
+        }
+        return _shipAttachmentController.AttachmentList[playerCompanionListIndex];
     }
 }

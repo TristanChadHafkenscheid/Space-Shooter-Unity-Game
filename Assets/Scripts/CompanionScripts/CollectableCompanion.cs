@@ -25,8 +25,9 @@ public class CollectableCompanion : MonoBehaviour
         {
             _gameManager.ActivateCompanionPanel(true);
             _uIManager.DeactivateCompanionArrow();
-            _companionManager.ActivateCompanion();
+
             _attachmentController.AddAttachment(_companion);
+            _companionManager.ActivateCompanion();
 
             Destroy(gameObject);
         }

@@ -14,6 +14,11 @@ namespace Attachments
 
         public static ShipAttachmentController instance = null;
 
+        public List<ShipAttachment> AttachmentList
+        {
+            get { return _attachmentsList; }
+        }
+
         private void Awake()
         {
             if (instance == null)

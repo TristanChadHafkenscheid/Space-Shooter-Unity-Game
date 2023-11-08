@@ -11,6 +11,7 @@ TagManager:
   - Attachment
   - Exp
   - CanvasWorldSpace
+  - WaterJet
   layers:
   - Default
   - TransparentFX

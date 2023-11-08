@@ -56,7 +56,6 @@ namespace PowerUps
             switch (displayedPowerUp.DisplayedPowerUp.powerUpId)
             {
                 case 1: //fire rate increase - fire rate starts at 0.7
-                    //_fireRateIncrease *= displayedPowerUp.DisplayedPowerUp.level;
                     _playerController.FireRate -= _fireRateIncrease;
                     break;
                 case 2: //speed increase
@@ -75,8 +74,6 @@ namespace PowerUps
                     StartCoroutine(ActivateShieldsPeriodicaly());
                     break;
                 case 7: //increase max health and heal
-                    // set max health on ui and make max health valkue on player
-                    //ste player health to + 20%
                     _playerController.MaxHealth += _maxHealthIncreaseAmount;
                     _uiManager.SetMaxHealth(_playerController.MaxHealth);
                     if (_playerController.Health + (int)(_playerController.MaxHealth * _healPercentOnMaxHealthActivate/100) >= 

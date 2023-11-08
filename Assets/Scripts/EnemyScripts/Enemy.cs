@@ -18,6 +18,7 @@ namespace Enemy
         private int _initHealth;
         private PlayerController _player;
         protected SpawnManager _spawnManager;
+        private CompanionManager _companionManager;
         private Collider2D _colldier;
         protected AudioManager _audioManager;
         private Rigidbody2D _rigidBody;
@@ -37,6 +38,12 @@ namespace Enemy
             _player = PlayerController.instance;
             _spawnManager = SpawnManager.instance;
             _audioManager = AudioManager.Instance;
+
+            _companionManager = _player.transform.GetComponent<CompanionManager>();
+            if (_companionManager == null)
+            {
+                Debug.LogError("Companion Manager is NULL");
+            }
 
             _colldier = GetComponent<Collider2D>();
             if (_colldier == null)
@@ -103,6 +110,18 @@ namespace Enemy
             else if (collision.gameObject.CompareTag("BigLaser"))
             {
                 _health -= _player.BigLaserDamage;
+                DamageVisuals();
+
+                if (_health <= 0)
+                {
+                    _player.AddScore(10);
+                    EnemyDestroyed();
+                }
+            }
+
+            else if (collision.gameObject.CompareTag("WaterJet"))
+            {
+                _health -= _companionManager.WaterJetDamage;
                 DamageVisuals();
 
                 if (_health <= 0)
