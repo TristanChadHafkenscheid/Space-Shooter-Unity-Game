@@ -19,7 +19,6 @@ public class CompanionManager : MonoBehaviour
     private PlayerController _playerController;
     private CompanionPanelDisplay _companionPanelDisplay;
     private UIManager _uiManager;
-    private SpawnManager _spawnManager;
     private ShipAttachmentController _shipAttachmentController;
     private int _initialScoreToSpawnCompanion;
 
@@ -33,7 +32,6 @@ public class CompanionManager : MonoBehaviour
         _companionPanelDisplay = _uiManager.CompanionPanel;
 
         _initialScoreToSpawnCompanion = _scoreToSpawnCompanion;
-        _spawnManager = SpawnManager.instance;
         _shipAttachmentController = ShipAttachmentController.instance;
     }
 
