@@ -6,15 +6,20 @@
  - Run Game
 ## Introduction
 
-A Space Invader-like game called "See You Space Cowboy" where the player must
-navigate a turbulant, enemy filled galaxy. Luckly you, the player have access
-to power ups to help them defeat incoming space ships and get that high 
-score.
+Originally this game started as a space invader-like game with enemies moving
+down the screen as the player shoots them to collect points. But over the past
+few months, this game has transformed into a bullet hell-like game where the
+player must shoot enemies, collect exp to level up and gain skills, while 
+traversing the desolate space to find companions to help them survive.
+
+These companions attach to the player like snake appendages, each with their own
+unqiue ability, such as shooting water at enemies. But the player must also 
+protect these companions as they each have their own health.
+
+Have fun and feel free to provide feedback and suggestions!
+
 ## Run Game
 
-To run this project, you will need Unity 2019.4.40f1. If you would like to play
-this on a Mac, navigate to the 'Mac Version' folder in 'Game Builds' and open 
-"------". If you would like to play this on a Windows computer, navigate to the
-'Windows Version' folder in 'Game Build' and open "----". Lastly, if you would 
-like to play this game on an Android mobile device, 'Android Version' folder in
-'Game Build' and open "----".
+To run this project, you will need Unity 2019.4.40f1. Download the code and have
+fun playing my game and achieving a new high score. The Game scene should be
+played to start the game.
