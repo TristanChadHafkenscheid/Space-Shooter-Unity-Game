@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44d934bee824c4296ad233d8e1bf21f8, type: 3}
-  m_Name: Hurt
+  m_Name: ShieldDown
   m_EditorClassIdentifier: 
-  clipName: Hurt
-  clip: {fileID: 8300000, guid: a99ad560bcf9abe48a6edc12f0d25408, type: 3}
+  clipName: ShieldDown
+  clip: {fileID: 8300000, guid: e7457abf0c595474aba6d2e1601469f4, type: 3}
   source: {fileID: 0}
   mixerGroup: {fileID: 24300002, guid: 531ac00dadd8f48ad8fe9ce85915d227, type: 2}
-  Volume: 0.6
+  Volume: 1
   Pitch: 1
   Loop: 0
   playedThisFrame: 0

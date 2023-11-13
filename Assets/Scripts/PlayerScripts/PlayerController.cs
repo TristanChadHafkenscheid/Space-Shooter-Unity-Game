@@ -3,6 +3,7 @@ using DG.Tweening;
 using Managers;
 using UnityEngine;
 using Audio;
+using MoreMountains.Feedbacks;
 
 namespace Player
 {
@@ -18,11 +19,13 @@ namespace Player
         [SerializeField] private int _bigLaserDamage = 10;
         [SerializeField] private float _fireRate = 0.5f;
         [SerializeField] private bool _canFire = false;
+        [SerializeField] private MMFeedbacks _shootFeedbacks;
 
         [Header("Damage")]
         [SerializeField] private GameObject _shieldsVisualizer;
         [SerializeField] private Color _damageColour;
         [SerializeField] private ParticleSystem _damageParticles;
+        [SerializeField] private MMFeedbacks _damageFeedBacks;
 
         [Header("Cameras")]
         [SerializeField] private GameObject _startCamera;
@@ -150,23 +153,24 @@ namespace Player
             _canFireRate = Time.time + _fireRate;
             _spawnManager.SpawnPlayerLaser(_laserBarrel, transform);
             _audioManager.Play("Laser");
+            _shootFeedbacks.PlayFeedbacks();
         }
 
         public void Damage(int damageTaken)
         {
             if (_isShieldsActive == true)
             {
-                _isShieldsActive = false;
-                _shieldsVisualizer.SetActive(false);
-                _audioManager.Stop("Shield");
+                DeactivateShields();
                 return;
             }
 
             _health -= damageTaken;
 
             _uiManager.SetHealth(_health);
-            DamageVisuals();
+            //DamageVisuals();
             _audioManager.Play("Hurt");
+
+            _damageFeedBacks.PlayFeedbacks();
 
             if (_health <= 0)
             {      
@@ -185,9 +189,18 @@ namespace Player
             _damageParticles.Play();
         }
 
+        private void DeactivateShields()
+        {
+            _isShieldsActive = false;
+            _shieldsVisualizer.SetActive(false);
+            _audioManager.Stop("Shield");
+            _audioManager.Play("ShieldDown");
+        }
+
         public void ActivateShields()
         {
-            _audioManager.Play("Shield");
+            _audioManager.Play("ShieldUp");
+            _audioManager.Play("ShieldContinued");
             _isShieldsActive = true;
             _shieldsVisualizer.SetActive(true);
         }
@@ -197,6 +210,7 @@ namespace Player
             _isBigLaserActive = true;
             _bigLaser.SetActive(true);
             _canFire = false;
+            _audioManager.Play("BigLaser");
             StartCoroutine(BigLaserPowerDownRoutine());
         }
 

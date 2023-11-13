@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44d934bee824c4296ad233d8e1bf21f8, type: 3}
-  m_Name: PlayerDamage
+  m_Name: ShieldContinued
   m_EditorClassIdentifier: 
-  clipName: PlayerDamage
-  clip: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  clipName: ShieldContinued
+  clip: {fileID: 8300000, guid: 39d7672d32f2d5146850d818b23ec933, type: 3}
   source: {fileID: 0}
   mixerGroup: {fileID: 24300002, guid: 531ac00dadd8f48ad8fe9ce85915d227, type: 2}
-  Volume: 0.5
+  Volume: 1
   Pitch: 1
-  Loop: 0
+  Loop: 1
   playedThisFrame: 0

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BigLaser
   m_EditorClassIdentifier: 
   clipName: BigLaser
-  clip: {fileID: 8300000, guid: 5b17a0088dcdf924fa92da5af1e1be07, type: 3}
+  clip: {fileID: 8300000, guid: 67c8fe34518854f4da1e920284803463, type: 3}
   source: {fileID: 0}
   mixerGroup: {fileID: 24300002, guid: 531ac00dadd8f48ad8fe9ce85915d227, type: 2}
-  Volume: 0.5
+  Volume: 0.75
   Pitch: 1
   Loop: 0
   playedThisFrame: 0

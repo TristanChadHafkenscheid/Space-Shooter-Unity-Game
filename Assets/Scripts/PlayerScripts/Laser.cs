@@ -9,6 +9,8 @@ namespace Player
         [SerializeField] private float _lifeCycle = 2f;
         private float timer = 0;
 
+        private bool _isCriticalHit = false;
+
         [SerializeField] private bool _isEnemyLaser = false;
 
         private PlayerController _playerController;
@@ -43,10 +45,7 @@ namespace Player
 
             if (collision.gameObject.CompareTag("Player") && _isEnemyLaser == true)
             {
-                if (_playerController != null)
-                {
-                    _playerController.Damage(_damageToPlayer);
-                }
+                _playerController.Damage(_damageToPlayer);
             }
         }
     }
