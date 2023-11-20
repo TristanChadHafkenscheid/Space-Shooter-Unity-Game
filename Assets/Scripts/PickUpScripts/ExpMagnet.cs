@@ -1,4 +1,14 @@
-﻿using System.Collections;
+﻿// <header>
+// Purpose:  Behaviour script that handles exp magnet functionality to move and collect exp.
+// Created By  : Tristan Hafkenscheid
+// Created On  : --/--/----
+// Modified By : Tristan Hafkenscheid
+// Modified On : 11/19/2023
+// Modification Note: Added summaries to methods
+// Other Notes:
+// </header>
+
+using System.Collections;
 using DG.Tweening;
 using Managers;
 using Player;
@@ -9,8 +19,6 @@ namespace PickUps
 {
     public class ExpMagnet : MonoBehaviour
     {
-        private PlayerController _playerController;
-
         [SerializeField] private float _magnetSpeed;
         [SerializeField] private float _closeToPlayer;
         [SerializeField] private ExpManager _expManager;
@@ -19,8 +27,8 @@ namespace PickUps
         [SerializeField] private Color _expPlayerColour;
         [SerializeField] private float _magnetRange = 0.2f;
 
+        private PlayerController _playerController;
         private AudioManager _audioManager;
-
         private CircleCollider2D _magnetCollider;
 
         void Start()
@@ -44,17 +52,24 @@ namespace PickUps
             }
         }
 
+        /// <summary>
+        /// Moves exp game object to player and collects it.
+        /// </summary>
+        /// <param name="expGameObject">Exp GameObject to move</param>
+        /// <returns></returns>
         IEnumerator MoveExp(GameObject expGameObject)
         {
+            float speedModifier = 1;
             _expAura.SetTrigger("ExpAura");
+
             while (Vector3.Distance(expGameObject.transform.position, transform.position) >= _closeToPlayer)
             {
                 expGameObject.transform.position = Vector3.MoveTowards(expGameObject.transform.position,
-                    _playerController.transform.position, _magnetSpeed * Time.deltaTime);
+                    _playerController.transform.position, _magnetSpeed * speedModifier * Time.deltaTime);
+                speedModifier += 0.1f; // increases each cycle to make sure it reaches player
                 yield return null;
             }
 
-            //see if you can yield return a few seconds before adding to top
             expGameObject.SetActive(false);
             _expCollectParticles.Play();
             _audioManager.Play("ExpCollect");
@@ -66,9 +81,12 @@ namespace PickUps
             _expManager.ExpCollected(expGameObject.GetComponent<Exp>().ExpAmount);
         }
 
+        /// <summary>
+        /// Increases radius of exp magnets colldier.
+        /// </summary>
+        /// <param name="rangeIncrease">Number to be added to collider radius</param>
         public void IncreaseRange(float rangeIncrease)
         {
-            //range starts at 0.15
             _magnetCollider.radius = _magnetRange + rangeIncrease;
         }
     }

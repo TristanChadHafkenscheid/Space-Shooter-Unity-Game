@@ -14,6 +14,7 @@ namespace Enemy
         [SerializeField] private GameObject _expPref;
         [SerializeField] private int _health = 1;
         [SerializeField] private Color _damageColour;
+        [SerializeField] float _damageRate;
 
         private int _initHealth;
         private PlayerController _player;
@@ -24,13 +25,15 @@ namespace Enemy
         private Rigidbody2D _rigidBody;
         private Vector2 _movement;
         private SpriteRenderer _sprite;
-
         private float _canDamage;
-        [SerializeField] float _damageRate;
 
         private void Awake()
         {
             _initHealth = _health;
+        }
+        private void OnEnable()
+        {
+            _health = _initHealth;
         }
 
         protected virtual void Start()
@@ -74,11 +77,6 @@ namespace Enemy
             MoveEnemy(_movement);
         }
 
-        private void OnEnable()
-        {
-            _health = _initHealth;
-        }
-
         protected virtual void MoveEnemy(Vector2 direction)
         {
             _rigidBody.MovePosition((Vector2)transform.position + (direction * _speed * Time.deltaTime));
@@ -97,7 +95,7 @@ namespace Enemy
         {
             if (collision.gameObject.CompareTag("PlayerLaser"))
             {
-                _health -= _player.LaserDamage;
+                _health -= collision.gameObject.GetComponent<Laser>().DamageToEnemy;
                 DamageVisuals();
 
                 if (_health <= 0)

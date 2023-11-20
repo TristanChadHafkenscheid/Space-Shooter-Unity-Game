@@ -14,7 +14,6 @@ namespace Player
 
         [Header("Shooting")]
         [SerializeField] private Transform _laserBarrel;
-        [SerializeField] private int _laserDamage = 1;
         [SerializeField] private GameObject _bigLaser;
         [SerializeField] private int _bigLaserDamage = 10;
         [SerializeField] private float _fireRate = 0.5f;
@@ -86,11 +85,6 @@ namespace Player
         {
             get => _maxHealth;
             set => _maxHealth = value;
-        }
-
-        public int LaserDamage
-        {
-            get => _laserDamage;
         }
 
         public int BigLaserDamage

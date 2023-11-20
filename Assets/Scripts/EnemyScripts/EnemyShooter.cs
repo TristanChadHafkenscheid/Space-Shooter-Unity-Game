@@ -1,8 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿// <header>
+// Purpose:  Behaviour script for enemy type shooter.
+// Created By  : Tristan Hafkenscheid
+// Created On  : --/--/----
+// Modified By : Tristan Hafkenscheid
+// Modified On : 11/19/2023
+// Modification Note: Added summaries to methods
+// Other Notes:
+// </header>
+
 using UnityEngine;
-using Managers;
-using Audio;
 
 namespace Enemy
 {
@@ -15,25 +21,12 @@ namespace Enemy
         private float _canFireRate = 0.1f;
         private bool _inPlayerVicinity = false;
 
-        private void FireLaser()
-        {
-            _canFireRate = Time.time + _fireRate;
-            _spawnManager.SpawnEnemyLaser(_laserBarrel, transform);
-            _audioManager.Play("Laser");
-        }
-
         protected override void Update()
         {
             base.Update();
 
             if (Time.time > _canFireRate && _canFire == true)
                 FireLaser();
-        }
-
-        protected override void MoveEnemy(Vector2 direction)
-        {
-            if (!_inPlayerVicinity)
-                base.MoveEnemy(direction);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -46,6 +39,26 @@ namespace Enemy
         {
             if (collision.CompareTag("Player"))
                 _inPlayerVicinity = false;
+        }
+
+        /// <summary>
+        /// Fires laser based on fire rate.
+        /// </summary>
+        private void FireLaser()
+        {
+            _canFireRate = Time.time + _fireRate;
+            _spawnManager.SpawnEnemyLaser(_laserBarrel, transform);
+            _audioManager.Play("Laser");
+        }
+
+        /// <summary>
+        /// Moves enemy towards player if they are not in collider vicinity.
+        /// </summary>
+        /// <param name="direction"></param>
+        protected override void MoveEnemy(Vector2 direction)
+        {
+            if (!_inPlayerVicinity)
+                base.MoveEnemy(direction);
         }
     }
 }

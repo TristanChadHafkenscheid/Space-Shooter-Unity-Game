@@ -1,4 +1,14 @@
-﻿using System.Collections;
+﻿// <header>
+// Purpose:  Behaviour script that handles exp magnet functionality to move and collect exp.
+// Created By  : Tristan Hafkenscheid
+// Created On  : --/--/----
+// Modified By : Tristan Hafkenscheid
+// Modified On : 11/19/2023
+// Modification Note: Added summaries to methods
+// Other Notes:
+// </header>
+
+using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
@@ -10,7 +20,6 @@ public class CompanionManager : MonoBehaviour
     [SerializeField] private List<Companion> _allUncollectedCompanions = new List<Companion>();
     [SerializeField] private int _scoreToSpawnCompanion;
     [SerializeField] private float spawnOffsetPos;
-
     [SerializeField] private GameObject _waterJetPrefab;
     [SerializeField] private int _waterJetDamage;
 
@@ -35,6 +44,9 @@ public class CompanionManager : MonoBehaviour
         _shipAttachmentController = ShipAttachmentController.instance;
     }
 
+    /// <summary>
+    /// Activates companion abilities on corresponding ship attachment.
+    /// </summary>
     public void ActivateCompanion()
     {
         _playersCompanions.Add(_randomlySelectedCompanion);
@@ -59,6 +71,9 @@ public class CompanionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawns random companion in the scene to be collected. Activates indicator arrow.
+    /// </summary>
     public void SpawnCollectableCompanion()
     {
         _scoreToSpawnCompanion += _initialScoreToSpawnCompanion;
@@ -76,7 +91,7 @@ public class CompanionManager : MonoBehaviour
         GameObject spawnedCompanion = Instantiate(_randomlySelectedCompanion.collectableCompanion, randomSpawn, Quaternion.identity);
         spawnedCompanion.GetComponentInChildren<SpriteRenderer>().sprite = _randomlySelectedCompanion.shipAttachmentSprite;
 
-        //updates the display for the companion to new randomly selected companion
+        // updates the display for the companion to new randomly selected companion
         _companionPanelDisplay.UpdateDisplay(_randomlySelectedCompanion);
 
         _uiManager.ActivateCompanionArrow(spawnedCompanion);
@@ -84,13 +99,21 @@ public class CompanionManager : MonoBehaviour
         StartCoroutine(DestroyCollectableCompanion(spawnedCompanion));
     }
 
+    /// <summary>
+    /// Removes companion from player companion list and adds it to uncollected list.
+    /// </summary>
+    /// <param name="companinonToRemove"></param>
     public void RemoveCompanion(Companion companinonToRemove)
     {
         _playersCompanions.Remove(companinonToRemove);
         _allUncollectedCompanions.Add(companinonToRemove);
     }
 
-    //delete spawned in companion if player does not collect after 20/30 seconds
+    /// <summary>
+    /// Destroys spawned collectable companion if player does not collect it after 30 seconds
+    /// </summary>
+    /// <param name="companion">Currently spawned in collectable companion</param>
+    /// <returns></returns>
     IEnumerator DestroyCollectableCompanion(GameObject companion)
     {
         yield return new WaitForSeconds(30f);
@@ -102,9 +125,12 @@ public class CompanionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shoots water on either side of the fish companion.
+    /// </summary>
+    /// <param name="fishShip">Fish ship attachment game object</param>
     private void ShootWater(GameObject fishShip)
     {
-        //_spawnManager.SpawnWaterShot(fishShip);
         Vector3 waterOffsetRight = new Vector3(0.257f, -0.003f, 0);
         GameObject waterJetRight = Instantiate(_waterJetPrefab, fishShip.transform.position, fishShip.transform.rotation);
         waterJetRight.transform.parent = fishShip.transform;
@@ -118,7 +144,12 @@ public class CompanionManager : MonoBehaviour
         waterJetLeft.transform.localPosition = waterOffsetLeft;
     }
 
-    public ShipAttachment FindCompanionShip(int companionID)
+    /// <summary>
+    /// Finds the ship attachment that corresponds to the companion ID.
+    /// </summary>
+    /// <param name="companionID"></param>
+    /// <returns></returns>
+    private ShipAttachment FindCompanionShip(int companionID)
     {
         int playerCompanionListIndex = 0;
 
