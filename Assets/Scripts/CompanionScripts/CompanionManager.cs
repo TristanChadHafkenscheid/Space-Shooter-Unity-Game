@@ -22,6 +22,10 @@ public class CompanionManager : MonoBehaviour
     [SerializeField] private float spawnOffsetPos;
     [SerializeField] private GameObject _waterJetPrefab;
     [SerializeField] private int _waterJetDamage;
+    [SerializeField] private GameObject _astronautVortex;
+    [SerializeField] private int _astronautVortexDamage;
+    [SerializeField] private float _astronautVortexActiveTimer;
+    [SerializeField] private float _astronautVortexDamageInterval;
 
     private List<Companion> _playersCompanions = new List<Companion>();
     private Companion _randomlySelectedCompanion;
@@ -30,6 +34,10 @@ public class CompanionManager : MonoBehaviour
     private UIManager _uiManager;
     private ShipAttachmentController _shipAttachmentController;
     private int _initialScoreToSpawnCompanion;
+
+    public int AstronautVortexDamage { get => _astronautVortexDamage; }
+    public float AstronautVortexActiveTimer { get => _astronautVortexActiveTimer; }
+    public float AstronautVortexDamageInterval { get => _astronautVortexDamageInterval; }
 
     public int ScoreToSpawnCompanion { get => _scoreToSpawnCompanion; }
     public int WaterJetDamage { get => _waterJetDamage; }
@@ -65,6 +73,11 @@ public class CompanionManager : MonoBehaviour
                 //fish shoot water
                 ShipAttachment fishShip = FindCompanionShip(3);
                 ShootWater(fishShip.gameObject);
+                break;
+            case 4:
+                // astronaut vortex
+                ShipAttachment astronautShip = FindCompanionShip(4);
+                CreateVortex(astronautShip.gameObject);
                 break;
             default:
                 break;
@@ -126,25 +139,6 @@ public class CompanionManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Shoots water on either side of the fish companion.
-    /// </summary>
-    /// <param name="fishShip">Fish ship attachment game object</param>
-    private void ShootWater(GameObject fishShip)
-    {
-        Vector3 waterOffsetRight = new Vector3(0.257f, -0.003f, 0);
-        GameObject waterJetRight = Instantiate(_waterJetPrefab, fishShip.transform.position, fishShip.transform.rotation);
-        waterJetRight.transform.parent = fishShip.transform;
-        waterJetRight.transform.localPosition = waterOffsetRight;
-
-        Vector3 waterOffsetLeft = new Vector3(-0.257f, -0.003f, 0);
-        GameObject waterJetLeft = Instantiate(_waterJetPrefab, fishShip.transform.position, fishShip.transform.rotation);
-        waterJetLeft.transform.parent = fishShip.transform;
-        waterJetLeft.transform.localScale = new Vector3(-waterJetLeft.transform.localScale.x, waterJetLeft.transform.localScale.y,
-            waterJetLeft.transform.localScale.z);
-        waterJetLeft.transform.localPosition = waterOffsetLeft;
-    }
-
-    /// <summary>
     /// Finds the ship attachment that corresponds to the companion ID.
     /// </summary>
     /// <param name="companionID"></param>
@@ -163,5 +157,32 @@ public class CompanionManager : MonoBehaviour
             }
         }
         return _shipAttachmentController.AttachmentList[playerCompanionListIndex];
+    }
+
+    /// <summary>
+    /// Shoots water on either side of the fish companion.
+    /// </summary>
+    /// <param name="fishShip">Fish ship attachment game object</param>
+    private void ShootWater(GameObject fishShip)
+    {
+        // left water jet spawning
+        Vector3 waterOffsetRight = new Vector3(0.257f, -0.003f, 0);
+        GameObject waterJetRight = Instantiate(_waterJetPrefab, fishShip.transform.position, fishShip.transform.rotation);
+        waterJetRight.transform.parent = fishShip.transform;
+        waterJetRight.transform.localPosition = waterOffsetRight;
+
+        // right water jet spawning
+        Vector3 waterOffsetLeft = new Vector3(-0.257f, -0.003f, 0);
+        GameObject waterJetLeft = Instantiate(_waterJetPrefab, fishShip.transform.position, fishShip.transform.rotation);
+        waterJetLeft.transform.parent = fishShip.transform;
+        waterJetLeft.transform.localScale = new Vector3(-waterJetLeft.transform.localScale.x, waterJetLeft.transform.localScale.y,
+            waterJetLeft.transform.localScale.z);
+        waterJetLeft.transform.localPosition = waterOffsetLeft;
+    }
+
+    private void CreateVortex(GameObject astronaut)
+    {
+        GameObject vortex = Instantiate(_astronautVortex, astronaut.transform.position, astronaut.transform.rotation);
+        vortex.transform.parent = astronaut.transform;
     }
 }

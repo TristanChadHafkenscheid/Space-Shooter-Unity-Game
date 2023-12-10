@@ -4,6 +4,8 @@ using Managers;
 using Audio;
 using Attachments;
 using DG.Tweening;
+using MoreMountains.Tools;
+using System.Collections;
 
 namespace Enemy
 {
@@ -27,6 +29,8 @@ namespace Enemy
         private SpriteRenderer _sprite;
         private float _canDamage;
 
+        private Coroutine _damageOverTimeCo;
+
         private void Awake()
         {
             _initHealth = _health;
@@ -42,7 +46,7 @@ namespace Enemy
             _spawnManager = SpawnManager.instance;
             _audioManager = AudioManager.Instance;
 
-            _companionManager = _player.transform.GetComponent<CompanionManager>();
+            _companionManager = _player.GetComponent<CompanionManager>();
             if (_companionManager == null)
             {
                 Debug.LogError("Companion Manager is NULL");
@@ -128,6 +132,11 @@ namespace Enemy
                     EnemyDestroyed();
                 }
             }
+
+            else if (collision.gameObject.CompareTag("AstronautVortex"))
+            {
+                StartCoroutine(ActivateDamageOverTime(_companionManager.AstronautVortexDamage, _companionManager.AstronautVortexDamageInterval, _companionManager.AstronautVortexActiveTimer));
+            }
         }
 
         protected virtual void OnCollisionStay2D(Collision2D collision)
@@ -163,6 +172,22 @@ namespace Enemy
             _sprite.DOKill();
             _sprite.color = Color.white;
             _sprite.DOColor(_damageColour, 0.25f).SetInverted().SetLoops(2, LoopType.Restart);
+        }
+
+        private IEnumerator DamageOverTime(int damage, float damageInterval)
+        {
+            while (true)
+            {
+                _health -= damage;
+                yield return new WaitForSeconds(damageInterval);
+            }
+        }
+
+        private IEnumerator ActivateDamageOverTime(int damage, float damageInterval, float damageOverTimeLifetime)
+        {
+            _damageOverTimeCo = StartCoroutine(DamageOverTime(damage,damageInterval));
+            yield return new WaitForSeconds(damageOverTimeLifetime);
+            StopCoroutine(_damageOverTimeCo);
         }
     }
 }

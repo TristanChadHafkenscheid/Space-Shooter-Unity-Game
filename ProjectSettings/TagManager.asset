@@ -12,6 +12,7 @@ TagManager:
   - Exp
   - CanvasWorldSpace
   - WaterJet
+  - AstronautVortex
   layers:
   - Default
   - TransparentFX

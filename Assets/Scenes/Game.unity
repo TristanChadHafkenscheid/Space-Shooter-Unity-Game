@@ -25725,7 +25725,6 @@ MonoBehaviour:
   _health: 100
   _speed: 50
   _laserBarrel: {fileID: 4898494364439744115}
-  _laserDamage: 1
   _bigLaser: {fileID: 1391403698}
   _bigLaserDamage: 2
   _fireRate: 1.5
@@ -25867,7 +25866,7 @@ MonoBehaviour:
   _playerRigidbody: {fileID: 5}
   attachmentObject: {fileID: 2075217223107937759, guid: ba60d765249504fd794384de656b8204,
     type: 3}
-  attachmentCompanionTest: {fileID: 11400000, guid: 738fb97b871174b01be3e6985ab5d702,
+  attachmentCompanionTest: {fileID: 11400000, guid: 570171b104dcc40179626d8d15f4d19c,
     type: 2}
 --- !u!114 &4898494364969832243
 MonoBehaviour:
@@ -25888,8 +25887,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 570171b104dcc40179626d8d15f4d19c, type: 2}
   - {fileID: 11400000, guid: b87c81b7a6ff04b5ba2f8faa0eaa54c1, type: 2}
   - {fileID: 11400000, guid: a0de998680b6f4490ab49c9bc14c5425, type: 2}
-  _scoreToSpawnCompanion: 500
+  _scoreToSpawnCompanion: 100
   spawnOffsetPos: 10
   _waterJetPrefab: {fileID: 5217072182397158688, guid: 21c24d5e1f0f2ce468ee77aac0b10c6c,
     type: 3}
   _waterJetDamage: 1
+  _astronautVortex: {fileID: 505749007459415399, guid: fdaaeee0f7bb3b14d9e393d589d7682e,
+    type: 3}
+  _astronautVortexDamage: 0
+  _astronautVortexActiveTimer: 0
+  _astronautVortexDamageInterval: 0
