@@ -1231,9 +1231,9 @@ MonoBehaviour:
   _explosionPool: {fileID: 1059174464}
   _basicEnemySpawnTime: 1
   _basicEnemyStartTime: 0
-  _enemyPurpleSpawnTime: 7
+  _enemyPurpleSpawnTime: 5
   _enemyPurpleStartTime: 35
-  _enemyShooterSpawnTime: 15
+  _enemyShooterSpawnTime: 10
   _enemyShooterStartTime: 75
   _offScreenOffset: 0.5
   _explosionDisableTime: 0.6
@@ -8972,7 +8972,7 @@ MonoBehaviour:
           m_DissipationMode: 2
           m_DissipationDistance: 1000
           m_PropagationSpeed: 343
-        Velocity: {x: 0, y: 0, z: 1.5}
+        Velocity: {x: 0, y: 0, z: 1}
         ClearImpulseOnStop: 0
     00000001:
       type: {class: MMF_NVPreset, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.NiceVibrations}
@@ -25894,6 +25894,6 @@ MonoBehaviour:
   _waterJetDamage: 1
   _astronautVortex: {fileID: 505749007459415399, guid: fdaaeee0f7bb3b14d9e393d589d7682e,
     type: 3}
-  _astronautVortexDamage: 0
-  _astronautVortexActiveTimer: 0
-  _astronautVortexDamageInterval: 0
+  _astronautVortexDamage: 1
+  _astronautVortexActiveTimer: 1
+  _astronautVortexDamageInterval: 1
