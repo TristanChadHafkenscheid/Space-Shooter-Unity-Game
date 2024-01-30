@@ -124,16 +124,24 @@ namespace Player
                 Debug.LogError("Rigidbody2D on the player is NULL");
             }
 
-            _startCamera.SetActive(false);
-            _playerCamera.SetActive(true);
+            //_startCamera.SetActive(false);
+            //_playerCamera.SetActive(true);
 
             _maxHealth = _health;
+            _canFire = false;
         }
 
         void Update()
         {
             if (Time.time > _canFireRate && _canFire == true)
                 FireLaser();
+        }
+
+        public void StartPlayerController()
+        {
+            _canFire = true;
+            _startCamera.SetActive(false);
+            _playerCamera.SetActive(true);
         }
 
         public void Movement(float horizontalInput, float verticalInput)

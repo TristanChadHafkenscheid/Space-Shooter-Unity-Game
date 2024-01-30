@@ -51,6 +51,8 @@ namespace Managers
                 instance = this;
             else if (instance != this)
                 Destroy(gameObject);
+
+            _stopAllSpawning = true;
         }
 
         private void Update()
@@ -60,6 +62,11 @@ namespace Managers
             BasicEnemyTimer();
             ShooterEnemyTimer();
             EnemyPurpleTimer();
+        }
+
+        public void StartSpawning()
+        {
+            _stopAllSpawning = false;
         }
 
         private void BasicEnemyTimer()
