@@ -26088,7 +26088,7 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 2083895700}
         DebugActive: 0
-        Preset: 5
+        Preset: 4
         HapticSettings:
           ForceGamepadID: 0
           GamepadID: 0

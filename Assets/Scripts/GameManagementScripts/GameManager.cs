@@ -92,7 +92,7 @@ namespace Managers
 
         public void RestartGame()
         {
-            SceneManager.LoadScene(1); //current game scene
+            SceneManager.LoadScene("Game"); //current game scene
             PauseGame(false);
         }
     }
