@@ -595,8 +595,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Level: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be8bbb2371e0840699dd961122b89fc9, type: 2}
-  m_sharedMaterial: {fileID: 2520991819672441720, guid: be8bbb2371e0840699dd961122b89fc9,
+  m_fontAsset: {fileID: 11400000, guid: c4e4075aea827be4eb080e6508648e75, type: 2}
+  m_sharedMaterial: {fileID: 4377120345660258280, guid: c4e4075aea827be4eb080e6508648e75,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1319,7 +1319,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.427451, g: 0.5019608, b: 0.9803922, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1342,7 +1342,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1568252958}
-        m_MethodName: BackToMainMenu
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1448,8 +1448,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Big Blast
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be8bbb2371e0840699dd961122b89fc9, type: 2}
-  m_sharedMaterial: {fileID: 2520991819672441720, guid: be8bbb2371e0840699dd961122b89fc9,
+  m_fontAsset: {fileID: 11400000, guid: c4e4075aea827be4eb080e6508648e75, type: 2}
+  m_sharedMaterial: {fileID: 4377120345660258280, guid: c4e4075aea827be4eb080e6508648e75,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2531,8 +2531,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Big Blast
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be8bbb2371e0840699dd961122b89fc9, type: 2}
-  m_sharedMaterial: {fileID: 2520991819672441720, guid: be8bbb2371e0840699dd961122b89fc9,
+  m_fontAsset: {fileID: 11400000, guid: c4e4075aea827be4eb080e6508648e75, type: 2}
+  m_sharedMaterial: {fileID: 4377120345660258280, guid: c4e4075aea827be4eb080e6508648e75,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2741,7 +2741,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.35686275, g: 0.6509804, b: 0.45882356, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -8744,8 +8744,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Level: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be8bbb2371e0840699dd961122b89fc9, type: 2}
-  m_sharedMaterial: {fileID: 2520991819672441720, guid: be8bbb2371e0840699dd961122b89fc9,
+  m_fontAsset: {fileID: 11400000, guid: c4e4075aea827be4eb080e6508648e75, type: 2}
+  m_sharedMaterial: {fileID: 4377120345660258280, guid: c4e4075aea827be4eb080e6508648e75,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -10089,7 +10089,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -119, y: -131}
+  m_AnchoredPosition: {x: -237, y: -129}
   m_SizeDelta: {x: 2000, y: 505.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &776301526
@@ -15429,8 +15429,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Shoots a powerful blast dealing lots of damage
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be8bbb2371e0840699dd961122b89fc9, type: 2}
-  m_sharedMaterial: {fileID: 2520991819672441720, guid: be8bbb2371e0840699dd961122b89fc9,
+  m_fontAsset: {fileID: 11400000, guid: c4e4075aea827be4eb080e6508648e75, type: 2}
+  m_sharedMaterial: {fileID: 4377120345660258280, guid: c4e4075aea827be4eb080e6508648e75,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -18530,7 +18530,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.8000001, g: 0.25882354, b: 0.36862746, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -19669,7 +19669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointer: {fileID: 891314542}
-  _borderSize: 100
+  _borderSize: 120
 --- !u!1 &1796108346
 GameObject:
   m_ObjectHideFlags: 0
@@ -19911,8 +19911,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284367564
-  m_fontColor: {r: 0.8, g: 0.25882354, b: 0.36862746, a: 1}
+    rgba: 4284637930
+  m_fontColor: {r: 0.9176471, g: 0.38431376, b: 0.38431376, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -20226,8 +20226,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Shoots a powerful blast dealing lots of damage
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be8bbb2371e0840699dd961122b89fc9, type: 2}
-  m_sharedMaterial: {fileID: 2520991819672441720, guid: be8bbb2371e0840699dd961122b89fc9,
+  m_fontAsset: {fileID: 11400000, guid: c4e4075aea827be4eb080e6508648e75, type: 2}
+  m_sharedMaterial: {fileID: 4377120345660258280, guid: c4e4075aea827be4eb080e6508648e75,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
