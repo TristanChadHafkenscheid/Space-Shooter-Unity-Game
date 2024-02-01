@@ -9,6 +9,8 @@ namespace UIScripts.TouchInput
     {
         [SerializeField] private Vector2 JoystickSize = new Vector2(300, 300);
         [SerializeField] private FloatingJoystick Joystick;
+        [SerializeField] private GameObject JoystickKnob;
+        [SerializeField] private Vector2 JoystickKnobSize = new Vector2(100, 100);
         [SerializeField] private PlayerController Player;
 
         private Finger MovementFinger;
@@ -36,6 +38,13 @@ namespace UIScripts.TouchInput
             ETouch.Touch.onFingerUp -= HandleLoseFinger;
             ETouch.Touch.onFingerMove -= HandleFingerMove;
             EnhancedTouchSupport.Disable();
+        }
+
+        private void Start()
+        {
+            JoystickSize = new Vector2(Screen.width / 3.9f, Screen.width / 3.9f);
+            JoystickKnobSize = new Vector2(Screen.width / 11.7f, Screen.width / 11.7f);
+            JoystickKnob.GetComponent<RectTransform>().sizeDelta = JoystickKnobSize;
         }
 
         private void HandleFingerMove(Finger MovedFinger)
@@ -131,6 +140,7 @@ namespace UIScripts.TouchInput
             return Mathf.Atan2(scaledMovement.x, scaledMovement.y) * Mathf.Rad2Deg;
         }
 
+        /*
         private void OnGUI()
         {
             GUIStyle labelStyle = new GUIStyle()
@@ -153,5 +163,6 @@ namespace UIScripts.TouchInput
 
             GUI.Label(new Rect(10, 10, 500, 20), $"Screen Size ({Screen.width}, {Screen.height})", labelStyle);
         }
+        */
     }
 }
